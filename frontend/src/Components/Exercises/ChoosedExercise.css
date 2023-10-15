@@ -1,0 +1,16 @@
+#choosedExerciseContainer {
+    background-color: rgb(207, 44, 44);
+    max-width: 1000px;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 10px;
+
+}
+
+#customCol {
+    justify-content: center;
+    text-align: center;
+}
+
+#customRow {
+}

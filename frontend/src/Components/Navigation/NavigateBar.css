@@ -1,0 +1,118 @@
+.get-started-link {
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #000000;
+    border-radius: 5px;
+    border: none;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    font-size: 17px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.9s ease;
+}
+
+.get-started-link:hover {
+    transform: scale(1.05);
+}
+
+
+.navbar .nav-link {
+    color: #333;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: lighter;
+    font-size: 17.5px;
+    border-radius: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.7s;
+
+}
+
+.navbar .nav-link:hover {
+    background-color: #d8dada;
+    transform: scale(1.009);
+
+
+}
+
+#offcanvasNavbar {
+    width: 300px;
+    border-radius: 10px;
+    background-color: #ebe8e8;
+}
+
+.navDiv i {
+    font-style: initial;
+}
+
+#offcanvasHeader {
+    color: #ffffff;
+    background-color: #000000;
+    border-radius: 2px;
+}
+
+#logoutButton {
+    background-color: #000000;
+    color: #ffffff;
+    border-color: #000000;
+}
+
+
+#logoutButton:hover {
+    transform: scale(1.05);
+    /* Zmiana koloru tła po najechaniu */
+}
+
+
+
+
+@media (min-width: 768px) {
+    .navDiv {
+        display: flex;
+        align-items: center;
+        margin-right: 12px;
+
+    }
+
+
+    .iForNavigation {
+
+        margin-right: 10px;
+    }
+
+
+}
+
+
+@media (max-width: 1024px) {
+
+    .navDiv {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+    }
+
+    .navDiv .nav-link {
+        color: #000000;
+        font-size: large;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+    .custom-icon {
+        width: 25px;
+        height: 17px;
+        margin-right: 5px;
+
+    }
+
+    #navDivLogoutButton {
+        margin-top: 10px;
+
+    }
+
+    .get-started-link {
+        margin-top: 10px;
+    }
+
+}
