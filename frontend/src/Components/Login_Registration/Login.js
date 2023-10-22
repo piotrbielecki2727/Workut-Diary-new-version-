@@ -43,10 +43,11 @@ function Login() {
     event.preventDefault();
     Axios.post('http://localhost:3001/loginUser', values)
       .then(res => {
-        console.log(res.data); // Log the response data
+        console.log(res.data);
         if (res.data.Status === "Success") {
           console.log("Zalogowano pomyślnie!");
           navigate('/')
+          window.location.reload(); 
         } else {
           alert(res.data.Error);
         }

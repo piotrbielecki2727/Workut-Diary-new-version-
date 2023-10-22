@@ -1,0 +1,47 @@
+#modalHeader {
+    background-color: rgb(0, 0, 0);
+}
+
+#modalTitle {
+    color: #ffffff;
+}
+
+#modalFooter {
+    color: #000000;
+    background-color: rgb(255, 255, 255);
+}
+
+#modalButton {
+    background-color: #000000;
+    color: #ffffff;
+    border-radius: 10px;
+    border-color: white;
+    
+    
+}
+
+#modalButton:hover  {
+    background-color: #000000;
+    transform: scale(1.05);
+
+}
+
+#createModalButton{
+    background-color: #000000;
+    color: #ffffff;
+    border-radius: 10px;
+    border-color: white;
+    display: block;
+    margin: auto;
+}
+
+#formControlModal{
+    background-color: #eae9e9;
+}
+
+#formGroup {
+    padding: 5px;
+}
+
+
+

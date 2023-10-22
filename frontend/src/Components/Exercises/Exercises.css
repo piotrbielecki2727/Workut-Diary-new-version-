@@ -1,35 +1,39 @@
+#navbar {
+    box-shadow: rgb(0 0 0 / 30%) 1px 1px 10px;
+}
+
 #exercisesContainer {
     background-color: rgb(255, 255, 255);
     max-width: 1000px;
     border-radius: 10px;
     padding: 20px;
-   }
+    box-shadow: rgb(0 0 0 / 55%) 1px 1px 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 
-#background {
-    width: 100%;
-    background-position: center;
-    background-size: cover;
+}
+
+#exercisesContainer2 {
+    background-color: rgb(255, 255, 255);
+    max-width: 1000px;
+    border-radius: 10px;
     padding: 20px;
-    text-align: center;
-    background-image: linear-gradient(rgba(175, 175, 175, 0.8), rgba(165, 165, 165, 0.4), rgba(88, 88, 88, 0.6), rgba(58, 58, 58, 0.8)), url(../imgs/background.png);
+    margin-top: 20px;
 }
 
-#searchBar {
-    max-width: 450px;
-    margin: auto;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
 
 
 .customCardFooter {
     text-align: center;
+    background-color: white;
+    border-color: white;
 }
 
 .customCard {
     margin-bottom: 15px;
     text-align: center;
     justify-content: center;
+    border-color: white;
 }
 
 .customCard:hover {
@@ -44,6 +48,12 @@ h3 {
 
 #muscle-group-link {
     text-decoration: none;
+}
+
+.customRow {
+    margin-bottom: 15px;
+    text-align: center;
+    justify-content: center;
 }
 
 

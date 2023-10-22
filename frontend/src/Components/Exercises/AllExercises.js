@@ -8,11 +8,11 @@ import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 
 import {
-    BrowserRouter as Router,
     Link,
-    useNavigate,
     useParams
 } from "react-router-dom";
+import Pagination from './Pagination';
+import SearchBar from './SearchBar';
 
 
 
@@ -26,51 +26,55 @@ function AllExercises() {
 
     useEffect(() => {
         if (muscle_group === "All exercises") {
-            axios.get(`http://localhost:3001/getAllExercises`)
-                .then(res => {
-                    if (res.data.Status === "Success") {
-                        console.log(res.data.results);
-                        setExercises(res.data.results);
+            const fetchData = async () => {
+                const options = {
+                    method: 'GET',
+                    url: 'https://exercisedb.p.rapidapi.com/exercises?offset=0&limit=1000',
+                    headers: {
+                        'X-RapidAPI-Key': 'bca569beb6mshe6cf79cc749d63cp13c4dfjsn7c91553244a1',
+                        'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
                     }
-                    else {
-                        console.error(res.data.Error);
-                    }
-                })
-                .catch(err => console.log(err));
+
+                };
+
+                try {
+                    const response = await axios.request(options);
+                    setExercises(response.data);
+                    console.log(response.data);
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+            fetchData(); // Wywołanie funkcji fetch po zamontowaniu komponentu
         } else {
-            console.log(muscle_group);
-            axios.get(`http://localhost:3001/getExerciseByMuscleGroup/${muscle_group}`)
-                .then(res => {
-                    if (res.data.Status === "Success") {
-                        console.log(res.data.results);
-                        setExercises(res.data.results);
+            const fetchData = async () => {
+                const options = {
+                    method: 'GET',
+                    url: `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${muscle_group}?offset=0&limit=1000`,
+                    headers: {
+                        'X-RapidAPI-Key': 'bca569beb6mshe6cf79cc749d63cp13c4dfjsn7c91553244a1',
+                        'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
                     }
-                    else {
-                        console.error(res.data.Error);
-                    }
-                })
-                .catch(err => console.log(err));
+                };
+
+                try {
+                    const response = await axios.request(options);
+                    setExercises(response.data);
+                    console.log(response.data);
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+            fetchData(); // Wywołanie funkcji fetch po zamontowaniu komponentu
         }
     }, [muscle_group]);
 
     return (
         <Container id='exercisesContainer'>
-            <h3>Find your exercise</h3>
-            <Form.Control id='searchBar' type="text" placeholder="Name..." />
-            <Row className='customRow'>
-                {exercises.map(exercise => (
-                    <Col key={exercise.id_exercise} xs={5} sm={6} md={4} lg={3}>
-                        <Link to={`/getExercise/${exercise.id_exercise}`} id='muscle-group-link'><Card className='customCard'>
-                            <Card.Img src={exercise.gif} alt="chuj" />
-                            <Card.Footer className='customCardFooter'>
-                                {exercise.Name}
-                            </Card.Footer>
-                        </Card>
-                        </Link>
-                    </Col>
-                ))}
-
-            </Row>
+            <SearchBar />
+            <Container id='exercisesContainer2'>
+                <Pagination data={exercises} />
+            </Container>
         </Container >
     );
 }

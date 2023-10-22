@@ -34,6 +34,7 @@ function NavigateBar() {
   const [showOffcanvas, setShowOffcanvas] = useState(false);
 
   const handleCloseOffcanvas = () => setShowOffcanvas(false);
+
   useEffect(() => {
     axios.get('http://localhost:3001/')
       .then(res => {
@@ -41,10 +42,9 @@ function NavigateBar() {
           setAuth(true);
           setName(res.data.firstName);
           setUserId(res.data.idUser);
-          Cookies.set('userId', userId);
+          sessionStorage.setItem('userId', userId); // Zapisujemy wartość do Session Storage
         } else {
           setAuth(false);
-          //navigate('/login')
           setMessage(res.data.Error);
         }
       })
@@ -58,7 +58,7 @@ function NavigateBar() {
     axios.get('http://localhost:3001/logout')
       .then(res => {
         handleCloseOffcanvas();
-        window.location.reload(); // Use window.location.reload() to reload the page
+        window.location.reload(); 
         navigate('/')
 
       }).catch(err => console.log(err));
@@ -90,7 +90,7 @@ function NavigateBar() {
 
           <Offcanvas.Body>
             <Nav className="justify-content-start flex-grow-1 pe-3">
-              <hr className="my-1" /> {/* Linia oddzielająca */}
+              <hr className="my-1" />
               <div className="navDiv">
                 <Link to="/exercises" className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faDumbbell} className="custom-icon" /></i>Exercises</Link></div>
               <div className="navDiv">
@@ -111,10 +111,10 @@ function NavigateBar() {
                         Workout manager
                       </>
                     } id="offcanvasNavbarDropdown" >
-                      <NavDropdown.Item href="#action3">Manage your workouts</NavDropdown.Item>
-                      <NavDropdown.Item href="#action4">Check your progress</NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to="/workoutManager"  onClick={handleCloseOffcanvas}>Manage your workouts</NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to="/progress"  onClick={handleCloseOffcanvas}>Check your progress</NavDropdown.Item>
                       <NavDropdown.Divider />
-                      <NavDropdown.Item href="#action5">Workouts base</NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to="/workoutsBase"  onClick={handleCloseOffcanvas}>Workouts base</NavDropdown.Item>
                     </NavDropdown>
                   </div>
                   <hr className="my-1" /> {/* Linia oddzielająca */}

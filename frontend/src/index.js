@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Routes, Route, Navigate, useParams } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import "./index.css";
 import App from "./App";
@@ -14,11 +15,19 @@ import WorkoutManager from "./Components/Workouts/WorkoutManager";
 import Exercises from "./Components/Exercises/Exercises";
 import AllExercises from "./Components/Exercises/AllExercises";
 import ChoosedExercise from "./Components/Exercises/ChoosedExercise";
+import Pagination from "./Components/Exercises/Pagination";
+import Cookies from 'js-cookie'; 
+
 
 
 function AppWrapper() {
 
 
+  const checkToken = (element) => {
+    const token = Cookies.get("token");
+    console.log(token);
+    return token ? element : <Navigate to="/" />;
+  };
 
   return (
     <div >
@@ -57,20 +66,20 @@ function AppWrapper() {
           <Route
             path="/admin"
             element={
-              <Admin />
+              <Pagination />
             }
           />
 
           <Route
-            path="/userProfile/:token"
+            path="/userProfile"
             element={
               <UserProfile />
             }
           />
           <Route
-            path="/workoutManager/:token"
+            path="/workoutManager"
             element={
-              <WorkoutManager />
+              checkToken(<WorkoutManager />)
             }
           />
           <Route path="/login" element={<Login />} />

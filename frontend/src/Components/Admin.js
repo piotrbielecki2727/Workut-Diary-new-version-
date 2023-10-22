@@ -1,11 +1,14 @@
 import React from 'react'
+import Table from 'react-bootstrap/Table';
 
 function Admin() {
-    return (
-      <div>
-        Admin page
-      </div>
-    );
-  }
+  return (
+    <div></div>
+  );
+}
 
-  export default Admin;
+export default Admin;
+
+
+
+

@@ -1,3 +1,1 @@
-select * from exercises;
-
-select * from users;
+SELECT * FROM exercises WHERE Name RLIKE '%${bench}%;

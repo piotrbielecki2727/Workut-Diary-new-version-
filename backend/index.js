@@ -6,6 +6,7 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
 import ExercisesRoutes from "./Exercises/ExercisesRoutes.js";
+import WorkoutsRoutes from "./Workouts/WorkoutsRoutes.js"
 
 const salt = 10;
 
@@ -68,7 +69,7 @@ app.get('/', verifyUser, (req, res) => {
     }
 
     const firstName = results[0].first_name;
-    const idUser = results[0].id;
+    const idUser = results[0].id_user;
 
     return res.json({ Status: "Success", name: req.name, firstName: firstName, idUser: idUser });
   });
@@ -122,7 +123,7 @@ app.post('/registerUser', (req, res) => {
 
 app.post('/loginUser', (req, res) => {
   console.log(req.body);
-  const sql = 'SELECT * FROM users WHERE email = ? ';
+  const sql = 'SELECT * FROM users WHERE Email = ? ';
   db.query(sql, [req.body.email], (err, data) => {
     if (err) return res.json({ Error: "Login error in server" });
     console.log("Data from database:", data); // Add this line
@@ -176,25 +177,6 @@ app.get('/getUser/:userId', verifyUser, (req, res) => {
 });
 
 
-
-app.post('/createWorkout', (req, res) => {
-  console.log(req.body);
-  const sql = "INSERT INTO workouts (workout_name, number_of_exercises, last_time, time_duration,user_id) VALUES(?)";
-  const values = [
-    req.body.workout_name,
-    req.body.number_of_exercises || null,
-    req.body.last_time || null,
-    req.body.time_duration || null,
-    req.body.user_id
-  ]
-  db.query(sql, [values], (err, data) => {
-    if (err) return res.json({ Error: "Error inserting data to database" });
-    return res.json(data);
-  });
-});
-
-
-
 app.get('/getMuscleGroups', (req, res) => {
   const query = 'SELECT muscle_group, img_src from muscle_groups';
   db.query(query, (error, results) => {
@@ -214,6 +196,7 @@ app.get('/getMuscleGroups', (req, res) => {
 
 
 app.use('/', ExercisesRoutes(db));
+app.use('/', WorkoutsRoutes(db));
 
 
 
