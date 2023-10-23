@@ -20,14 +20,12 @@ const db = mysql.createConnection({
   database: "HYPE",
 });
 
-// Allow json data to send from express, otherwise will not be sent
 app.use(express.json());
-// Allow an application to send api requests
 
 
 app.use(cors({
   origin: ["http://localhost:3000"],
-  methods: ["POST", "GET"],
+  methods: ["POST", "GET", "DELETE", "PUT"],
   credentials: true
 }));
 
@@ -155,7 +153,7 @@ app.post('/loginUser', (req, res) => {
 //pobieranie konkretnego usera
 
 app.get('/getUser/:userId', verifyUser, (req, res) => {
-  const userId = req.userId; // Pobierz identyfikator użytkownika z parametru ścieżki
+  const userId = req.userId; 
 
   const query = 'SELECT first_name,email,role FROM users WHERE id = ?';
   db.query(query, [userId], (error, results) => {

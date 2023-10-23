@@ -32,11 +32,44 @@ const createRoutes = (db) => {
         return res.json({ Error: "Error get data" })
       }
       else {
-        console.log(result); // Dodaj to
         return res.json({ Success: "Workouts got", result })
       }
     })
   })
+
+
+  router.delete("/deleteWorkout", (req, res) => {
+    const workoutId = req.body.workoutId;
+    console.log(workoutId);
+    const query = "DELETE FROM WORKOUTS WHERE id_workout = ?";
+
+    db.query(query, [workoutId], (err, result) => {
+      if (err) {
+        return res.json({ Error: "Error when deleting" })
+      }
+      else {
+        return res.json({ Success: "Workout deleted" })
+      }
+    })
+  }
+  )
+
+  router.put("/editWorkout/:workoutId", (req, res) => {
+    console.log(req.body);
+    const workoutId = req.params.workoutId;
+   
+    const query = "UPDATE workouts SET Name=?, Date=? WHERE id_workout=?";
+
+    db.query(query, [req.body.Name, req.body.Date, workoutId], (err, result) => {
+      if (err) {
+        return res.json({ Error: "Error when updating" })
+      }
+      else {
+        return res.json({ Success: "Workout edited" })
+      }
+    })
+  }
+  )
 
   return router;
 };

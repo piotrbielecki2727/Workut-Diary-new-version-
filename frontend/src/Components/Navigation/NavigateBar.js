@@ -27,7 +27,7 @@ function NavigateBar() {
   const [message, setMessage] = useState('');
   const [name, setName] = useState('');
   const [userId, setUserId] = useState('');
-  const [loading, setLoading] = useState(true); // New loading state
+  const [loading, setLoading] = useState(true); 
 
   axios.defaults.withCredentials = true;
 
@@ -42,14 +42,14 @@ function NavigateBar() {
           setAuth(true);
           setName(res.data.firstName);
           setUserId(res.data.idUser);
-          sessionStorage.setItem('userId', userId); // Zapisujemy wartość do Session Storage
+          sessionStorage.setItem('userId', userId); 
         } else {
           setAuth(false);
           setMessage(res.data.Error);
         }
       })
       .catch(err => console.log(err))
-      .finally(() => setLoading(false)); // Update loading state when authentication check is complete
+      .finally(() => setLoading(false)); 
   }, [navigate, userId]);
 
 

@@ -45,7 +45,7 @@ function AllExercises() {
                     console.error(error);
                 }
             }
-            fetchData(); // Wywołanie funkcji fetch po zamontowaniu komponentu
+            fetchData(); 
         } else {
             const fetchData = async () => {
                 const options = {
@@ -65,7 +65,7 @@ function AllExercises() {
                     console.error(error);
                 }
             }
-            fetchData(); // Wywołanie funkcji fetch po zamontowaniu komponentu
+            fetchData(); 
         }
     }, [muscle_group]);
 

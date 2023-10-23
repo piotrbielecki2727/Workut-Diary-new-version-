@@ -40,7 +40,7 @@ function SearchBar() {
                 console.error(error);
             }
         }
-        fetchData(); // Wywołanie funkcji fetch po zamontowaniu komponentu
+        fetchData(); 
     }, [searchValue]);
 
 

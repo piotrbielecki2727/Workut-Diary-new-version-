@@ -20,10 +20,9 @@
     
 }
 
-#modalButton:hover  {
+#modalButton:hover, #createModalButton:hover {
     background-color: #000000;
     transform: scale(1.05);
-
 }
 
 #createModalButton{

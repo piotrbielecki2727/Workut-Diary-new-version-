@@ -46,7 +46,7 @@ const createRoutes = (db) => {
 
 
   router.get('/getChoosedExercise/:id_exercise', (req, res) => {
-    const id_exercise = req.params.id_exercise; // Popraw pobieranie parametru
+    const id_exercise = req.params.id_exercise; 
     console.log(id_exercise);
     const query = 'SELECT Name,gif,main_muscle_group,muscle_group_1,muscle_group_2,equipment,difficulty,video,description from exercises where id_exercise = ? ';
     db.query(query, [id_exercise], (error, results) => {
