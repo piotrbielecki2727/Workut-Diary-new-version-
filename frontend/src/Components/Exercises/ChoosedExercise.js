@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import Container from 'react-bootstrap/Container';
-import './Exercises.css';
+import Table from 'react-bootstrap/Table';
+import Image from 'react-bootstrap/Image';
+import Button from 'react-bootstrap/Button';
+
+
+import './ChoosedExercise.css';
 import axios from 'axios';
 
 import {
-    useParams
+    useParams,
+    Link,
+    useNavigate
 } from "react-router-dom";
 
 
@@ -13,9 +20,12 @@ import {
 
 function ChoosedExercise() {
     const [exercise, setExercise] = useState([]);
-
+    const navigate = useNavigate();
     const { id_exercise } = useParams();
 
+    const handleGoBack = () => {
+        navigate(-1);
+    }
 
     useEffect(() => {
         axios.get(`http://localhost:3001/getChoosedExercise/${id_exercise}`)
@@ -34,18 +44,36 @@ function ChoosedExercise() {
     }, []);
 
     return (
-        <Container id='exercisesContainer'>
-            {exercise.Name}
-            <iframe width="400" height="400" src={exercise.video} frameborder="0" allowfullscreen></iframe>
-            <img src={exercise.gif}></img>
-            {exercise.description}
-            {exercise.equipment}
-            {exercise.difficulty}
-            {exercise.main_muscle_group}
-            {exercise.muscle_group_1}
-            {exercise.muscle_group_2}
-
-        </Container >
+        <div id='background'>
+            <Container id='choosedExerciseContainer'>
+                <Container id='buttonContainer'>
+                    <Button id="backButton" onClick={handleGoBack}>Back</Button>
+                </Container>
+                <h2>{exercise.Name}</h2>
+                <Container id='choosedExerciseContainer2'>
+                    <Image src={exercise.gif} alt="exercise_gif" id='exerciseImg' />
+                    <h4 id='h4Exercises'>{exercise.description} </h4>
+                    <Table bordered hover responsive>
+                        <thead>
+                            <tr id='theadExercises'>
+                                <th>Primary muscles</th>
+                                <th>Minor muscles</th>
+                                <th>Difficulty</th>
+                                <th>Equipment</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{exercise.main_muscle_group}</td>
+                                <td>{exercise.muscle_group_1}<br></br> {exercise.muscle_group_2}</td>
+                                <td>{exercise.difficulty}</td>
+                                <td>{exercise.equipment ? exercise.equipment : "---"}</td>
+                            </tr>
+                        </tbody>
+                    </Table>
+                </Container >
+            </Container >
+        </div>
     );
 }
 

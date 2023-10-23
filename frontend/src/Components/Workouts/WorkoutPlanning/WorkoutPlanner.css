@@ -1,0 +1,7 @@
+#workoutPlannerContainer {
+    text-align: center;
+    margin-top: 20px;
+    box-shadow: rgb(0 0 0 / 55%) 1px 1px 10px;
+    border-radius: 10px;
+    padding: 20px;
+}

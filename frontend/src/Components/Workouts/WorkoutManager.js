@@ -3,14 +3,16 @@ import './WorkoutManager.css';
 import axios from 'axios';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import CreateWorkout from "./CreateWorkout";
 import DeleteWorkout from "./DeleteWorkout";
 import EditWorkout from "./EditWorkout";
+import {
+    Link,
+} from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark, faPenToSquare, faPlay } from "@fortawesome/free-solid-svg-icons";
+import { faPlay } from "@fortawesome/free-solid-svg-icons";
 
 
 
@@ -54,14 +56,14 @@ function WorkoutManager() {
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Date</th>
+                            <th>Last performed</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {workouts.map(workout => (
                             <tr key={workout.id_workout}>
-                                <td><Button id="buttonWorkoutManager"><FontAwesomeIcon icon={faPlay} /></Button></td>
+                                <td><Button id="buttonWorkoutManager" as={Link} to="/workoutPlanner"><FontAwesomeIcon icon={faPlay} /></Button></td>
                                 <td>{workout.Name}</td>
                                 <td>{new Date(workout.Date).toLocaleString()}</td>
                                 <td id="tdButtons">

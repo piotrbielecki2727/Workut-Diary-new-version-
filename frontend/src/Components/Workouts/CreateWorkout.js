@@ -22,13 +22,13 @@ function CreateWorkout({ newWorkoutAdded, setNewWorkoutAdded }) {
     })
 
 
-    const createWorkout = (event) => {
+    const createWorkout = () => {
         console.log(values);
         axios.post("http://localhost:3001/createWorkout", values)
             .then(res => {
                 if (res.data.Success) {
-                    console.log("gicik")
                     setNewWorkoutAdded(true);
+                    handleClose();
                 }
                 else {
                     console.log("err")
@@ -71,7 +71,7 @@ function CreateWorkout({ newWorkoutAdded, setNewWorkoutAdded }) {
                 </Modal.Body>
                 <Modal.Footer id='modalFooter'>
                     <Button id='modalButton' onClick={handleClose}><FontAwesomeIcon icon={faXmark} /> Close</Button>
-                    <Button id='modalButton' onClick={() => { createWorkout(); handleClose() }}><FontAwesomeIcon icon={faPlus} /> Create</Button>
+                    <Button id='modalButton' onClick={createWorkout}><FontAwesomeIcon icon={faPlus} /> Create</Button>
                 </Modal.Footer>
             </Modal>
         </>

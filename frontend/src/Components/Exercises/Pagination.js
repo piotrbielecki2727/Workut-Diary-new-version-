@@ -31,12 +31,12 @@ function Pagination(props) {
         <>
             <Row className='customRow'>
                 {currentItems.map(exercise => (
-                    exercise.gifUrl && (
-                        <Col key={exercise.id} xs={5} sm={6} md={4} lg={3}>
-                            <Link to={`/getExercise/${exercise.id}`} id='muscle-group-link'><Card className='customCard'>
-                                <Card.Img src={exercise.gifUrl} alt="exercise_gif" />
+                    exercise.gif && (
+                        <Col key={exercise.id_exercise} xs={5} sm={6} md={4} lg={3}>
+                            <Link to={`/getExercise/${exercise.id_exercise}`} id='muscle-group-link'><Card className='customCard'>
+                                <Card.Img src={exercise.gif} alt="exercise_gif" />
                                 <Card.Footer className='customCardFooter'>
-                                    {exercise.name}
+                                    {exercise.Name}
                                 </Card.Footer>
                             </Card>
                             </Link>

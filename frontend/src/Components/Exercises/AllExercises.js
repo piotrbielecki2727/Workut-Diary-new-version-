@@ -26,52 +26,41 @@ function AllExercises() {
 
     useEffect(() => {
         if (muscle_group === "All exercises") {
-            const fetchData = async () => {
-                const options = {
-                    method: 'GET',
-                    url: 'https://exercisedb.p.rapidapi.com/exercises?offset=0&limit=1000',
-                    headers: {
-                        'X-RapidAPI-Key': 'bca569beb6mshe6cf79cc749d63cp13c4dfjsn7c91553244a1',
-                        'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
+            axios.get(`http://localhost:3001/getAllExercises`)
+                .then(res => {
+                    if (res.data.Status === "Success") {
+                        console.log(res.data.results);
+                        setExercises(res.data.results);
                     }
+                    else {
+                        console.log("chujnia");
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                })
 
-                };
-
-                try {
-                    const response = await axios.request(options);
-                    setExercises(response.data);
-                    console.log(response.data);
-                } catch (error) {
-                    console.error(error);
-                }
-            }
-            fetchData(); 
         } else {
-            const fetchData = async () => {
-                const options = {
-                    method: 'GET',
-                    url: `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${muscle_group}?offset=0&limit=1000`,
-                    headers: {
-                        'X-RapidAPI-Key': 'bca569beb6mshe6cf79cc749d63cp13c4dfjsn7c91553244a1',
-                        'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
+            axios.get(`http://localhost:3001/getExerciseByMuscleGroup/${muscle_group}`)
+                .then(res => {
+                    if (res.data.Status === "Success") {
+                        console.log(res.data.results);
+                        setExercises(res.data.results);
                     }
-                };
+                    else {
+                        console.log("chujnia");
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                })
 
-                try {
-                    const response = await axios.request(options);
-                    setExercises(response.data);
-                    console.log(response.data);
-                } catch (error) {
-                    console.error(error);
-                }
-            }
-            fetchData(); 
         }
     }, [muscle_group]);
 
     return (
         <Container id='exercisesContainer'>
-            <SearchBar />
+            <h3>{muscle_group}</h3>
             <Container id='exercisesContainer2'>
                 <Pagination data={exercises} />
             </Container>

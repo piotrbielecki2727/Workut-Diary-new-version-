@@ -21,26 +21,7 @@ function SearchBar() {
 
 
     useEffect(() => {
-        const fetchData = async () => {
-            const options = {
-                method: 'GET',
-                url: `https://exercisedb.p.rapidapi.com/exercises/name/${searchValue}?offset=0&limit=1000`,
-                headers: {
-                    'X-RapidAPI-Key': 'bca569beb6mshe6cf79cc749d63cp13c4dfjsn7c91553244a1',
-                    'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
-                }
-
-            };
-
-            try {
-                const response = await axios.request(options);
-                setResults(response.data);
-                console.log(response.data);
-            } catch (error) {
-                console.error(error);
-            }
-        }
-        fetchData(); 
+        
     }, [searchValue]);
 
 

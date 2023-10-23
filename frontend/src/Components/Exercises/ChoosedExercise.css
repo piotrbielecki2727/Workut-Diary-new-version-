@@ -1,14 +1,65 @@
 #choosedExerciseContainer {
-    background-color: rgb(207, 44, 44);
+    background-color: rgb(255, 255, 255);
     max-width: 1000px;
     border-radius: 10px;
     padding: 20px;
-    margin-top: 10px;
-
-}
-
-#customCol {
+    box-shadow: rgb(0 0 0 / 55%) 1px 1px 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     justify-content: center;
+    align-items: center;
     text-align: center;
+
 }
 
+#choosedExerciseContainer2 {
+    background-color: rgb(255, 255, 255);
+    max-width: 800px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+}
+
+#exerciseImg {
+    max-width: 300px;
+
+}
+
+#h4Exercises {
+    padding: 10px;
+
+}
+
+#theadExercises th {
+    background-color: black;
+    color: white;
+
+}
+
+
+#backButtonExercises {
+    margin-right: 950px;
+}
+
+#buttonContainer {
+    text-align: start;
+    padding-bottom: 20px;
+}
+
+#backButton {
+    background-color: black;
+    border-color: black;
+}
+
+#backButton:hover {
+   transform: scale(1.05);
+}
+
+@media (max-width:767px) {
+    #exerciseImg {
+        max-width: 200px;
+    }
+}

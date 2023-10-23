@@ -16,7 +16,8 @@ import Exercises from "./Components/Exercises/Exercises";
 import AllExercises from "./Components/Exercises/AllExercises";
 import ChoosedExercise from "./Components/Exercises/ChoosedExercise";
 import Pagination from "./Components/Exercises/Pagination";
-import Cookies from 'js-cookie'; 
+import Cookies from 'js-cookie';
+import WorkoutPlanner from "./Components/Workouts/WorkoutPlanning/WorkoutPlanner";
 
 
 
@@ -82,6 +83,14 @@ function AppWrapper() {
               checkToken(<WorkoutManager />)
             }
           />
+
+          <Route
+            path="/workoutPlanner"
+            element={
+              checkToken(<WorkoutPlanner />)
+            }
+          />
+
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<div>Page not found!</div>} />
         </Routes>
