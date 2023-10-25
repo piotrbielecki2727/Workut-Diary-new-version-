@@ -15,7 +15,7 @@ function WorkoutPlanner() {
             <Table striped bordered hover responsive>
                 <thead>
                     <tr>
-                        <th>NameNameName</th>
+                        <th>Name</th>
                         <th>Last performed</th>
                     </tr>
                 </thead>
