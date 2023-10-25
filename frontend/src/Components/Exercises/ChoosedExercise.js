@@ -3,6 +3,9 @@ import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
+import { useUserId } from '../UserIdContext';
+import { useAuth } from '../AuthContext';
+
 
 
 import './ChoosedExercise.css';
@@ -14,25 +17,27 @@ import {
     useNavigate
 } from "react-router-dom";
 
-
-
-
-
 function ChoosedExercise() {
     const [exercise, setExercise] = useState([]);
     const navigate = useNavigate();
-    const { id_exercise } = useParams();
+    const { Name } = useParams();
+
+    const { auth } = useAuth();
+    const { userId } = useUserId();
 
     const handleGoBack = () => {
         navigate(-1);
     }
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/getChoosedExercise/${id_exercise}`)
+        axios.get(`http://localhost:3001/getChoosedExercise/${Name}`)
             .then(res => {
                 if (res.data.Status === "Success") {
                     console.log(res.data.results);
                     setExercise(res.data.results[0]);
+                    console.log(userId);
+                    console.log(auth);
+
                 }
                 else {
                     console.error(res.data.Error);
@@ -41,7 +46,8 @@ function ChoosedExercise() {
             })
             .catch(err => console.log(err));
 
-    }, []);
+    }, [Name]);
+
 
     return (
         <div id='background'>
@@ -71,6 +77,11 @@ function ChoosedExercise() {
                             </tr>
                         </tbody>
                     </Table>
+                    {auth ? (
+                        <Button>Jestem autoryzowany</Button>
+                    ) : (
+                        <></>
+                    )}
                 </Container >
             </Container >
         </div>

@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import Container from 'react-bootstrap/Container';
 import './Exercises.css';
-import Card from 'react-bootstrap/Card';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+
 
 import {
     Link,
-    useParams
+    useParams,
+    useNavigate
 } from "react-router-dom";
 import Pagination from './Pagination';
 import SearchBar from './SearchBar';
@@ -21,6 +20,10 @@ import SearchBar from './SearchBar';
 function AllExercises() {
     const [exercises, setExercises] = useState([]);
     const { muscle_group } = useParams();
+    const navigate = useNavigate();
+    const handleGoBack = () => {
+        navigate(-1);
+    }
 
 
 
@@ -60,6 +63,9 @@ function AllExercises() {
 
     return (
         <Container id='exercisesContainer'>
+            <Container id='buttonContainer'>
+                <Button id="backButton" onClick={handleGoBack}>Back</Button>
+            </Container>
             <h3>{muscle_group}</h3>
             <Container id='exercisesContainer2'>
                 <Pagination data={exercises} />

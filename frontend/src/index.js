@@ -17,7 +17,10 @@ import AllExercises from "./Components/Exercises/AllExercises";
 import ChoosedExercise from "./Components/Exercises/ChoosedExercise";
 import Pagination from "./Components/Exercises/Pagination";
 import Cookies from 'js-cookie';
-import WorkoutPlanner from "./Components/Workouts/WorkoutPlanning/WorkoutPlanner";
+import WorkoutPlanner from "./Components/WorkoutPlanning/WorkoutPlanner";
+import { UserIdProvider } from './Components/UserIdContext';
+import { AuthProvider } from "./Components/AuthContext";
+
 
 
 
@@ -31,71 +34,76 @@ function AppWrapper() {
   };
 
   return (
-    <div >
-      <NavigateBar />
-      <div id="allBackgrounds">
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Home />
-            }
-          />
-          <Route
-            path="/exercises"
-            element={
-              <Exercises />
-            }
-          />
+    <AuthProvider>
+      <UserIdProvider>
 
-          <Route
-            path="/getExercises/:muscle_group"
-            element={<AllExercises />}
-          />
+        <div >
+          <NavigateBar />
+          <div id="allBackgrounds">
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Home />
+                }
+              />
+              <Route
+                path="/exercises"
+                element={
+                  <Exercises />
+                }
+              />
 
-          <Route
-            path="/getExercise/:id_exercise"
-            element={<ChoosedExercise />}
-          />
+              <Route
+                path="/getExercises/:muscle_group"
+                element={<AllExercises />}
+              />
 
-          <Route
-            path="/user"
-            element={
-              <User />
-            }
-          />
-          <Route
-            path="/admin"
-            element={
-              <Pagination />
-            }
-          />
+              <Route
+                path="/getExercise/:Name"
+                element={<ChoosedExercise />}
+              />
 
-          <Route
-            path="/userProfile"
-            element={
-              <UserProfile />
-            }
-          />
-          <Route
-            path="/workoutManager"
-            element={
-              checkToken(<WorkoutManager />)
-            }
-          />
+              <Route
+                path="/user"
+                element={
+                  <User />
+                }
+              />
+              <Route
+                path="/admin"
+                element={
+                  <Pagination />
+                }
+              />
 
-          <Route
-            path="/workoutPlanner"
-            element={
-              checkToken(<WorkoutPlanner />)
-            }
-          />
+              <Route
+                path="/userProfile"
+                element={
+                  <UserProfile />
+                }
+              />
+              <Route
+                path="/workoutManager"
+                element={
+                  checkToken(<WorkoutManager />)
+                }
+              />
 
-          <Route path="/login" element={<Login />} />
-          <Route path="*" element={<div>Page not found!</div>} />
-        </Routes>
-      </div>
-    </div>
+              <Route
+                path="/workoutPlanner"
+                element={
+                  checkToken(<WorkoutPlanner />)
+                }
+              />
+
+              <Route path="/login" element={<Login />} />
+              <Route path="*" element={<div>Page not found!</div>} />
+            </Routes>
+          </div>
+        </div>
+      </UserIdProvider>
+    </AuthProvider>
   );
 }
 

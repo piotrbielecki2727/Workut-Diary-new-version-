@@ -18,16 +18,21 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { faDumbbell, faUser, faPhone, faCalculator, faBars, faCalendar, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { useUserId } from '../UserIdContext';
+import { useAuth } from "../AuthContext";
+
 
 
 function NavigateBar() {
   const token = Cookies.get('token');
   const navigate = useNavigate();
-  const [auth, setAuth] = useState(false);
   const [message, setMessage] = useState('');
   const [name, setName] = useState('');
-  const [userId, setUserId] = useState('');
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
+
+  const { userId, setUserId } = useUserId();
+  const {auth, setAuth} = useAuth();
+
 
   axios.defaults.withCredentials = true;
 
@@ -42,14 +47,13 @@ function NavigateBar() {
           setAuth(true);
           setName(res.data.firstName);
           setUserId(res.data.idUser);
-          sessionStorage.setItem('userId', userId); 
         } else {
           setAuth(false);
           setMessage(res.data.Error);
         }
       })
       .catch(err => console.log(err))
-      .finally(() => setLoading(false)); 
+      .finally(() => setLoading(false));
   }, [navigate, userId]);
 
 
@@ -58,7 +62,7 @@ function NavigateBar() {
     axios.get('http://localhost:3001/logout')
       .then(res => {
         handleCloseOffcanvas();
-        window.location.reload(); 
+        window.location.reload();
         navigate('/')
 
       }).catch(err => console.log(err));
@@ -111,10 +115,10 @@ function NavigateBar() {
                         Workout manager
                       </>
                     } id="offcanvasNavbarDropdown" >
-                      <NavDropdown.Item as={Link} to="/workoutManager"  onClick={handleCloseOffcanvas}>Manage your workouts</NavDropdown.Item>
-                      <NavDropdown.Item as={Link} to="/progress"  onClick={handleCloseOffcanvas}>Check your progress</NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to="/workoutManager" onClick={handleCloseOffcanvas}>Manage your workouts</NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to="/progress" onClick={handleCloseOffcanvas}>Check your progress</NavDropdown.Item>
                       <NavDropdown.Divider />
-                      <NavDropdown.Item as={Link} to="/workoutsBase"  onClick={handleCloseOffcanvas}>Workouts base</NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to="/workoutsBase" onClick={handleCloseOffcanvas}>Workouts base</NavDropdown.Item>
                     </NavDropdown>
                   </div>
                   <hr className="my-1" /> {/* Linia oddzielająca */}

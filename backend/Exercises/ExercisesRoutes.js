@@ -45,11 +45,10 @@ const createRoutes = (db) => {
   //POBIERA INFORMACJE O WYBRANYM CWICZENIU
 
 
-  router.get('/getChoosedExercise/:id_exercise', (req, res) => {
-    const id_exercise = req.params.id_exercise; 
-    console.log(id_exercise);
-    const query = 'SELECT Name,gif,main_muscle_group,muscle_group_1,muscle_group_2,equipment,difficulty,video,description from exercises where id_exercise = ? ';
-    db.query(query, [id_exercise], (error, results) => {
+  router.get('/getChoosedExercise/:Name', (req, res) => {
+    const Name = req.params.Name; 
+    const query = 'SELECT Name,gif,main_muscle_group,muscle_group_1,muscle_group_2,equipment,difficulty,video,description from exercises where Name = ? ';
+    db.query(query, [Name], (error, results) => {
       if (error) {
         console.log(error);
         return res.json({ Error: "There is error" });

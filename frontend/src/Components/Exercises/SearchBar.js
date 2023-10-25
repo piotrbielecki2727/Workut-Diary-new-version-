@@ -3,6 +3,7 @@ import axios from "axios";
 import Form from 'react-bootstrap/Form';
 import Table from 'react-bootstrap/Table';
 import './SearchBar.css';
+import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faX } from "@fortawesome/free-solid-svg-icons";
@@ -19,15 +20,25 @@ function SearchBar() {
         setSearchValue('');
     }
 
-
     useEffect(() => {
-        
-    }, [searchValue]);
+        if (searchValue && searchValue.length !== 0) {
+            axios.get(`http://localhost:3001/getSearch/${searchValue}`)
+                .then(res => {
+                    if (res.data.Status = "Success") {
+                        console.log(res.data.results);
+                        setResults(res.data.results);
+                    }
+                    else {
+                        setResults([]);
+                    }
+                })
+                .catch(err => console.log(err))
+        }
+    }, [searchValue])
 
 
     return (
         <div id="SearchBar">
-            <h3>Find your exercise</h3>
             <Form>
                 <div id='SearchBar2'>
                     <div className="searchContainer">
@@ -47,9 +58,9 @@ function SearchBar() {
                                 <tbody id="resultsTable">
                                     {results.map((result, index) => (
                                         <tr key={index} id="tr">
-                                            <td id="td"><img src={result.gifUrl}></img></td>
-                                            <td id="td">{result.name}</td>
-                                            <td id="td">{result.bodyPart}</td>
+                                            <td id="td"><Link to={"/"} id="searchBarLink">{result.Name}</Link></td>
+                                            <td id="td">{result.Name}</td>
+                                            <td id="td">{result.main_muscle_group}</td>
                                         </tr>
                                     ))}
                                 </tbody>
