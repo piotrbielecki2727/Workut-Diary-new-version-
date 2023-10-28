@@ -28,11 +28,9 @@ function WorkoutManager() {
 
 
     useEffect(() => {
-        console.log("userid to: " + userId)
         axios.get(`http://localhost:3001/getWorkouts/${userId}`)
             .then(res => {
                 if (res.data.Success) {
-                    console.log(res.data.result);
                     setWorkouts(res.data.result);
                 }
                 else {
@@ -54,31 +52,41 @@ function WorkoutManager() {
             <h3>Workout manager</h3>
             <CreateWorkout newWorkoutAdded={newWorkoutAdded} setNewWorkoutAdded={setNewWorkoutAdded} />
             <Container id="workoutManagerContainer2">
-                <Table striped bordered hover responsive>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Last performed</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {workouts.map(workout => (
-                            <tr key={workout.id_workout}>
-                                <td><Button id="buttonWorkoutManager" as={Link} to="/workoutPlanner"><FontAwesomeIcon icon={faPlay} /></Button></td>
-                                <td>{workout.Name}</td>
-                                <td>{new Date(workout.Date).toLocaleString()}</td>
-                                <td id="tdButtons">
-                                    <EditWorkout workoutId={workout.id_workout} workoutName={workout.Name} workoutDate={new Date(workout.Date).toLocaleString()} workoutEdited={workoutEdited} setWorkoutEdited={setWorkoutEdited} />
-                                    <DeleteWorkout workoutId={workout.id_workout} workoutDeleted={workoutDeleted} setWorkoutDeleted={setWorkoutDeleted} />
-                                </td>
+                {workouts.length  > 0 ? (
+                    <>
+                        <Table striped bordered hover responsive>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Last performed</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {workouts.map(workout => (
+                                    <tr key={workout.id_workout}>
+                                        <td><Button id="buttonWorkoutManager" as={Link} to="/workoutPlanner"><FontAwesomeIcon icon={faPlay} /></Button></td>
+                                        <td>{workout.Name}</td>
+                                        <td>{new Date(workout.Date).toLocaleString()}</td>
+                                        <td id="tdButtons">
+                                            <EditWorkout workoutId={workout.id_workout} workoutName={workout.Name} workoutDate={new Date(workout.Date).toLocaleString()} workoutEdited={workoutEdited} setWorkoutEdited={setWorkoutEdited} />
+                                            <DeleteWorkout workoutId={workout.id_workout} workoutDeleted={workoutDeleted} setWorkoutDeleted={setWorkoutDeleted} />
+                                        </td>
 
-                            </tr>
-                        ))}
+                                    </tr>
+                                ))}
 
-                    </tbody>
-                </Table>
+                            </tbody>
+                        </Table>
+                    </>
+                ) :
+                    (<>
+                        <h5>Create your first workout!</h5>
+                    </>
+                    )
+                }
+
 
             </Container>
         </Container>

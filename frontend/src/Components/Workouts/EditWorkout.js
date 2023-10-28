@@ -4,7 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import './CreateWorkout.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPenToSquare, faXmark, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPenToSquare, faXmark} from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios';
 import { useUserId } from '../UserIdContext';
 
@@ -28,11 +28,9 @@ function EditWorkout({ workoutEdited, setWorkoutEdited, workoutName, workoutDate
             Date: values.Date,
             Users_id_user: userId
         };
-        console.log(workoutData);
         axios.put(`http://localhost:3001/editWorkout/${workoutId}`, workoutData)
             .then(res => {
                 if (res.data.Success) {
-                    console.log("gicik")
                     setWorkoutEdited(true);
                 }
                 else {

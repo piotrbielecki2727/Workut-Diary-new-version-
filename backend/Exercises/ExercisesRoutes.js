@@ -25,7 +25,7 @@ const createRoutes = (db) => {
 
   router.get('/getExerciseByMuscleGroup/:muscle_group', (req, res) => {
     const muscle_group = req.params.muscle_group;
-    console.log(muscle_group);
+
     const query = 'SELECT id_exercise,Name,gif,main_muscle_group from exercises where main_muscle_group = ? ';
     db.query(query, [muscle_group], (error, results) => {
       if (error) {
@@ -67,7 +67,7 @@ const createRoutes = (db) => {
 
   router.get('/getSearch/:search', (req, res) => {
     const search = req.params.search;
-    console.log(search);
+
     const query = `SELECT * FROM exercises WHERE Name LIKE '%${search}%'`;
     db.query(query, (error, results) => {
       if (error) {
@@ -89,8 +89,7 @@ const createRoutes = (db) => {
   router.post('/addExerciseToChosenWorkout', (req, res) => {
     const workoutId = req.body.workoutId;
     const exerciseId = req.body.ChoosedExerciseId;
-    console.log("wartosc exercise id:" + exerciseId);
-    console.log("wartosc workoutid to: " + workoutId)
+
 
     const query = "INSERT INTO WORKOUT_EXERCISE (`Workout_id`, `Exercise_id`) VALUES (?, ?)";
 

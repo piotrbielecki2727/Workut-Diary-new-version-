@@ -4,7 +4,6 @@ const router = express.Router();
 const createRoutes = (db) => {
 
   router.post('/createWorkout', (req, res) => {
-    console.log(req.body);
     const values = [
       req.body.Name,
       req.body.Date,
@@ -33,15 +32,12 @@ const createRoutes = (db) => {
       if (err) {
         return res.json({ Error: "Error when deleting" })
       }
-      else {
-        return res.json({ Success: "Workout deleted" })
-      }
+      return res.json({ Success: "Workout deleted" })
     })
   }
   )
 
   router.put("/editWorkout/:workoutId", (req, res) => {
-    console.log(req.body);
     const workoutId = req.params.workoutId;
 
     const query = "UPDATE workouts SET Name=?, Date=? WHERE id_workout=?";
@@ -60,7 +56,6 @@ const createRoutes = (db) => {
 
   router.get('/getWorkouts/:userId', (req, res) => {
     const userId = req.params.userId;
-    console.log(userId);
     const query = "SELECT id_workout,Name,Date from workouts where Users_id_user = ?";
     db.query(query, [userId], (err, result) => {
       if (err) {
@@ -87,6 +82,19 @@ const createRoutes = (db) => {
       else {
         return res.json({ Success: "Success", result })
       }
+    })
+  })
+
+
+  router.delete(`/deleteExerciseFromWorkout/:workoutId/:exerciseId`, (req, res) => {
+    const workoutId = req.params.workoutId;
+    const exerciseId = req.params.exerciseId;
+    const query = "DELETE FROM WORKOUT_EXERCISE WHERE (`Workout_id`,`Exercise_id`) =(?,?)";
+    db.query(query, [workoutId, exerciseId], (err) => {
+      if (err) {
+        return res.json({ Error: "Error when delete exercise from workout" })
+      }
+      return res.json({ Success: "Success" });
     })
   })
 

@@ -3,7 +3,6 @@ import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
-import { useUserId } from '../UserIdContext';
 import { useAuth } from '../AuthContext';
 import AddExerciseToWorkout from '../AddingExercisesToWorkout/AddExerciseToWorkout';
 
@@ -24,21 +23,18 @@ function ChoosedExercise() {
     const { Name } = useParams();
     const [exerciseId, setExerciseId] = useState()
     const { auth } = useAuth();
-    const { userId } = useUserId();
+ 
 
     const handleGoBack = () => {
         navigate(-1);
     }
-
+   
     useEffect(() => {
         axios.get(`http://localhost:3001/getChoosedExercise/${Name}`)
             .then(res => {
                 if (res.data.Status === "Success") {
                     console.log(res.data.results);
                     setExercise(res.data.results[0]);
-                    console.log(userId);
-                    console.log(auth);
-
                 }
                 else {
                     console.error(res.data.Error);

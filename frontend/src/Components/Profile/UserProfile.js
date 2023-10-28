@@ -40,7 +40,6 @@ function UserProfile() {
         axios.get(`http://localhost:3001/getUser/${userId}`)
             .then(res => {
                 if (res.data.Status === "Success") {
-                    console.log(res.data.firstName, res.data.email, res.data.password);
                     setName(res.data.firstName);
                     setEmail(res.data.email);
                     setRole(res.data.role);

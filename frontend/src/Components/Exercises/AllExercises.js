@@ -6,14 +6,10 @@ import axios from 'axios';
 
 
 import {
-    Link,
     useParams,
     useNavigate
 } from "react-router-dom";
 import Pagination from './Pagination';
-import SearchBar from './SearchBar';
-
-
 
 
 
