@@ -26,8 +26,13 @@ function CreateWorkout({ newWorkoutAdded, setNewWorkoutAdded }) {
 
 
     const createWorkout = () => {
-        console.log(values);
-        axios.post("http://localhost:3001/createWorkout", values)
+        const workoutData = {
+            Name: values.Name,
+            Date: values.Date,
+            Users_id_user: userId
+        };
+        console.log(workoutData);
+        axios.post("http://localhost:3001/createWorkout", workoutData)
             .then(res => {
                 if (res.data.Success) {
                     setNewWorkoutAdded(true);

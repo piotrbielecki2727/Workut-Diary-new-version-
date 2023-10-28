@@ -28,6 +28,7 @@ function WorkoutManager() {
 
 
     useEffect(() => {
+        console.log("userid to: " + userId)
         axios.get(`http://localhost:3001/getWorkouts/${userId}`)
             .then(res => {
                 if (res.data.Success) {

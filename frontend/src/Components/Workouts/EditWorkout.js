@@ -6,23 +6,30 @@ import './CreateWorkout.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faXmark, faPlus } from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios';
+import { useUserId } from '../UserIdContext';
 
 function EditWorkout({ workoutEdited, setWorkoutEdited, workoutName, workoutDate, workoutId }) {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const { userId } = useUserId();
 
     const [values, setValues] = useState({
         Name: '',
         Date: '',
-        Users_id_user: sessionStorage.getItem('userId')
+        Users_id_user: userId
     })
 
 
     const editWorkout = () => {
-        console.log(values);
-        axios.put(`http://localhost:3001/editWorkout/${workoutId}`, values)
+        const workoutData = {
+            Name: values.Name,
+            Date: values.Date,
+            Users_id_user: userId
+        };
+        console.log(workoutData);
+        axios.put(`http://localhost:3001/editWorkout/${workoutId}`, workoutData)
             .then(res => {
                 if (res.data.Success) {
                     console.log("gicik")

@@ -24,9 +24,9 @@ const createRoutes = (db) => {
 
 
 
-  router.delete("/deleteWorkout", (req, res) => {
-    const workoutId = req.body.workoutId;
-    console.log(workoutId);
+  router.delete('/deleteWorkout/:workoutId', (req, res) => {
+    const workoutId = req.params.workoutId;
+    console.log("id workouto do usuniecia w backendzie to:" + workoutId)
     const query = "DELETE FROM WORKOUTS WHERE id_workout = ?";
 
     db.query(query, [workoutId], (err, result) => {

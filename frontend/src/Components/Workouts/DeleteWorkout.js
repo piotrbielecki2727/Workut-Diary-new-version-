@@ -4,16 +4,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
-import WorkoutManager from "./WorkoutManager";
 
 
 
 
 function DeleteWorkout({ workoutId, workoutDeleted, setWorkoutDeleted }) {
 
+
+    
     const deleteWorkout = () => {
-        console.log(workoutId)
-        axios.delete(`http://localhost:3001/deleteWorkout`, { data: { workoutId } })
+        console.log("id workouto do usuniecia to:" + workoutId)
+        axios.delete(`http://localhost:3001/deleteWorkout/${workoutId}`)
             .then(res => {
                 if (res.data.Success) {
                     console.log("gicik");
@@ -26,7 +27,7 @@ function DeleteWorkout({ workoutId, workoutDeleted, setWorkoutDeleted }) {
             .catch(err => {
                 console.log(err)
             })
-            setWorkoutDeleted(false);
+        setWorkoutDeleted(false);
 
     }
 
