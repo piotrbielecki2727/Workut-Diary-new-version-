@@ -5,6 +5,7 @@ import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import { useUserId } from '../UserIdContext';
 import { useAuth } from '../AuthContext';
+import AddExerciseToWorkout from '../AddingExercisesToWorkout/AddExerciseToWorkout';
 
 
 
@@ -21,7 +22,7 @@ function ChoosedExercise() {
     const [exercise, setExercise] = useState([]);
     const navigate = useNavigate();
     const { Name } = useParams();
-
+    const [exerciseId, setExerciseId] = useState()
     const { auth } = useAuth();
     const { userId } = useUserId();
 
@@ -78,7 +79,7 @@ function ChoosedExercise() {
                         </tbody>
                     </Table>
                     {auth ? (
-                        <Button>Jestem autoryzowany</Button>
+                        <AddExerciseToWorkout ChoosedExerciseId={exercise.id_exercise} />
                     ) : (
                         <></>
                     )}

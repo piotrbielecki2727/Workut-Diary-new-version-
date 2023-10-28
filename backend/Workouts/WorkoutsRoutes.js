@@ -23,20 +23,6 @@ const createRoutes = (db) => {
   )
 
 
-  router.get('/getWorkouts/:userId', (req, res) => {
-    const userId = req.params.userId;
-    console.log(userId);
-    const query = "SELECT id_workout,Name,Date from workouts where Users_id_user = ?";
-    db.query(query, [userId], (err, result) => {
-      if (err) {
-        return res.json({ Error: "Error get data" })
-      }
-      else {
-        return res.json({ Success: "Workouts got", result })
-      }
-    })
-  })
-
 
   router.delete("/deleteWorkout", (req, res) => {
     const workoutId = req.body.workoutId;
@@ -57,7 +43,7 @@ const createRoutes = (db) => {
   router.put("/editWorkout/:workoutId", (req, res) => {
     console.log(req.body);
     const workoutId = req.params.workoutId;
-   
+
     const query = "UPDATE workouts SET Name=?, Date=? WHERE id_workout=?";
 
     db.query(query, [req.body.Name, req.body.Date, workoutId], (err, result) => {
@@ -70,6 +56,42 @@ const createRoutes = (db) => {
     })
   }
   )
+
+
+  router.get('/getWorkouts/:userId', (req, res) => {
+    const userId = req.params.userId;
+    console.log(userId);
+    const query = "SELECT id_workout,Name,Date from workouts where Users_id_user = ?";
+    db.query(query, [userId], (err, result) => {
+      if (err) {
+        return res.json({ Error: "Error get data" })
+      }
+      else {
+        return res.json({ Success: "Success", result });
+      }
+    })
+  })
+
+
+
+  router.get(`/getWorkoutExercises/:workoutId`, (req, res) => {
+    const workoutId = req.params.workoutId;
+    const query = "SELECT workout_exercise.Exercise_id, exercises.Name from workout_exercise, exercises where workout_exercise.Exercise_id=exercises.id_exercise and workout_id = ?";
+    db.query(query, [workoutId], (err, result) => {
+      if (err) {
+        return res.json({ Error: "Error when getWorkoutExercises" })
+      }
+      if (result.length === 0) {
+        return res.json({ Error: "Can't find exercises " });
+      }
+      else {
+        return res.json({ Success: "Success", result })
+      }
+    })
+  })
+
+
+
 
   return router;
 };

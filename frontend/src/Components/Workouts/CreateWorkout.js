@@ -8,17 +8,20 @@ import './CreateWorkout.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faPlus } from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios';
+import { useUserId } from '../UserIdContext';
+
 
 function CreateWorkout({ newWorkoutAdded, setNewWorkoutAdded }) {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const { userId } = useUserId();
 
     const [values, setValues] = useState({
         Name: '',
         Date: '',
-        Users_id_user: sessionStorage.getItem('userId')
+        Users_id_user: userId
     })
 
 

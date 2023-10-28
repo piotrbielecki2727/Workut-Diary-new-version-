@@ -7,6 +7,8 @@ import Container from 'react-bootstrap/Container';
 import CreateWorkout from "./CreateWorkout";
 import DeleteWorkout from "./DeleteWorkout";
 import EditWorkout from "./EditWorkout";
+import { useUserId } from '../UserIdContext';
+
 import {
     Link,
 } from "react-router-dom";
@@ -18,7 +20,7 @@ import { faPlay } from "@fortawesome/free-solid-svg-icons";
 
 function WorkoutManager() {
 
-    const userId = sessionStorage.getItem('userId');
+    const { userId } = useUserId();
     const [workouts, setWorkouts] = useState([]);
     const [newWorkoutAdded, setNewWorkoutAdded] = useState(false);
     const [workoutDeleted, setWorkoutDeleted] = useState(false);
@@ -43,7 +45,7 @@ function WorkoutManager() {
             })
         setNewWorkoutAdded(false);
 
-    }, [newWorkoutAdded, workoutDeleted, workoutEdited]);
+    }, [newWorkoutAdded, workoutDeleted, workoutEdited, userId]);
 
 
     return (
