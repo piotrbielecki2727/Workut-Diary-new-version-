@@ -76,13 +76,6 @@ function AppWrapper() {
                   <Pagination />
                 }
               />
-
-              <Route
-                path="/userProfile"
-                element={
-                  <UserProfile />
-                }
-              />
               <Route
                 path="/workoutManager"
                 element={

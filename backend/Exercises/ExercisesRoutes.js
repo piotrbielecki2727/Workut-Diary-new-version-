@@ -85,32 +85,6 @@ const createRoutes = (db) => {
 
 
 
-
-  router.post('/addExerciseToChosenWorkout', (req, res) => {
-    const workoutId = req.body.workoutId;
-    const exerciseId = req.body.ChoosedExerciseId;
-
-
-    const query = "INSERT INTO WORKOUT_EXERCISE (`Workout_id`, `Exercise_id`) VALUES (?, ?)";
-
-    db.query(query, [workoutId, exerciseId], (error, result) => {
-      if (error) {
-        if (error.code === 'ER_DUP_ENTRY') {
-          return res.status(409).json({ Error: "Duplicate entry" });
-        } else {
-          console.error(error);
-          return res.status(500).json({ Error: "Internal Server Error" });
-        }
-      }
-
-      return res.json({ Success: "Exercise added to workout" });
-    });
-  })
-
-
-
-
-
   return router;
 };
 

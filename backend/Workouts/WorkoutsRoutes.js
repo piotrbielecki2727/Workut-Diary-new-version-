@@ -69,9 +69,9 @@ const createRoutes = (db) => {
 
 
 
-  router.get(`/getWorkoutExercises/:workoutId`, (req, res) => {
+  router.get(`/getWorkoutExercises/:workoutId`, (req, res) => { 
     const workoutId = req.params.workoutId;
-    const query = "SELECT workout_exercise.Exercise_id, exercises.Name from workout_exercise, exercises where workout_exercise.Exercise_id=exercises.id_exercise and workout_id = ?";
+    const query = "SELECT workout_exercise.Exercise_id, exercises.Name, exercises.gif from workout_exercise, exercises where workout_exercise.Exercise_id=exercises.id_exercise and workout_id = ? ORDER BY `ORDER`";
     db.query(query, [workoutId], (err, result) => {
       if (err) {
         return res.json({ Error: "Error when getWorkoutExercises" })
@@ -97,6 +97,71 @@ const createRoutes = (db) => {
       return res.json({ Success: "Success" });
     })
   })
+
+  router.post('/addExerciseToChosenWorkout', (req, res) => {
+    const workoutId = req.body.workoutId;
+    const exerciseId = req.body.ChoosedExerciseId;
+
+
+    const query = "INSERT INTO WORKOUT_EXERCISE (`Workout_id`, `Exercise_id`) VALUES (?, ?)";
+
+    db.query(query, [workoutId, exerciseId], (error, result) => {
+      if (error) {
+        if (error.code === 'ER_DUP_ENTRY') {
+          return res.status(409).json({ Error: "Duplicate entry" });
+        } else {
+          console.error(error);
+          return res.status(500).json({ Error: "Internal Server Error" });
+        }
+      }
+
+      return res.json({ Success: "Exercise added to workout" });
+    });
+  })
+
+
+
+  router.post('/updateExerciseOrder', (req, res) => {
+    const updatedExercises = req.body.updatedExercises;
+
+    const queries = updatedExercises.map(exercise => {
+      return new Promise((resolve, reject) => {
+        const query = `UPDATE workout_exercise SET \`Order\` = ? WHERE Exercise_id = ?`;
+
+        db.query(query, [exercise.Order, exercise.Exercise_id], (error, results) => {
+          if (error) {
+            reject(error);
+          } else {
+            resolve(results);
+          }
+        });
+      });
+    });
+
+    Promise.all(queries)
+      .then(results => {
+        res.json({ Success: true });
+      })
+      .catch(error => {
+        console.error('Błąd podczas aktualizowania kolejności ćwiczeń:', error);
+        res.json({ Success: false, Error: error.message });
+      });
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
