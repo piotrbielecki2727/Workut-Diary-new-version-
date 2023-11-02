@@ -36,7 +36,7 @@ function AddExercise({workoutId, ChoosedExerciseId, newExerciseAdded, setNewExer
 
     return (
         <>
-            <Button id='modalButton' onClick={addExerciseToChosenWorkout}><FontAwesomeIcon icon={faPlus} /> Add</Button>
+            <Button id='AddExerciseToWorkoutmodalButton' onClick={addExerciseToChosenWorkout}><FontAwesomeIcon icon={faPlus} /> Add</Button>
         </>
     );
 }

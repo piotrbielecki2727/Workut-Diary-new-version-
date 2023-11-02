@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios';
+import './DeleteExerciseFromWorkout.css';
 
 
 
@@ -33,7 +34,7 @@ function DeleteExerciseFromWorkout({ workoutId, exerciseId, setExerciseDeleted }
 
     return (
         <>
-            <Button onClick={deleteExerciseFromWorkout}><FontAwesomeIcon icon={faXmark} /></Button>
+            <Button onClick={deleteExerciseFromWorkout} id='chosenWorkoutX'><FontAwesomeIcon icon={faXmark} /></Button>
         </>
     );
 }

@@ -58,15 +58,17 @@ function AllExercises() {
     }, [muscle_group]);
 
     return (
-        <Container id='exercisesContainer'>
-            <Container id='buttonContainer'>
-                <Button id="backButton" onClick={handleGoBack}>Back</Button>
-            </Container>
-            <h3>{muscle_group}</h3>
-            <Container id='exercisesContainer2'>
-                <Pagination data={exercises} />
-            </Container>
-        </Container >
+        <div id='background'>
+            <Container id='exercisesContainer'>
+                <Container id='buttonContainer'>
+                    <Button id="backButton" onClick={handleGoBack}>Back</Button>
+                </Container>
+                <h3>{muscle_group}</h3>
+                <Container id='exercisesContainer2'>
+                    <Pagination data={exercises} />
+                </Container>
+            </Container >
+        </div>
     );
 }
 

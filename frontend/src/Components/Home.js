@@ -15,7 +15,7 @@ import background3 from "./imgs/background3.png";
 function Home() {
 
   return (
-    <div className="home-container">
+    <div id="background">
      
     </div>
   )

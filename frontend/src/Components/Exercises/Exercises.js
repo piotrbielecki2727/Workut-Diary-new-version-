@@ -39,6 +39,7 @@ function Exercises() {
     }, []);
 
     return (
+        <div id='background'>
             <Container id='exercisesContainer'>
                 <SearchBar />
                 <h3>or choose muscle group you want to train</h3>
@@ -57,6 +58,7 @@ function Exercises() {
 
                 </Row>
             </Container >
+            </div>
     );
 }
 

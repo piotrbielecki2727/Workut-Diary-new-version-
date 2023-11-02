@@ -15,6 +15,7 @@ import {
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
+import WorkoutPlanner from "../WorkoutPlanning/WorkoutPlanner";
 
 
 
@@ -48,11 +49,12 @@ function WorkoutManager() {
 
 
     return (
+        <div id='background'>
         <Container id="workoutManagerContainer">
             <h3>Workout manager</h3>
             <CreateWorkout newWorkoutAdded={newWorkoutAdded} setNewWorkoutAdded={setNewWorkoutAdded} />
             <Container id="workoutManagerContainer2">
-                {workouts.length  > 0 ? (
+                {workouts.length > 0 ? (
                     <>
                         <Table striped bordered hover responsive>
                             <thead>
@@ -66,17 +68,15 @@ function WorkoutManager() {
                             <tbody>
                                 {workouts.map(workout => (
                                     <tr key={workout.id_workout}>
-                                        <td><Button id="buttonWorkoutManager" as={Link} to="/workoutPlanner"><FontAwesomeIcon icon={faPlay} /></Button></td>
+                                        <td><Button id="buttonWorkoutManager" as={Link} to={`/workoutPlanner/${workout.id_workout}`}><FontAwesomeIcon icon={faPlay} /></Button></td>
                                         <td>{workout.Name}</td>
                                         <td>{new Date(workout.Date).toLocaleString()}</td>
                                         <td id="tdButtons">
                                             <EditWorkout workoutId={workout.id_workout} workoutName={workout.Name} workoutDate={new Date(workout.Date).toLocaleString()} workoutEdited={workoutEdited} setWorkoutEdited={setWorkoutEdited} />
                                             <DeleteWorkout workoutId={workout.id_workout} workoutDeleted={workoutDeleted} setWorkoutDeleted={setWorkoutDeleted} />
                                         </td>
-
                                     </tr>
                                 ))}
-
                             </tbody>
                         </Table>
                     </>
@@ -90,6 +90,7 @@ function WorkoutManager() {
 
             </Container>
         </Container>
+        </div>
     );
 }
 

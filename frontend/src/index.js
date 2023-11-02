@@ -84,7 +84,7 @@ function AppWrapper() {
               />
 
               <Route
-                path="/workoutPlanner"
+                path="/workoutPlanner/:workoutId"
                 element={
                   checkToken(<WorkoutPlanner />)
                 }

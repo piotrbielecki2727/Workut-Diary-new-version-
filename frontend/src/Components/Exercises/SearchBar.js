@@ -58,9 +58,9 @@ function SearchBar() {
                                 <tbody id="resultsTable">
                                     {results.map((result, index) => (
                                         <tr key={index} id="tr">
-                                            <td id="td"><Link to={"/"} id="searchBarLink">{result.Name}</Link></td>
-                                            <td id="td">{result.Name}</td>
+                                            <td id="td"><Link to={`/getExercise/${result.Name}`} id="searchBarLink">{result.Name}</Link></td>
                                             <td id="td">{result.main_muscle_group}</td>
+
                                         </tr>
                                     ))}
                                 </tbody>

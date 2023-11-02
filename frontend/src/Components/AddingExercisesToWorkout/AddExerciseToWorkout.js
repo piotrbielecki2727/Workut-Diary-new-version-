@@ -2,9 +2,14 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark} from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faXmark } from "@fortawesome/free-solid-svg-icons";
 import AddExercise from './AddExercise';
 import GetWorkoutExercises from './GetWorkoutExercises';
+import {
+    Link
+} from "react-router-dom";
+import './AddExerciseToWorkout.css';
+
 
 
 function AddExerciseToWorkout(ChoosedExerciseId) {
@@ -43,19 +48,25 @@ function AddExerciseToWorkout(ChoosedExerciseId) {
                     <Modal.Title id='modalTitle'>Choose workout</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <GetWorkoutExercises newExerciseAdded={newExerciseAdded} setNewExerciseAdded={setNewExerciseAdded} workoutId={workoutId} setWorkoutId={setWorkoutId} workouts={workouts} setWorkouts={setWorkouts} />
+                    <GetWorkoutExercises selectedWorkout={selectedWorkout} setSelectedWorkout={setSelectedWorkout} newExerciseAdded={newExerciseAdded} setNewExerciseAdded={setNewExerciseAdded} workoutId={workoutId} setWorkoutId={setWorkoutId} workouts={workouts} setWorkouts={setWorkouts} />
                 </Modal.Body>
-                <Modal.Footer id='modalFooter'>
-                <Button id='modalButton' onClick={handleClose}><FontAwesomeIcon icon={faXmark} /> Close</Button>
+                <Modal.Footer id='AddExerciseToWorkoutmodalFooter'>
+                    <Button id='AddExerciseToWorkoutmodalButton' onClick={handleClose}><FontAwesomeIcon icon={faXmark} /> Close</Button>
+                    {selectedWorkout ? (
+                        <Button id="AddExerciseToWorkoutmodalButton" as={Link} to={`/workoutPlanner/${workoutId}`}><FontAwesomeIcon icon={faArrowRight} /> Check this workout</Button>
+
+                    ) : (
+                        <></>
+                    )}
                     {workouts.length > 0 ? (
-                        <>
-                            <AddExercise newExerciseAdded={newExerciseAdded} setNewExerciseAdded={setNewExerciseAdded} workoutId={workoutId} ChoosedExerciseId={ChoosedExerciseId.ChoosedExerciseId} />
-                        </>
+
+                        <AddExercise newExerciseAdded={newExerciseAdded} setNewExerciseAdded={setNewExerciseAdded} workoutId={workoutId} ChoosedExerciseId={ChoosedExerciseId.ChoosedExerciseId} />
+
                     ) : (
                         <>
                         </>)
                     }
-                    
+
                 </Modal.Footer>
             </Modal >
         </>

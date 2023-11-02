@@ -66,7 +66,20 @@ const createRoutes = (db) => {
       }
     })
   })
+  
 
+  router.get('/getWorkout/:workoutId', (req, res) => {
+    const workoutId = req.params.workoutId;
+    const query = "SELECT id_workout,Name,Date from workouts where id_workout = ?";
+    db.query(query, [workoutId], (err, result) => {
+      if (err) {
+        return res.json({ Error: "Error get data" })
+      }
+      else {
+        return res.json({ Success: "Success", result });
+      }
+    })
+  })
 
 
   router.get(`/getWorkoutExercises/:workoutId`, (req, res) => { 

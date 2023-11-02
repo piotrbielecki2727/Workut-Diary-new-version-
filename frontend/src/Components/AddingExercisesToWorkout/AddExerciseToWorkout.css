@@ -1,0 +1,22 @@
+#AddExerciseToWorkoutmodalButton:hover {
+    background-color: #000000;
+    transform: scale(1.05);
+}
+
+
+#AddExerciseToWorkoutmodalButton {
+    background-color: #000000;
+    color: #ffffff;
+    border-radius: 10px;
+    border-color: white;
+}
+
+
+@media (max-width:376px) {
+    #AddExerciseToWorkoutmodalFooter {
+    }
+
+    #AddExerciseToWorkoutmodalButton {
+        max-width: 139px;
+    }
+}
