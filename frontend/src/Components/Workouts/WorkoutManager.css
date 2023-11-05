@@ -10,31 +10,55 @@
 
 #workoutManagerContainer2 {
     background-color: rgb(255, 255, 255);
-    max-width: 700px;
+    max-width: 900px;
     border-radius: 10px;
-    padding: 20px;
     margin-bottom: 20px;
-    justify-content: center;
+    margin-top: 20px;
     align-items: center;
+    justify-content: center;
     text-align: center;
 }
 
-#buttonWorkoutManager {
-    margin-right: 5px;
-    background-color: rgba(255, 255, 255, 0);
+
+
+
+#workoutManagerTable th {
+    background-color: black;
+    color: rgb(255, 255, 255);
+}
+
+#workoutManagerTable td {
+    font-size: 20px;
+    text-align: center;
+    justify-content: right;
+    align-items: center;
+}
+
+#ButtonWorkoutManager {
+    background-color: rgba(0, 0, 0, 0);
     border-color: rgba(255, 255, 255, 0);
     color: black;
     font-size: 25px;
 }
 
-#buttonWorkoutManager:hover {
+#ButtonWorkoutManager:hover {
     transform: scale(1.1);
 }
 
-@media (max-width:767px) {
 
-    #tdButtons {
-        display: flex;
-    }
+#editWorkoutForm{
+    display: flex;
 }
 
+
+
+@media (max-width:767px) {
+    #tdButtons {
+        display: flex;
+      
+    }
+
+    #formControlEditName{
+        width: 100px;
+    }
+}

@@ -35,7 +35,7 @@ function DeleteWorkout({ workoutId, workoutDeleted, setWorkoutDeleted }) {
 
     return (
         <>
-            <Button id="buttonWorkoutManager" onClick={deleteWorkout}><FontAwesomeIcon icon={faXmark} /></Button>
+            <Button id="ButtonWorkoutManager" onClick={deleteWorkout}><FontAwesomeIcon icon={faXmark} /></Button>
         </>
     );
 

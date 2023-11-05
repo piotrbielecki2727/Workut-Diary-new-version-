@@ -3,37 +3,47 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import './CreateWorkout.css';
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPenToSquare, faXmark} from "@fortawesome/free-solid-svg-icons";
+import { faPlay, faCalendarWeek, faCheck } from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios';
 import { useUserId } from '../UserIdContext';
 
-function EditWorkout({ workoutEdited, setWorkoutEdited, workoutName, workoutDate, workoutId }) {
+function EditWorkout({ setWorkoutEdited, workoutName, workoutId, setIsEditing }) {
 
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+
     const { userId } = useUserId();
 
     const [values, setValues] = useState({
-        Name: '',
+        Name: workoutName,
         Date: '',
         Users_id_user: userId
     })
 
 
+
+    const handleClick = (id_workout) => {
+        setIsEditing(true);
+    }
+
+    const handleSave = () => {
+        console.log(workoutId)
+        editWorkout();
+    }
+
+
     const editWorkout = () => {
-        const workoutData = {
-            Name: values.Name,
-            Date: values.Date,
-            Users_id_user: userId
-        };
-        axios.put(`http://localhost:3001/editWorkout/${workoutId}`, workoutData)
+
+
+        axios.put(`http://localhost:3001/editWorkout/${workoutId}`, values)
             .then(res => {
                 if (res.data.Success) {
+                    setIsEditing(false);
+                    console.log("udaol sie")
                     setWorkoutEdited(true);
                 }
                 else {
+                    alert("Nazwa treningu zbyt dluga!");
                     console.log("err")
                 }
             })
@@ -44,44 +54,20 @@ function EditWorkout({ workoutEdited, setWorkoutEdited, workoutName, workoutDate
 
     }
 
-
     return (
-        <>
-            <Button variant="primary" onClick={handleShow} id="buttonWorkoutManager">
-                <FontAwesomeIcon icon={faPenToSquare} />
-            </Button>
 
-            <Modal
-                show={show}
-                onHide={handleClose}
-                backdrop="static"
-                keyboard={false}
-
-            >
-                <Modal.Header id='modalHeader' closeButton closeVariant='white'	>
-                    <Modal.Title id='modalTitle' >Workout editor</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form>
-                        <Form.Group id='formGroup'>
-                            <Form.Label>Name</Form.Label>
-                            <Form.Control type="text" defaultValue={workoutName} id='formControlModal' autoFocus required
-                                onChange={e => setValues({ ...values, Name: e.target.value })}
-                            />
-                        </Form.Group>
-                        <Form.Group id='formGroup'>
-                            <Form.Label>Date</Form.Label>
-                            <Form.Control type="datetime-local" defaultValue={workoutDate} id='formControlModal' required
-                                onChange={e => setValues({ ...values, Date: e.target.value })} />
-                        </Form.Group>
-                    </Form>
-                </Modal.Body>
-                <Modal.Footer id='modalFooter'>
-                    <Button id='modalButton' onClick={handleClose}><FontAwesomeIcon icon={faXmark} /> Close</Button>
-                    <Button id='modalButton' onClick={() => { editWorkout(); handleClose() }}><FontAwesomeIcon icon={faPenToSquare} /> Edit</Button>
-                </Modal.Footer>
-            </Modal>
-        </>
+        <Form>
+            <Form.Group id="editWorkoutForm">
+                <Form.Control
+                    required
+                    id="formControlEditName"
+                    type="text"
+                    defaultValue={workoutName}
+                    onChange={e => setValues({ ...values, Name: e.target.value })}
+                ></Form.Control>
+                <Button id="ButtonWorkoutManager" onClick={handleSave}><FontAwesomeIcon icon={faCheck} style={{ color: "#000000" }} /></Button>
+            </Form.Group>
+        </Form>
     );
 
 }

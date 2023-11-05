@@ -96,7 +96,7 @@ function PrintDnDExercises({ WorkoutPlanner, exercises, setExercises, workoutId,
                                                         <Col xs={4} lg={3} id='imageCol'><Image src={exercise.gif} fluid></Image></Col>
                                                         <Col xs={8} lg={9} >
                                                             <Row id='exerciseNameRow'>
-                                                                <Col xs={9} lg={11}>{exercise.Name}</Col>
+                                                                <Col xs={9} lg={11}>{index+1}. {exercise.Name}</Col>
                                                                 <Col xs={3} lg={1}>
                                                                     <DeleteExerciseFromWorkout
                                                                         workoutId={workoutId}
@@ -113,13 +113,17 @@ function PrintDnDExercises({ WorkoutPlanner, exercises, setExercises, workoutId,
                                                                                 <th>Set</th>
                                                                                 <th>Reps</th>
                                                                                 <th>Weight</th>
+                                                                                <th>Max rep</th>
+                                                                                <th>Rest</th>
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody >
                                                                             <tr id='plannertbody'>
                                                                                 <td>1</td>
                                                                                 <td>12</td>
-                                                                                <td>120</td>
+                                                                                <td>120 kg</td>
+                                                                                <td>150 kg</td>
+                                                                                <td>60 s</td>
 
                                                                             </tr>
 

@@ -20,7 +20,7 @@ function CreateWorkout({ newWorkoutAdded, setNewWorkoutAdded }) {
 
     const [values, setValues] = useState({
         Name: '',
-        Date: '',
+        Date: null,
         Users_id_user: userId
     })
 
@@ -69,11 +69,7 @@ function CreateWorkout({ newWorkoutAdded, setNewWorkoutAdded }) {
                             <Form.Control type="email" placeholder="Enter name..." id='formControlModal' autoFocus required
                                 onChange={e => setValues({ ...values, Name: e.target.value })} />
                         </Form.Group>
-                        <Form.Group id='formGroup'>
-                            <Form.Label>Date</Form.Label>
-                            <Form.Control type="datetime-local" id='formControlModal' required
-                                onChange={e => setValues({ ...values, Date: e.target.value })} />
-                        </Form.Group>
+                        
                     </Form>
                 </Modal.Body>
                 <Modal.Footer id='modalFooter'>

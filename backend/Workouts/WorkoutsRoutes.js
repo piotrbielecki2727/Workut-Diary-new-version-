@@ -39,10 +39,8 @@ const createRoutes = (db) => {
 
   router.put("/editWorkout/:workoutId", (req, res) => {
     const workoutId = req.params.workoutId;
-
-    const query = "UPDATE workouts SET Name=?, Date=? WHERE id_workout=?";
-
-    db.query(query, [req.body.Name, req.body.Date, workoutId], (err, result) => {
+    const query = "UPDATE workouts SET Name=? WHERE id_workout=?";
+    db.query(query, [req.body.Name, workoutId], (err, result) => {
       if (err) {
         return res.json({ Error: "Error when updating" })
       }
@@ -66,7 +64,7 @@ const createRoutes = (db) => {
       }
     })
   })
-  
+
 
   router.get('/getWorkout/:workoutId', (req, res) => {
     const workoutId = req.params.workoutId;
@@ -82,7 +80,7 @@ const createRoutes = (db) => {
   })
 
 
-  router.get(`/getWorkoutExercises/:workoutId`, (req, res) => { 
+  router.get(`/getWorkoutExercises/:workoutId`, (req, res) => {
     const workoutId = req.params.workoutId;
     const query = "SELECT workout_exercise.Exercise_id, exercises.Name, exercises.gif from workout_exercise, exercises where workout_exercise.Exercise_id=exercises.id_exercise and workout_id = ? ORDER BY `ORDER`";
     db.query(query, [workoutId], (err, result) => {

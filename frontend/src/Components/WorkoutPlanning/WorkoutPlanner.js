@@ -46,14 +46,21 @@ function WorkoutPlanner() {
     return (
         <div id='background'>
             <Container id='workoutPlannerContainer'>
-            <Button id="WorkoutPlannerButton" onClick={handleGoBack}>Back</Button>
+                <Button id="WorkoutPlannerButton" onClick={handleGoBack}>Back</Button>
 
                 <Container id='plannerBar'>
                     {workout.map(workout => (
-                        <Row key={workout.id_workout}>
-                            <Col xs={6}id='nameDatePlannerBar'>Workout name: {workout.Name}</Col>
-                            <Col xs={5}id='nameDatePlannerBar'>Last performed: {new Date(workout.Date).toLocaleString()}</Col>
-                        </Row>
+                        <div key={workout.id_workout}>
+                            <h3 id='nameDatePlannerBar'>{workout.Name}</h3>
+                            {workout.Date ? (
+                                <td><h5 id='nameDatePlannerBar'>{new Date(workout.Date).toLocaleString()}</h5> </td>
+
+                            ) : (
+                                <>
+                                    <td></td>
+                                </>
+                            )}
+                        </div>
                     ))}
 
                 </Container>
