@@ -53,20 +53,19 @@ function AddSetsRepsWeight({ exercise, workoutId }) {
                 ),
             };
     
-            // Dodaj obliczone maxrep do obiektu allSets
+            
             const allSets = Object.keys(updatedSets).flatMap((exerciseId) =>
                 updatedSets[exerciseId].map((set) => ({
                     Exercise_id: exerciseId,
                     Repetitions: parseInt(set.reps),
                     Weight: parseFloat(set.weight),
                     rest: parseInt(set.rest),
-                    maxrep: set.maxrep, // Tutaj przekazujemy obliczoną wartość maxrep
+                    maxrep: set.maxrep, 
                     
                 }))
             );
     
-            // Dodatkowo możesz tutaj wypisać allSets w konsoli, aby sprawdzić, czy maxrep jest poprawnie dodawane do obiektu allSets
-            console.log('Updated allSets:', allSets);
+            
     
             return updatedSets;
         });
