@@ -8,12 +8,17 @@ import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 import Container from 'react-bootstrap/Container';
 import './PrintDnDExercises.css';
-
+import { useUserId } from '../UserIdContext';
+import {
+    useNavigate
+} from "react-router-dom";
 
 function PrintDnDExercises({ WorkoutPlanner, exercises, setExercises, workoutId, setNewExerciseAdded, newExerciseAdded }) {
 
 
     const [exerciseDeleted, setExerciseDeleted] = useState(false);
+    const { userId } = useUserId();
+    const navigate = useNavigate();
 
 
     const handleDragEnd = (result) => {
@@ -43,17 +48,20 @@ function PrintDnDExercises({ WorkoutPlanner, exercises, setExercises, workoutId,
     }
 
     useEffect(() => {
-
-        if (workoutId !== null && workoutId !== false) {
+        console.log(userId)
+        if (userId === null) {
+            navigate("/")
+        }
+        else {
             axios.get(`http://localhost:3001/getWorkoutExercises/${workoutId}`)
                 .then(res => {
                     if (res.data.Success) {
                         setExercises(res.data.result);
-                        console.log(exercises);
+                        console.log(res.data.result);
 
                     }
                     else {
-                        console.log("Brak cwiczen");
+                        console.log("Blad");
                         setExercises([]);
 
 
@@ -64,9 +72,9 @@ function PrintDnDExercises({ WorkoutPlanner, exercises, setExercises, workoutId,
                 })
             setNewExerciseAdded(false);
             setExerciseDeleted(false);
-
         }
-    }, [workoutId, newExerciseAdded, exerciseDeleted]);
+
+    }, [workoutId, newExerciseAdded, exerciseDeleted, userId]);
 
 
 
@@ -79,7 +87,6 @@ function PrintDnDExercises({ WorkoutPlanner, exercises, setExercises, workoutId,
                             <Container
                                 ref={provided.innerRef}
                                 {...provided.droppableProps}
-                                striped bordered hover responsive
                                 id='chosenWorkoutContainer1'
                             >
                                 {exercises.map((exercise, index) => (
@@ -96,7 +103,7 @@ function PrintDnDExercises({ WorkoutPlanner, exercises, setExercises, workoutId,
                                                         <Col xs={4} lg={3} id='imageCol'><Image src={exercise.gif} fluid></Image></Col>
                                                         <Col xs={8} lg={9} >
                                                             <Row id='exerciseNameRow'>
-                                                                <Col xs={9} lg={11}>{index+1}. {exercise.Name}</Col>
+                                                                <Col xs={9} lg={11}>{index + 1}. {exercise.Name}</Col>
                                                                 <Col xs={3} lg={1}>
                                                                     <DeleteExerciseFromWorkout
                                                                         workoutId={workoutId}

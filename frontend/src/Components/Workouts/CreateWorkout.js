@@ -1,21 +1,16 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
-
-import './CreateWorkout.css';
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
+import './CreateWorkout.css';
 import axios from 'axios';
 import { useUserId } from '../UserIdContext';
 
 
-function CreateWorkout({ newWorkoutAdded, setNewWorkoutAdded }) {
+function CreateWorkout({ newWorkoutAdded, setNewWorkoutAdded, setIsCreating }) {
 
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleClose = () => setIsCreating(false);
     const { userId } = useUserId();
 
     const [values, setValues] = useState({
@@ -24,17 +19,23 @@ function CreateWorkout({ newWorkoutAdded, setNewWorkoutAdded }) {
         Users_id_user: userId
     })
 
+    const handleSave = () => {
+        if (values.Name.length === 0) {
+            alert("nazwa nie moze byc 0");
+            return
+        }
+        else {
+            createWorkout();
+        }
+    }
 
     const createWorkout = () => {
-        const workoutData = {
-            Name: values.Name,
-            Date: values.Date,
-            Users_id_user: userId
-        };
-        axios.post("http://localhost:3001/createWorkout", workoutData)
+
+        axios.post("http://localhost:3001/createWorkout", values)
             .then(res => {
                 if (res.data.Success) {
                     setNewWorkoutAdded(true);
+                    setIsCreating(false);
                     handleClose();
                 }
                 else {
@@ -48,36 +49,19 @@ function CreateWorkout({ newWorkoutAdded, setNewWorkoutAdded }) {
 
 
     return (
-        <>
-            <Button variant="primary" onClick={handleShow} id='createModalButton'>
-                Create new workout
-            </Button>
-            <Modal
-                show={show}
-                onHide={handleClose}
-                backdrop="static"
-                keyboard={false}
-
-            >
-                <Modal.Header id='modalHeader' closeButton closeVariant='white'	>
-                    <Modal.Title id='modalTitle' >Workout creator</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form>
-                        <Form.Group id='formGroup'>
-                            <Form.Label>Name</Form.Label>
-                            <Form.Control type="email" placeholder="Enter name..." id='formControlModal' autoFocus required
-                                onChange={e => setValues({ ...values, Name: e.target.value })} />
-                        </Form.Group>
-                        
-                    </Form>
-                </Modal.Body>
-                <Modal.Footer id='modalFooter'>
-                    <Button id='modalButton' onClick={handleClose}><FontAwesomeIcon icon={faXmark} /> Close</Button>
-                    <Button id='modalButton' onClick={createWorkout}><FontAwesomeIcon icon={faPlus} /> Create</Button>
-                </Modal.Footer>
-            </Modal>
-        </>
+        <Form>
+            <Form.Group id="createWorkoutForm">
+                <Form.Control
+                    required
+                    id="formControlCreateWorkout"
+                    type="text"
+                    onChange={e => setValues({ ...values, Name: e.target.value })}
+                    minLength={1}
+                ></Form.Control>
+                <Button id="ButtonWorkoutManager" onClick={handleSave}><FontAwesomeIcon icon={faPlus} /></Button>
+                <Button id="ButtonWorkoutManager" onClick={handleClose}><FontAwesomeIcon icon={faXmark} /></Button>
+            </Form.Group>
+        </Form>
     );
 
 }

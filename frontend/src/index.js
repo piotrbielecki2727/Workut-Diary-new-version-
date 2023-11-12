@@ -1,16 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Routes, Route, Navigate, useParams } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import "./index.css";
-import App from "./App";
 import Home from "./Components/Home";
-import Admin from "./Components/Admin";
 import User from "./Components/User";
 import Login from "./Components/Login_Registration/Login";
 import NavigateBar from "./Components/Navigation/NavigateBar";
-import UserProfile from "./Components/Profile/UserProfile";
+import WorkoutsHistory from "./Components/WorkoutsHistory/WorkoutsHistory";
 import WorkoutManager from "./Components/Workouts/WorkoutManager";
 import Exercises from "./Components/Exercises/Exercises";
 import AllExercises from "./Components/Exercises/AllExercises";
@@ -20,6 +18,8 @@ import Cookies from 'js-cookie';
 import WorkoutPlanner from "./Components/WorkoutPlanning/WorkoutPlanner";
 import { UserIdProvider } from './Components/UserIdContext';
 import { AuthProvider } from "./Components/AuthContext";
+import LastWorkout from "./Components/Workouts/LastWorkout";
+import StartWorkout from "./Components/WorkoutPlanning/StartWorkout";
 
 
 
@@ -29,7 +29,6 @@ function AppWrapper() {
 
   const checkToken = (element) => {
     const token = Cookies.get("token");
-    console.log(token);
     return token ? element : <Navigate to="/" />;
   };
 
@@ -53,6 +52,8 @@ function AppWrapper() {
                   <Exercises />
                 }
               />
+
+
 
               <Route
                 path="/getExercises/:muscle_group"
@@ -89,6 +90,31 @@ function AppWrapper() {
                   checkToken(<WorkoutPlanner />)
                 }
               />
+
+              <Route
+                path="/lastWorkout/:DoneWorkoutId/:workoutName/:workoutDate"
+                element={
+                  checkToken(<LastWorkout />)
+                }
+              />
+
+              <Route
+                path="/WorkoutsHistory"
+                element={
+                  checkToken(<WorkoutsHistory />)
+                }
+              />
+
+              <Route
+                path="/StartedWorkout"
+                element={
+                  checkToken(<StartWorkout />)
+                }
+              />
+
+
+
+
 
               <Route path="/login" element={<Login />} />
               <Route path="*" element={<div>Page not found!</div>} />

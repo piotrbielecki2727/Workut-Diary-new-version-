@@ -11,21 +11,9 @@
     background-color: rgb(255, 255, 255);
 }
 
-#modalButton {
-    background-color: #000000;
-    color: #ffffff;
-    border-radius: 10px;
-    border-color: white;
-    
-    
-}
 
-#modalButton:hover, #createModalButton:hover {
-    background-color: #000000;
-    transform: scale(1.05);
-}
 
-#createModalButton{
+#createModalButton {
     background-color: #000000;
     color: #ffffff;
     border-radius: 10px;
@@ -34,7 +22,7 @@
     margin: auto;
 }
 
-#formControlModal{
+#formControlModal {
     background-color: #eae9e9;
 }
 
@@ -42,5 +30,27 @@
     padding: 5px;
 }
 
+#createWorkoutForm {
+    max-width: 350px;
+    display: flex;
+    margin: auto;
+    margin-top: 15px;
+    
+}
+
+#formControlCreateWorkout {
+
+}
+
+#editWorkoutForm {
+    display: flex;
+}
 
 
+
+@media (max-width:767px) {
+
+    #formControlCreateWorkout {
+        width: 100px;
+    }
+}

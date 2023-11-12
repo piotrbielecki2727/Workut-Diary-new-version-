@@ -1,0 +1,20 @@
+#startWorkoutButton {
+    margin-top: 20px;
+    font-size: 20px;
+    background-color: black;
+    border: none;
+
+}
+
+#startWorkoutButton:hover {
+    transform: scale(1.05);
+}
+
+#startWorkoutModalHeader {
+    background-color: black;
+}
+
+#startWorkoutModalTitle {
+    color: black;
+    text-align: center;
+}

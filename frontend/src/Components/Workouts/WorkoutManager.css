@@ -6,6 +6,7 @@
     box-shadow: rgb(0 0 0 / 55%) 1px 1px 10px;
     margin-top: 20px;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 #workoutManagerContainer2 {
@@ -45,20 +46,24 @@
     transform: scale(1.1);
 }
 
-
-#editWorkoutForm{
-    display: flex;
+#createNewWorkoutButton {
+    background-color: #000000;
+    color: #ffffff;
+    border-radius: 10px;
+    border-color: white;
 }
 
+
+#createNewWorkoutButton:hover {
+    background-color: #000000;
+    transform: scale(1.05);
+}
 
 
 @media (max-width:767px) {
     #tdButtons {
         display: flex;
-      
+
     }
 
-    #formControlEditName{
-        width: 100px;
-    }
 }

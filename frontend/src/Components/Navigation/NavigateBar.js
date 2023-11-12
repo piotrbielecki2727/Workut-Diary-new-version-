@@ -118,7 +118,7 @@ function NavigateBar() {
                       <NavDropdown.Item as={Link} to="/workoutManager" onClick={handleCloseOffcanvas}>Manage your workouts</NavDropdown.Item>
                       <NavDropdown.Item as={Link} to="/progress" onClick={handleCloseOffcanvas}>Check your progress</NavDropdown.Item>
                       <NavDropdown.Divider />
-                      <NavDropdown.Item as={Link} to="/workoutsBase" onClick={handleCloseOffcanvas}>Workouts base</NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to="/WorkoutsHistory" onClick={handleCloseOffcanvas}>Workouts base</NavDropdown.Item>
                     </NavDropdown>
                   </div>
                   <hr className="my-1" /> {/* Linia oddzielająca */}

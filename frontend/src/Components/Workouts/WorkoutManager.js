@@ -26,13 +26,20 @@ function WorkoutManager() {
     const [newWorkoutAdded, setNewWorkoutAdded] = useState(false);
     const [workoutDeleted, setWorkoutDeleted] = useState(false);
     const [workoutEdited, setWorkoutEdited] = useState(false);
-    const [workoutId, setWorkoutId] = useState(null);
+    const [selectedWorkoutId, setSelectedWorkoutId] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
+    const [isCreating, setIsCreating] = useState(false);
 
 
     const handleClick = (workoutId) => {
+        setSelectedWorkoutId(workoutId);
+        console.log(workoutId)
         setIsEditing(true);
-        setWorkoutId(workoutId);
+
+    }
+
+    const handleShowCreate = () => {
+        setIsCreating(true);
     }
 
 
@@ -42,6 +49,7 @@ function WorkoutManager() {
             .then(res => {
                 if (res.data.Success) {
                     setWorkouts(res.data.result);
+                    console.log(res.data.result);
                 }
                 else {
                     console.log("err")
@@ -61,7 +69,15 @@ function WorkoutManager() {
         <div id='background'>
             <Container id="workoutManagerContainer">
                 <h3>Workout manager</h3>
-                <CreateWorkout newWorkoutAdded={newWorkoutAdded} setNewWorkoutAdded={setNewWorkoutAdded} />
+                <Button variant="primary" onClick={handleShowCreate} id='createNewWorkoutButton'>
+                    Create new workout
+                </Button>
+                {isCreating ?
+                    (<CreateWorkout newWorkoutAdded={newWorkoutAdded} setNewWorkoutAdded={setNewWorkoutAdded} setIsCreating={setIsCreating} />
+                    )
+                    :
+                    (<></>)
+                }
                 <Container id="workoutManagerContainer2">
                     {workouts.length > 0 ? (
                         <>
@@ -77,31 +93,30 @@ function WorkoutManager() {
                                 </thead>
                                 <tbody>
                                     {workouts.map(workout => (
-                                        <tr key={workout.id_workout}>
+                                        <tr key={workout.id_group}>
                                             <td id="tdButtons">
-                                                <Button id="ButtonWorkoutManager" as={Link} to={`/workoutPlanner/${workout.id_workout}`}>
+                                                <Button id="ButtonWorkoutManager" as={Link} to={`/workoutPlanner/${workout.id_group}`}>
                                                     <FontAwesomeIcon icon={faPlay} style={{ color: "#000000" }} />
                                                 </Button>
                                             </td>
-                                            <td onClick={() => handleClick(workout.id_workout)}>
-                                                {isEditing ? (
+                                            <td onClick={() => handleClick(workout.id_group)}>
+                                                {isEditing && selectedWorkoutId === workout.id_group ? (
                                                     <EditWorkout
                                                         isEditing={isEditing}
                                                         setIsEditing={setIsEditing}
-                                                        workoutId={workout.id_workout}
+                                                        workoutId={workout.id_group}
                                                         workoutName={workout.Name}
-                                                        workoutDate={new Date(workout.Date).toLocaleString()}
                                                         workoutEdited={workoutEdited}
                                                         setWorkoutEdited={setWorkoutEdited}
                                                     />
                                                 ) : (
-                                                    workout.Name
+                                                    workout.name
                                                 )}
                                             </td>
 
-                                            {workout.Date ? (
-                                                <><td>{new Date(workout.Date).toLocaleString()} </td>
-                                                    <td> <Button id="ButtonWorkoutManager" as={Link} to={`/workoutPlanner/${workout.id_workout}`}>
+                                            {workout.latest_date ? (
+                                                <><td>{new Date(workout.latest_date).toLocaleString()} </td>
+                                                    <td> <Button id="ButtonWorkoutManager" as={Link} to={`/lastWorkout/${workout.latest_done_training_id}/${workout.name}/${workout.latest_date}`}>
                                                         <FontAwesomeIcon icon={faCalendarWeek} style={{ color: "#000000" }} />
                                                     </Button></td>
                                                 </>
@@ -114,7 +129,7 @@ function WorkoutManager() {
 
                                             <td id="tdButtons">
                                                 <DeleteWorkout
-                                                    workoutId={workout.id_workout}
+                                                    workoutId={workout.id_group}
                                                     workoutDeleted={workoutDeleted}
                                                     setWorkoutDeleted={setWorkoutDeleted}
                                                 />

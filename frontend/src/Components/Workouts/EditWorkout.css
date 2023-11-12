@@ -1,0 +1,13 @@
+
+#editWorkoutForm{
+    display: flex;
+}
+
+
+
+@media (max-width:767px) {
+    
+    #formControlEditName{
+        width: 100px;
+    }
+}

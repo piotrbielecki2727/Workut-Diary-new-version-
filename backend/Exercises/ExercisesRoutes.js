@@ -83,6 +83,24 @@ const createRoutes = (db) => {
     });
   });
 
+  router.get('/getMuscleGroups', (req, res) => {
+    const query = 'SELECT muscle_group, img_src from muscle_groups';
+    db.query(query, (error, results) => {
+      if (error) {
+        console.log(error);
+        return res.json({ Error: "There is error" });
+      }
+  
+      if (results.length === 0) {
+        return res.json({ Error: "Can't find muscle_group " });
+      }
+  
+      return res.json({ Status: "Success", results });
+    });
+  });
+
+
+
 
 
   return router;
