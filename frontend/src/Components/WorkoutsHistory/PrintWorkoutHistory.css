@@ -1,0 +1,37 @@
+#PrintWorkoutHistoryTable {
+    margin-top: 15px;
+}
+
+
+#PrintWorkoutHistoryTbody {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: larger;
+}
+
+
+#PrintWorkoutHistoryThead th {
+    background-color: black;
+    color: white;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: larger;
+    width: 150px;
+}
+
+#PrintWorkoutHistoryh2 {
+    font-weight: bolder;
+}
+
+#PrintWorkoutHistoryButton {
+    background-color: rgba(255, 255, 255, 0);
+    color: black;
+    border: none;
+    font-size: 20px;
+}
+
+#PrintWorkoutHistoryButton:hover {
+    transform: scale(1.05);
+}

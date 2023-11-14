@@ -4,39 +4,44 @@ import Table from 'react-bootstrap/Table';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
+
 
 import './AddSetsRepsWeight.css';
 
-const deleteSet = (prevSets, exerciseId) => {
-    const updatedSets = { ...prevSets };
-    if (updatedSets[exerciseId] && updatedSets[exerciseId].length > 0) {
-        updatedSets[exerciseId].pop();
-    }
-    return updatedSets;
-};
 
-const handleInputChange = (e, prevSets, exerciseId, index, field) => {
-    const value = e.target.value;
-    return {
-        ...prevSets,
-        [exerciseId]: prevSets[exerciseId].map((set, i) =>
-            i === index ? { ...set, [field]: value } : set
-        )
-    };
-};
 
 function AddSetsRepsWeight({ exercise, workoutId }) {
     const [sets, setSets] = useState({});
     const navigate = useNavigate();
-    
+
+
+    const deleteSet = (prevSets, exerciseId) => {
+        const updatedSets = { ...prevSets };
+        if (updatedSets[exerciseId] && updatedSets[exerciseId].length > 0) {
+            updatedSets[exerciseId].pop();
+        }
+        return updatedSets;
+    };
+
+    const handleInputChange = (e, prevSets, exerciseId, index, field) => {
+        const value = e.target.value;
+        return {
+            ...prevSets,
+            [exerciseId]: prevSets[exerciseId].map((set, i) =>
+                i === index ? { ...set, [field]: value } : set
+            )
+        };
+    };
+
 
     const addSet = () => {
         setSets((prevSets) => ({
-
             ...prevSets,
             [exercise.Exercise_id]: [
                 ...(prevSets[exercise.Exercise_id] || []),
-                { weight: '', reps: '', rest: '' } 
+                { weight: '', reps: '', rest: '' }
             ]
         }));
 
@@ -52,21 +57,21 @@ function AddSetsRepsWeight({ exercise, workoutId }) {
                         : set
                 ),
             };
-    
-            
+
+
             const allSets = Object.keys(updatedSets).flatMap((exerciseId) =>
                 updatedSets[exerciseId].map((set) => ({
                     Exercise_id: exerciseId,
                     Repetitions: parseInt(set.reps),
                     Weight: parseFloat(set.weight),
                     rest: parseInt(set.rest),
-                    maxrep: set.maxrep, 
-                    
+                    maxrep: set.maxrep,
+
                 }))
             );
-    
-            
-    
+
+
+
             return updatedSets;
         });
     };
@@ -76,7 +81,7 @@ function AddSetsRepsWeight({ exercise, workoutId }) {
         const parsedReps = parseInt(reps);
 
         if (isNaN(parsedWeight) || isNaN(parsedReps) || parsedWeight <= 0 || parsedReps <= 0) {
-            return ''; 
+            return '';
         } else {
             return Math.round(parsedWeight * (1 + parsedReps / 30)).toString();
         }
@@ -114,8 +119,10 @@ function AddSetsRepsWeight({ exercise, workoutId }) {
             }))
         );
 
+
+        console.log(allSets);
         axios
-            .post(`http://localhost:3001/saveAllSets`, { sets: allSets,  workoutId: workoutId })
+            .post(`http://localhost:3001/saveAllSets`, { sets: allSets, workoutId: workoutId })
             .then((response) => {
                 navigate("/workoutManager");
                 console.log('Workout saved successfully!', response.data);
@@ -129,8 +136,8 @@ function AddSetsRepsWeight({ exercise, workoutId }) {
     return (
         <>
             <Container id='AddSetsRepsWeightContainer'>
-                <Table striped bordered hover responsive>
-                    <thead>
+                <Table responsive striped bordered>
+                    <thead id='theadAddSetsRepsWeight'>
                         <tr>
                             <th>Sets</th>
                             <th>Weight</th>
@@ -138,11 +145,16 @@ function AddSetsRepsWeight({ exercise, workoutId }) {
                             <th>Rest</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id='tbodyAddSetsRepsWeight'>
                         {sets[exercise.Exercise_id] &&
                             sets[exercise.Exercise_id].map((set, index) => (
                                 <tr key={index}>
-                                    <td>{index + 1}</td>
+                                    <td>
+                                        <input
+                                            disabled
+                                            value={index + 1}
+                                            id='inputAddSetsRepsWeight1'
+                                        /></td>
                                     <td>
                                         <input
                                             type='number'
@@ -151,6 +163,7 @@ function AddSetsRepsWeight({ exercise, workoutId }) {
                                             value={set.weight}
                                             onChange={(e) => setSets(handleInputChange(e, sets, exercise.Exercise_id, index, 'weight'))}
                                             required
+                                            id='inputAddSetsRepsWeight2'
                                         />
                                     </td>
                                     <td>
@@ -161,6 +174,7 @@ function AddSetsRepsWeight({ exercise, workoutId }) {
                                             value={set.reps}
                                             onChange={(e) => setSets(handleInputChange(e, sets, exercise.Exercise_id, index, 'reps'))}
                                             required
+                                            id='inputAddSetsRepsWeight2'
                                         />
                                     </td>
                                     <td>
@@ -171,6 +185,7 @@ function AddSetsRepsWeight({ exercise, workoutId }) {
                                             value={set.rest}
                                             onChange={(e) => setSets(handleInputChange(e, sets, exercise.Exercise_id, index, 'rest'))}
                                             required
+                                            id='inputAddSetsRepsWeight2'
                                         />
                                     </td>
 
@@ -178,14 +193,23 @@ function AddSetsRepsWeight({ exercise, workoutId }) {
                             ))}
                     </tbody>
                 </Table>
+
                 <Container id='AddSetDeleteSet'>
-                    <Button onClick={addSet}> + </Button>
-                    <Button onClick={() => setSets(deleteSet(sets, exercise.Exercise_id))}> - </Button>
+                    <Button
+                        id='addSetsRepsAddSetButton'
+                        onClick={addSet}>
+                        <FontAwesomeIcon icon={faPlus} />
+                    </Button>
+                    <Button
+                        id='addSetsRepsDeleteSetButton'
+                        onClick={() => setSets(deleteSet(sets, exercise.Exercise_id))}>
+                        <FontAwesomeIcon icon={faMinus} />
+                    </Button>
                 </Container>
-            </Container>
-            <Container>
+            </Container >
+            <Container id='addSetsRepsAddSaveButtonContainer'>
                 {Object.keys(sets).length > 0 && (
-                    <Button onClick={saveWorkout}>Save Workout</Button>
+                    <Button id='addSetsRepsAddSaveButton' onClick={saveWorkout}>Save Workout</Button>
                 )}
             </Container>
         </>

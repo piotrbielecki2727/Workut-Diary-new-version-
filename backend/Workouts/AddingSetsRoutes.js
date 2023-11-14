@@ -3,21 +3,44 @@ const router = express.Router();
 
 const createRoutes = (db) => {
 
+
+
+  router.get(`/getHighestOrderValue`, (req, res) => {
+    const workoutId = req.query.workoutId;
+    console.log("workoutid", workoutId);
+    const query = `SELECT MAX(TRAINING_EXERCISE.ORDER) as max_order FROM TRAINING_EXERCISE
+    where workout_id=?`
+    db.query(query, [workoutId], (error, result) => {
+      if (error) {
+        return res.json({ Error: "Error when get order" })
+      }
+
+      const max_order = result[0].max_order;
+
+      return res.json({ Success: "Success", max_order: max_order });
+    })
+  }
+  )
+
+
+
   router.post('/addExerciseToChosenWorkout', (req, res) => {
     const workoutId = req.body.workoutId;
     const exerciseId = req.body.ChoosedExerciseId;
+    const order = req.body.order;
+    console.log(order);
     console.log(workoutId)
     console.log(exerciseId)
 
     const query1 = `SELECT Workout_id, Exercise_id from Training_Exercise where Workout_id=? and Exercise_id=? `;
-    const query2 = "INSERT INTO Training_Exercise (`Workout_id`, `Exercise_id`) VALUES (?, ?)";
+    const query2 = "INSERT INTO Training_Exercise (`Workout_id`, `Exercise_id`, `Order`) VALUES (?, ?, ?)";
 
     db.query(query1, [workoutId, exerciseId], (error, result) => {
       if (result.length > 0) {
         return res.json({ Error: "Exercise exist" });
       }
       else {
-        db.query(query2, [workoutId, exerciseId], (error, result) => {
+        db.query(query2, [workoutId, exerciseId, order], (error, result) => {
           if (error) {
             if (error.code === 'ER_DUP_ENTRY') {
               return res.status(409).json({ Error: "Duplicate entry" });
@@ -169,11 +192,14 @@ const createRoutes = (db) => {
   router.get("/getDoneWorkoutDetails/:DoneWorkoutId", (req, res) => {
     const DoneWorkoutId = req.params.DoneWorkoutId;
     console.log(DoneWorkoutId);
-    const query = `SELECT sets.*, exercises.gif, exercises.name 
-                   FROM sets, done_trainings, exercises
-                   WHERE done_trainings.id_done_training = sets.Done_Trainings_id_done_training
-                   AND exercises.id_exercise = sets.Exercise_id
-                   AND done_trainings.id_done_training=?; `;
+    const query = `SELECT sets.*, exercises.gif, exercises.name, training_exercise.Order
+    FROM sets, done_trainings, exercises, training_exercise
+    WHERE done_trainings.id_done_training = sets.Done_Trainings_id_done_training
+    and done_trainings.Training_Groups_id_group = training_exercise.Workout_id 
+    AND exercises.id_exercise = sets.Exercise_id
+    and training_exercise.Exercise_id=exercises.id_exercise
+    AND done_trainings.id_done_training=?
+    order by training_exercise.Order;`;
 
     db.query(query, [DoneWorkoutId], (error, result) => {
       if (error) {
@@ -188,6 +214,7 @@ const createRoutes = (db) => {
           processedResult[exerciseId] = {
             gif: row.gif,
             name: row.name,
+            order: row.Order,
             sets: [],
           };
         }
@@ -200,8 +227,10 @@ const createRoutes = (db) => {
           set_rest: row.Rest
         });
       });
+      
 
-      const finalResult = Object.values(processedResult);
+      const finalResult = Object.values(processedResult)
+      .sort((a, b) => a.order - b.order);
 
       return res.json({ Success: "Success", result: finalResult });
     });

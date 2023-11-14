@@ -42,25 +42,25 @@ function Pagination({ data, StartWorkout, workoutName, workoutDate, workoutId })
                 <Container id='RepsWeightContainer'>
 
                     {currentItems.map((exercise, index) => (
-                        exercise.gif && (
-                            <div key={exercise.id_exercise}>
-                                <Container id='RepsWeightContainer2'>
-                                    <h4>{exercise.Name}</h4>
-                                    <Image id='RepsWeightContainerImage' fluid src={exercise.gif} alt="exercise_gif" />
-                                </Container>
-                                <Container id='RepsWeightContainer3'><AddSetsRepsWeight exercise={exercise} workoutId={workoutId} workoutName={workoutName} workoutDate={workoutDate} /></Container>
-
-
-                            </div>
-
-                        )
+                        <div key={exercise.id_exercise}>
+                            <Container id='RepsWeightContainer2'>
+                                <h3 id='exerciseNameStartWorkout'>{exercise.Name}</h3>
+                                <Image id='RepsWeightContainerImage' fluid src={exercise.gif} alt="exercise_gif" />
+                            </Container>
+                            <Container id='RepsWeightContainer3'>
+                                <AddSetsRepsWeight
+                                    exercise={exercise}
+                                    workoutId={workoutId}
+                                    workoutName={workoutName}
+                                    workoutDate={workoutDate}
+                                /></Container>
+                        </div>
                     ))}
                 </Container>
             )
 
                 : (<Row className='customRow'>
                     {currentItems.map(exercise => (
-                        exercise.gif && (
                             <Col key={exercise.id_exercise} xs={5} sm={6} md={4} lg={3}>
                                 <Link to={`/getExercise/${exercise.Name}`} id='muscle-group-link'><Card className='customCard'>
                                     <Card.Img src={exercise.gif} alt="exercise_gif" />
@@ -70,7 +70,6 @@ function Pagination({ data, StartWorkout, workoutName, workoutDate, workoutId })
                                 </Card>
                                 </Link>
                             </Col>
-                        )
                     ))}
 
                 </Row >)
