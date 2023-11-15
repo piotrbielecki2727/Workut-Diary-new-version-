@@ -20,6 +20,7 @@ function AllExercises() {
     const handleGoBack = () => {
         navigate(-1);
     }
+    const Exercises = "Exercises";
 
 
 
@@ -65,7 +66,7 @@ function AllExercises() {
                 </Container>
                 <h3>{muscle_group}</h3>
                 <Container id='exercisesContainer2'>
-                    <Pagination data={exercises} />
+                    <Pagination data={exercises} CurrentPagination={Exercises} />
                 </Container>
             </Container >
         </div>

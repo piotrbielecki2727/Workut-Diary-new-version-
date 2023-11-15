@@ -26,10 +26,11 @@
 #workoutManagerTable th {
     background-color: black;
     color: rgb(255, 255, 255);
+    font-size: 18px;
 }
 
 #workoutManagerTable td {
-    font-size: 20px;
+    font-size: 18px;
     text-align: center;
     justify-content: right;
     align-items: center;
@@ -51,6 +52,8 @@
     color: #ffffff;
     border-radius: 10px;
     border-color: white;
+    font-size: 18px;
+    margin-top: 10px;
 }
 
 

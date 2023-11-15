@@ -13,7 +13,7 @@ function SetsRepsWeight({ exercises, workoutId, workoutName, workoutDate }) {
 
   const [show, setShow] = useState(false);
   const [exercise, setExercise] = useState([]);
-  const StartWorkout = true;
+  const StartWorkout = "StartWorkout";
 
 
 
@@ -43,7 +43,7 @@ function SetsRepsWeight({ exercises, workoutId, workoutName, workoutDate }) {
         <Modal.Header id='startWorkoutModalHeader' closeButton closeVariant='white'	>
         </Modal.Header>
         <Modal.Body>
-          <Pagination data={exercises} StartWorkout={StartWorkout} workoutName={workoutName} workoutDate={workoutDate} workoutId={workoutId} />
+          <Pagination data={exercises} CurrentPagination={StartWorkout} workoutName={workoutName} workoutDate={workoutDate} workoutId={workoutId} />
         </Modal.Body>
       </Modal >
     </>

@@ -50,7 +50,6 @@ function SearchBar() {
                             onChange={e => setSearchValue(e.target.value)}
                         />
                         <i onClick={clearSearchBar} id="iForSearchBar2"><FontAwesomeIcon icon={faX} /></i>
-                        <i id="iForSearchBar"><FontAwesomeIcon icon={faSearch} /></i>
                     </div>
                     {searchValue && searchValue.length > 0 && results && results.length > 0 && (
                         <div id="searchResults">

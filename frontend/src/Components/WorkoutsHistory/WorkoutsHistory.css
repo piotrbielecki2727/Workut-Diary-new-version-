@@ -1,12 +1,52 @@
 #WorkoutHistoryContainer {
     background-color: rgb(255, 255, 255);
-    max-width: 950px;
+    max-width: 1000px;
     border-radius: 10px;
     padding: 20px;
     box-shadow: rgb(0 0 0 / 55%) 1px 1px 10px;
     margin-top: 20px;
     margin-bottom: 20px;
     text-align: center;
+}
+
+#WorkoutHistoryh2 {
+    font-weight: bolder;
+    color: black;
+    font-size: 30px;
+}
+
+#WorkoutHistoryTable {
+    margin-top: 15px;
+}
 
 
+#WorkoutHistoryTbody {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: larger;
+}
+
+
+#WorkoutHistoryThead th {
+    background-color: black;
+    color: white;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: larger;
+    width: 150px;
+}
+
+#WorkoutHistoryButton {
+    background-color: rgba(255, 255, 255, 0);
+    color: black;
+    border: 1px solid;
+    border-radius: 10px;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+#WorkoutHistoryButton:hover {
+    transform: scale(1.05);
 }

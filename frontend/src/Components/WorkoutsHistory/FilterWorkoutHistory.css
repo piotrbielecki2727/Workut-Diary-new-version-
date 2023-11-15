@@ -1,0 +1,47 @@
+#FilterWorkoutHistory {}
+
+
+#FilterWorkoutSearchdiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    background-color: rgb(255, 255, 255);
+    position: relative;
+}
+
+
+#FilterWorkoutSearch {
+    position: relative;
+    width: 50%;
+}
+
+
+#FilterWorkoutFormControl {
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    border-radius: 10px;
+    outline: none;
+    box-shadow: none;
+    border-color: #000000;
+    font-size: 18px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+
+#FilterWorkoutX {
+    position: absolute;
+    top: 50%;
+    right: 0.1rem;
+    transform: translateY(-50%);
+    padding-right: 11px;
+    padding-left: 10px;
+    cursor: pointer;
+    color: #000000;
+    background-color: rgb(255, 255, 255);
+    border: 10px;
+    border-color: aqua;
+   
+}
