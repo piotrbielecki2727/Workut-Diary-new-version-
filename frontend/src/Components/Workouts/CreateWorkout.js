@@ -6,23 +6,37 @@ import { faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
 import './CreateWorkout.css';
 import axios from 'axios';
 import { useUserId } from '../UserIdContext';
+import Toasts from "../Toasts";
 
 
 function CreateWorkout({ newWorkoutAdded, setNewWorkoutAdded, setIsCreating }) {
+
+    const [show, setShow] = useState(false);
+    const [message, setMessage] = useState('');
+    const [toastType, setToastType] = useState(null);
+
 
     const handleClose = () => setIsCreating(false);
     const { userId } = useUserId();
 
     const [values, setValues] = useState({
         Name: '',
-        Date: null,
         Users_id_user: userId
     })
 
     const handleSave = () => {
         if (values.Name.length === 0) {
-            alert("nazwa nie moze byc 0");
-            return
+            setShow(true);
+            setMessage("Workout name can't be empty.");
+            setToastType("warning");
+            return;
+        }
+
+        else if (values.Name.length > 45) {
+            setShow(true);
+            setMessage("The length of the training name can't be longer than 45 characters.");
+            setToastType("warning");
+            return;
         }
         else {
             createWorkout();
@@ -39,17 +53,22 @@ function CreateWorkout({ newWorkoutAdded, setNewWorkoutAdded, setIsCreating }) {
                     handleClose();
                 }
                 else {
-                    console.log("err")
+                    setShow(true);
+                    setMessage(res.data.Error);
+                    setToastType("warning");
                 }
             })
             .catch(err => {
-                console.log("err")
+                setShow(true);
+                    setMessage(err);
+                    setToastType("warning");
             })
     }
 
 
     return (
         <Form>
+            <Toasts show={show} setShow={setShow} message={message} toastType={toastType} setToastType={setToastType} />
             <Form.Group id="createWorkoutForm">
                 <Form.Control
                     required

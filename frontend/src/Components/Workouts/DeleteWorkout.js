@@ -11,7 +11,6 @@ import axios from 'axios';
 function DeleteWorkout({ workoutId, workoutDeleted, setWorkoutDeleted }) {
 
 
-    
     const deleteWorkout = () => {
         console.log("id workouto do usuniecia to:" + workoutId)
         axios.delete(`http://localhost:3001/deleteWorkout/${workoutId}`)

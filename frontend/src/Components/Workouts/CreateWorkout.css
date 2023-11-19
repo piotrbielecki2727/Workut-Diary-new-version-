@@ -36,10 +36,11 @@
     margin: auto;
     margin-top: 15px;
     
+    
 }
 
 #formControlCreateWorkout {
-
+    border: 1px solid #a5a5a5;
 }
 
 #editWorkoutForm {
@@ -51,6 +52,11 @@
 @media (max-width:767px) {
 
     #formControlCreateWorkout {
-        width: 100px;
+        margin: auto;
+    }
+
+    #createWorkoutForm {
+        max-width: 250px;
+        
     }
 }

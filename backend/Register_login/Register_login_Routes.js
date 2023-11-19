@@ -23,7 +23,7 @@ const createRoutes = (db) => {
           return res.json({ Error: "Token is not right" });
         }
         else {
-          req.userId = decoded.userId; // Dodajemy pobrane userId do req
+          req.userId = decoded.userId; 
           req.name = decoded.name;
           next();
         }
@@ -37,11 +37,11 @@ const createRoutes = (db) => {
     db.query(query, [userId], (error, results) => {
       if (error) {
         console.log(error);
-        return res.json({ Error: "Wystąpił błąd" });
+        return res.json({ Error: "Error" });
       }
 
       if (results.length === 0) {
-        return res.json({ Error: "Nie znaleziono użytkownika" });
+        return res.json({ Error: "User not found!" });
       }
 
       const firstName = results[0].first_name;
@@ -77,14 +77,18 @@ const createRoutes = (db) => {
         req.body.status,
       ]
 
+      
+
       db.query(query, [req.body.email], (err, result) => {
         if (result.length > 0) {
-          return res.json({ Error: "Taki mail już istnieje" });
+          return res.json({ Error: "This email address is already registered" });
         }
-        if (!emailRegex.test(req.body.email)) {
-          return res.json({ Error: "Brak @ w adresie e-mail" });
+        else if (!emailRegex.test(req.body.email)) {
+          return res.json({ Error: "Missing @ in the email address" });
         }
-
+        else if (!req.body.email || !req.body.password || !req.body.first_name) {
+          return res.json({ Error: "Please fill in all required fields." });
+        }
         else {
           db.query(sql, [values], (err, result) => {
             if (err) return res.json({ Error: "Error inserting data to database" });
@@ -101,15 +105,12 @@ const createRoutes = (db) => {
     console.log(req.body);
     const sql = 'SELECT * FROM users WHERE Email = ? ';
     db.query(sql, [req.body.email], (err, data) => {
-      if (err) return res.json({ Error: "Login error in server" });
-      console.log("Data from database:", data); // Add this line
-
+      if (err) return res.json({ Error: "An error occurred while logging in." });
       if (data.length > 0) {
-        console.log("Stored hashed password:", data[0].Password); // Add this line
         bcrypt.compare(req.body.password.toString(), data[0].Password, (err, response) => {
-          if (err) return res.json({ Error: "Password compare error" });
+          if (err) return res.json({ Error: "A password compare error occurred." });
           if (response) {
-            const userId = data[0].id_user; // Pobieramy userId z danych użytkownika
+            const userId = data[0].id_user; 
             const name = data[0].name;
             console.log(userId);
             console.log(name);
@@ -118,13 +119,13 @@ const createRoutes = (db) => {
             return res.json({ Status: "Success" });
           }
           else {
-            return res.json({ Error: "Password not matched" });
+            return res.json({ Error: "Wrong password!" });
           }
         })
 
       }
       else {
-        return res.json({ Error: "No email existed" });
+        return res.json({ Error: "This email don't exist." });
       }
     })
   })

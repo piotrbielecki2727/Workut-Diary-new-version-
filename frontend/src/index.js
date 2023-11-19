@@ -13,7 +13,7 @@ import WorkoutManager from "./Components/Workouts/WorkoutManager";
 import Exercises from "./Components/Exercises/Exercises";
 import AllExercises from "./Components/Exercises/AllExercises";
 import ChoosedExercise from "./Components/Exercises/ChoosedExercise";
-import Pagination from "./Components/Exercises/Pagination";
+import Toasts from "./Components/Toasts";
 import Cookies from 'js-cookie';
 import WorkoutPlanner from "./Components/WorkoutPlanning/WorkoutPlanner";
 import { UserIdProvider } from './Components/UserIdContext';
@@ -72,9 +72,9 @@ function AppWrapper() {
                 }
               />
               <Route
-                path="/admin"
+                path="/toasts"
                 element={
-                  <Pagination />
+                  <Toasts />
                 }
               />
               <Route

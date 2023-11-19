@@ -8,17 +8,32 @@ const createRoutes = (db) => {
             req.body.Name,
             req.body.Users_id_user
         ]
+
         const query = "INSERT INTO Training_Groups (Name ,Users_id_user) VALUES (?)"
-        db.query(query, [values], (err, result) => {
-            if (err) {
-                return res.json({ Error: "Error inserting workout to database" })
+        const query_select = "SELECT Name from Training_Groups where Users_id_user=?"
+        db.query(query_select, [req.body.Users_id_user], (err, result) => {
+            const existingWorkout = result.find(workout => workout.Name === req.body.Name);
+            if (existingWorkout) {
+                return res.json({ Error: "Workout of this name already exist in your workout list." });
             }
             else {
-                return res.json({ Success: "Data added to database" })
+                db.query(query, [values], (err, result) => {
+                    if (req.body.Name.length > 45) {
+                        return res.json({ Error: "The length of the training name can't be longer than 45 characters." });
+                    }
+                    else if (req.body.Name.length === 0) {
+                        return res.json({ Error: "Training name can't be empty." });
+                    }
+
+                    else if (err) {
+                        return res.json({ Error: "Error inserting workout to database" });
+                    } else {
+                        return res.json({ Success: "Success" });
+                    }
+                })
             }
         })
-    }
-    )
+    })
 
 
 
@@ -37,17 +52,31 @@ const createRoutes = (db) => {
     }
     )
 
-    router.put("/editWorkout/:workoutId", (req, res) => {
-        const workoutId = req.params.workoutId;
-        console.log(workoutId);
+    router.put("/editWorkout", (req, res) => {
         console.log(req.body.Name);
+        console.log(req.body.Users_id_user);
+        console.log(req.body.workoutId);
         const query = "UPDATE Training_Groups SET Name=? WHERE id_group=?";
-        db.query(query, [req.body.Name, workoutId], (err, result) => {
-            if (err) {
-                return res.json({ Error: "Error when updating" })
+        const query_select = "SELECT Name from Training_Groups where Users_id_user=?"
+        db.query(query_select, [req.body.Users_id_user], (err, result) => {
+            const existingWorkout = result.find(workout => workout.Name === req.body.Name);
+            if (existingWorkout) {
+                return res.json({ Error: "Workout of this name already exist in your workout list." });
             }
             else {
-                return res.json({ Success: "Workout edited" })
+                db.query(query, [req.body.Name, req.body.workoutId], (err, result) => {
+                    if (req.body.Name.length > 45) {
+                        return res.json({ Error: "The length of the training name can't be longer than 45 characters." });
+                    }
+                    else if (req.body.Name.length === 0) {
+                        return res.json({ Error: "Training name can't be empty." });
+                    }
+                    else if (err) {
+                        return res.json({ Error: "Error editing workout name." });
+                    } else {
+                        return res.json({ Success: "Success" });
+                    }
+                })
             }
         })
     }
@@ -55,6 +84,7 @@ const createRoutes = (db) => {
 
     router.get('/getTrainingGroups/:userId', (req, res) => {
         const userId = req.params.userId;
+        console.log(userId);
         const query = `
           SELECT 
             training_groups.id_group, 
@@ -76,7 +106,7 @@ const createRoutes = (db) => {
 
     router.get('/getWorkouts/:userId', (req, res) => {
         const userId = req.params.userId;
-
+        console.log(userId);
         const query = `
         SELECT 
         training_groups.id_group, 
@@ -88,7 +118,7 @@ const createRoutes = (db) => {
     LEFT JOIN 
         done_trainings ON done_trainings.Training_Groups_id_group = training_groups.id_group 
     WHERE 
-        training_groups.Users_id_user = 5
+        training_groups.Users_id_user = ?
     GROUP BY
         training_groups.id_group, 
         training_groups.name`;
@@ -116,7 +146,7 @@ const createRoutes = (db) => {
         })
     })
 
- 
+
 
     return router;
 };

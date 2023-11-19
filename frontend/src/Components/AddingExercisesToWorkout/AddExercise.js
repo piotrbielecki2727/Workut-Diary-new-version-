@@ -10,12 +10,9 @@ function AddExercise({ workoutId, ChoosedExerciseId, newExerciseAdded, setNewExe
 
 
     useEffect(() => {
-        console.log("workoutidxddd", workoutId)
-
         axios.get(`http://localhost:3001/getHighestOrderValue?workoutId=${workoutId}`)
             .then(res => {
                 if (res.data.Success) {
-                    console.log("wynosze", res.data.max_order)
                     setOrder(res.data.max_order + 1);
                 }
                 if (res.data.Error) {
@@ -30,9 +27,6 @@ function AddExercise({ workoutId, ChoosedExerciseId, newExerciseAdded, setNewExe
 
 
     const addExerciseToChosenWorkout = () => {
-        console.log(workoutId)
-        console.log(ChoosedExerciseId)
-
         axios.post(`http://localhost:3001/addExerciseToChosenWorkout`,
             {
                 workoutId,
@@ -42,7 +36,6 @@ function AddExercise({ workoutId, ChoosedExerciseId, newExerciseAdded, setNewExe
 
             .then(res => {
                 if (res.data.Success) {
-                    console.log("udalo sie :D");
                     setNewExerciseAdded(true);
                     setOrder(order + 1);
                 }
@@ -56,11 +49,6 @@ function AddExercise({ workoutId, ChoosedExerciseId, newExerciseAdded, setNewExe
             })
 
     }
-
-
-
-
-
 
     return (
         <>

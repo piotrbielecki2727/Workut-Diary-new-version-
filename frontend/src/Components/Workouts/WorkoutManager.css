@@ -64,9 +64,21 @@
 
 
 @media (max-width:767px) {
+
     #tdButtons {
         display: flex;
-
     }
 
+    #workoutManagerTable th {
+        font-size: 12px;
+    }
+
+
+    #ButtonWorkoutManager {
+        font-size: 15px;
+    }
+
+    #workoutManagerTable td {
+        font-size: 15px;
+    }
 }
