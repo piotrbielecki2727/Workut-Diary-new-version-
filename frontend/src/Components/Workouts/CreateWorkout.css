@@ -20,6 +20,13 @@
     border-color: white;
     display: block;
     margin: auto;
+    transition: all 0.3s ease;
+    font-size: 20px;
+    padding: 10px;
+}
+
+#createModalButton:hover {
+   transform: scale(1.02);
 }
 
 #formControlModal {

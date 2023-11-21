@@ -35,11 +35,11 @@ function WorkoutPlanner() {
         axios.get(`http://localhost:3001/getWorkout/${workoutId}`)
             .then(res => {
                 if (res.data.Success) {
-                    
+
                     setWorkout(res.data.result);
                     console.log(workout);
-                    setWorkoutName(res.data.result[0].Name);  
-                    setWorkoutDate(res.data.result[0].Date);  
+                    setWorkoutName(res.data.result[0].Name);
+                    setWorkoutDate(res.data.result[0].Date);
 
 
                 }
@@ -78,9 +78,11 @@ function WorkoutPlanner() {
                     ))}
 
                 </Container>
-                <PrintDnDExercises WorkoutPlanner={WorkoutPlanner} exercises={exercises} setExercises={setExercises} workoutId={workoutId} newExerciseAdded={newExerciseAdded} setNewExerciseAdded={setNewExerciseAdded} />
+                <Container id='printDndPlannerContainer'>
+                    <PrintDnDExercises WorkoutPlanner={WorkoutPlanner} exercises={exercises} setExercises={setExercises} workoutId={workoutId} newExerciseAdded={newExerciseAdded} setNewExerciseAdded={setNewExerciseAdded} />
+                </Container>
                 {exercises.length > 0 ? (
-                    <StartWorkout exercises={exercises} workoutId={workoutId}  workoutName={workoutName} workoutDate={workoutDate} />
+                    <StartWorkout exercises={exercises} workoutId={workoutId} workoutName={workoutName} workoutDate={workoutDate} />
 
                 ) : (
 

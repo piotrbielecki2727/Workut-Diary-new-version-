@@ -98,65 +98,19 @@ function PrintDnDExercises({ WorkoutPlanner, exercises, setExercises, workoutId,
                                                 {...provided.dragHandleProps}
                                                 id='chosenWorkoutContainer2'
                                             >
-                                                {WorkoutPlanner ? (
-                                                    <Row id='chosenWorkoutRowPlanner'>
-                                                        <Col xs={4} lg={3} id='imageCol'><Image src={exercise.gif} fluid></Image></Col>
-                                                        <Col xs={8} lg={9} >
-                                                            <Row id='exerciseNameRow'>
-                                                                <Col xs={9} lg={11}>{index + 1}. {exercise.Name}</Col>
-                                                                <Col xs={3} lg={1}>
-                                                                    <DeleteExerciseFromWorkout
-                                                                        workoutId={workoutId}
-                                                                        exerciseId={exercise.Exercise_id}
-                                                                        setExerciseDeleted={setExerciseDeleted} />
-                                                                </Col>
-                                                            </Row>
-                                                            <Row>
-                                                                <Col>
-                                                                    <Row id='lastPerformedRow' > Last performed sets:</Row>
-                                                                    <Table striped bordered hover responsive >
-                                                                        <thead >
-                                                                            <tr id='plannerthead'>
-                                                                                <th>Set</th>
-                                                                                <th>Reps</th>
-                                                                                <th>Weight</th>
-                                                                                <th>Max rep</th>
-                                                                                <th>Rest</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody >
-                                                                            <tr id='plannertbody'>
-                                                                                <td>1</td>
-                                                                                <td>12</td>
-                                                                                <td>120 kg</td>
-                                                                                <td>150 kg</td>
-                                                                                <td>60 s</td>
 
-                                                                            </tr>
+                                                <Row id='chosenWorkoutRow'>
+                                                    <Col xs={1}>{index + 1}.</Col>
+                                                    <Col xs={4}><Image src={exercise.gif} fluid></Image></Col>
+                                                    <Col xs={4}>{exercise.Name}</Col>
+                                                    <Col xs={2}><DeleteExerciseFromWorkout
+                                                        workoutId={workoutId}
+                                                        exerciseId={exercise.Exercise_id}
+                                                        setExerciseDeleted={setExerciseDeleted} />
+                                                    </Col>
+                                                </Row>
 
 
-                                                                        </tbody>
-                                                                    </Table>
-
-                                                                </Col>
-
-
-                                                            </Row>
-                                                        </Col>
-
-                                                    </Row>
-                                                ) : (<>
-                                                    <Row id='chosenWorkoutRow'>
-                                                        <Col xs={4}><Image src={exercise.gif} fluid></Image></Col>
-                                                        <Col xs={6}>{exercise.Name}</Col>
-                                                        <Col xs={2}><DeleteExerciseFromWorkout
-                                                            workoutId={workoutId}
-                                                            exerciseId={exercise.Exercise_id}
-                                                            setExerciseDeleted={setExerciseDeleted} />
-                                                        </Col>
-                                                    </Row>
-                                                </>
-                                                )}
                                             </Container>
                                         )}
                                     </Draggable>

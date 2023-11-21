@@ -61,7 +61,7 @@ function AppWrapper() {
               />
 
               <Route
-                path="/getExercise/:Name"
+                path="/getExercise/:main_muscle_group/:Name"
                 element={<ChoosedExercise />}
               />
 

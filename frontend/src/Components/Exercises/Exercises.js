@@ -42,7 +42,7 @@ function Exercises() {
         <div id='background'>
             <Container id='exercisesContainer'>
                 <SearchBar />
-                <h3>or choose muscle group you want to train</h3>
+                <h3>or find your exercise by muscle group</h3>
                 <Row className='customRow'>
                     {muscleGroups.map(muscleGroup => (
                         <Col key={muscleGroup.id} xs={5} sm={6} md={4} lg={3}>

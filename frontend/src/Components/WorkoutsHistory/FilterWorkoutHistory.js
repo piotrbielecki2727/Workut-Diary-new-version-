@@ -57,7 +57,7 @@ function FilterWorkoutHistory() {
 
     return (
         <>
-            <h3 id='WorkoutHistoryh2'>Workout history</h3>
+            <h3 id='WorkoutHistoryh2'>Workouts history</h3>
             <div id='FilterWorkoutSearchdiv'>
                 <div id='FilterWorkoutSearch'>
                     <Form.Control

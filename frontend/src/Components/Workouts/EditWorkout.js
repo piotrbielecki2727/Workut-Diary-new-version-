@@ -84,6 +84,7 @@ function EditWorkout({ setWorkoutEdited, workoutName, workoutId, setIsEditing })
                     type="text"
                     defaultValue={workoutName}
                     onChange={e => setValues({ ...values, Name: e.target.value })}
+                    onBlur={handleClose}
                 ></Form.Control>
                 <Button type='submit' id="ButtonWorkoutManager"><FontAwesomeIcon icon={faCheck} /></Button>
             </Form.Group>

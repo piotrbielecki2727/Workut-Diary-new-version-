@@ -71,7 +71,7 @@ function Pagination({ data, workoutName, workoutDate, workoutId, CurrentPaginati
                 <Row className='customRow'>
                     {currentItems.map(exercise => (
                         <Col key={exercise.id_exercise} xs={5} sm={6} md={4} lg={3}>
-                            <Link to={`/getExercise/${exercise.Name}`} id='muscle-group-link'>
+                            <Link to={`/getExercise/${exercise.main_muscle_group}/${exercise.Name}`} id='muscle-group-link'>
                                 <Card className='customCard'>
                                     <Card.Img src={exercise.gif} alt="exercise_gif" />
                                     <Card.Footer className='customCardFooter'>
@@ -88,7 +88,7 @@ function Pagination({ data, workoutName, workoutDate, workoutId, CurrentPaginati
                         <tr>
                             <th>Name</th>
                             <th>Date</th>
-                            <th></th>
+                            <th>Check details</th>
                         </tr>
                     </thead>
                     {currentItems.map((workout, index) => (
@@ -98,7 +98,7 @@ function Pagination({ data, workoutName, workoutDate, workoutId, CurrentPaginati
                                 <td>{new Date(workout.date).toLocaleString()}</td>
                                 <td>
                                     <Button id='WorkoutHistoryButton' as={Link} to={`/workoutPlanner/${workout.id_group}`}>
-                                        <FontAwesomeIcon icon={faEye} /> Check details
+                                        <FontAwesomeIcon icon={faEye} /> 
                                     </Button>
                                 </td>
                             </tr>

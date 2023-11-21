@@ -8,6 +8,7 @@ import AddExerciseToWorkout from '../AddingExercisesToWorkout/AddExerciseToWorko
 
 
 
+
 import './ChoosedExercise.css';
 import axios from 'axios';
 
@@ -16,19 +17,21 @@ import {
     Link,
     useNavigate
 } from "react-router-dom";
+import OtherExercisesCarousel from './OtherExercisesCarousel';
 
 function ChoosedExercise() {
     const [exercise, setExercise] = useState([]);
     const navigate = useNavigate();
     const { Name } = useParams();
-    const [exerciseId, setExerciseId] = useState()
     const { auth } = useAuth();
- 
+    const { main_muscle_group } = useParams();
 
     const handleGoBack = () => {
         navigate(-1);
     }
-   
+
+
+
     useEffect(() => {
         axios.get(`http://localhost:3001/getChoosedExercise/${Name}`)
             .then(res => {
@@ -55,7 +58,6 @@ function ChoosedExercise() {
                 <h2>{exercise.Name}</h2>
                 <Container id='choosedExerciseContainer2'>
                     <Image src={exercise.gif} alt="exercise_gif" id='exerciseImg' />
-                    <h4 id='h4Exercises'>{exercise.description} </h4>
                     <Table bordered hover responsive>
                         <thead>
                             <tr id='theadExercises'>
@@ -79,6 +81,32 @@ function ChoosedExercise() {
                     ) : (
                         <></>
                     )}
+                    <hr></hr>
+                    <h3>Instructions</h3>
+                    {exercise && exercise.description &&
+                        <ul >
+
+                            {
+                                exercise.description.split('\n').map((point, index) => (
+                                    <p id='h4Exercises' key={index}>{point}</p>
+                                ))
+                            }
+                        </ul>
+                    }
+                    <hr></hr>
+                    <h3>Video tutorial</h3>
+                    <iframe
+                        width="700"
+                        height="450"
+                        src="https://www.youtube.com/embed/rxD321l2svE"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                    ></iframe>
+                    <hr></hr>
+                    <h3>Other exercises for {main_muscle_group}</h3>
+                    <OtherExercisesCarousel main_muscle_group={main_muscle_group} />
+
+
                 </Container >
             </Container >
         </div>

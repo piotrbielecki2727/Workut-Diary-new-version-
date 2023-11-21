@@ -12,7 +12,6 @@
 #plannerBar {
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
-    /* border: 1px solid #bfbfbf; */
     max-width: 300px;
     margin-bottom: 25px;
 
@@ -25,6 +24,7 @@
     color: rgb(255, 255, 255);
     font-weight: light;
     justify-content: left;
+    transition: all 0.3s ease;
     display: flex;
 }
 
@@ -40,5 +40,16 @@
     text-align: center;
     justify-content: center;
     align-items: center;
+    transition: all 0.3s ease;
 
+}
+
+#printDndPlannerContainer {
+    max-width: 800px;
+}
+
+@media (max-width:375px) {
+    #printDndPlannerContainer {
+        max-width: 350px;
+    }
 }

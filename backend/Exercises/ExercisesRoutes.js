@@ -90,11 +90,32 @@ const createRoutes = (db) => {
         console.log(error);
         return res.json({ Error: "There is error" });
       }
-  
+
       if (results.length === 0) {
         return res.json({ Error: "Can't find muscle_group " });
       }
-  
+
+      return res.json({ Status: "Success", results });
+    });
+  });
+
+
+
+  router.get('/otherExercisesCarousel/:main_muscle_group', (req, res) => {
+    const main_muscle_group = req.params.main_muscle_group;
+    console.log(main_muscle_group);
+    const query = 'SELECT exercises.* FROM exercises WHERE main_muscle_group = ?';
+
+    db.query(query, [main_muscle_group], (error, results) => {
+      if (error) {
+        console.log(error);
+        return res.json({ Error: "There is an error" });
+      }
+
+      if (results.length === 0) {
+        return res.json({ Error: "Can't find" });
+      }
+      
       return res.json({ Status: "Success", results });
     });
   });

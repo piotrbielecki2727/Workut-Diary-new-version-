@@ -9,14 +9,15 @@
     color: #ffffff;
     border-radius: 10px;
     border-color: white;
+    transition: all 0.3s ease;
 }
 
 
-@media (max-width:376px) {
-    #AddExerciseToWorkoutmodalFooter {
-    }
-
+@media (max-width:430px) {
+    
     #AddExerciseToWorkoutmodalButton {
-        max-width: 139px;
+        font-size: smaller;
+        max-width: 100px;
+        
     }
 }

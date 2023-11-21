@@ -29,8 +29,7 @@
 }
 
 #h4Exercises {
-    padding: 10px;
-
+    font-size: 20px;
 }
 
 #theadExercises th {
@@ -42,6 +41,7 @@
 
 #backButtonExercises {
     margin-right: 950px;
+    transition: all 0.3s ease;
 }
 
 #buttonContainer {
@@ -52,10 +52,11 @@
 #backButton {
     background-color: black;
     border-color: black;
+    transition: all 0.3s ease;
 }
 
 #backButton:hover {
-   transform: scale(1.05);
+    transform: scale(1.05);
 }
 
 @media (max-width:767px) {
