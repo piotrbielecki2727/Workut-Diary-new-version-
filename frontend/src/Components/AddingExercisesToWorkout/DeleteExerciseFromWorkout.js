@@ -17,7 +17,6 @@ function DeleteExerciseFromWorkout({ workoutId, exerciseId, setExerciseDeleted }
         axios.delete(`http://localhost:3001/deleteExerciseFromWorkout/${workoutId}/${exerciseId}`)
             .then(res => {
                 if (res.data.Success === "Success") {
-                    console.log("udalo sie usunac");
                     setExerciseDeleted(true);
 
                 }

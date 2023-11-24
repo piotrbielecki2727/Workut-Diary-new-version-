@@ -98,7 +98,7 @@ function ChoosedExercise() {
                     <iframe
                         width="700"
                         height="450"
-                        src="https://www.youtube.com/embed/rxD321l2svE"
+                        src={exercise.video}
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowFullScreen
                     ></iframe>

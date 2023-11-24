@@ -13,12 +13,13 @@ import {
 import { useUserId } from '../UserIdContext';
 
 
-function LastWorkout() {
+function LastWorkout({workoutId}) {
 
     const [exercises, setExercises] = useState([]);
     const { DoneWorkoutId, workoutName, workoutDate } = useParams();
     const { userId } = useUserId();
     const navigate = useNavigate();
+    const idToUse = workoutId || DoneWorkoutId;
 
     const handleGoBack = () => {
         navigate(-1);
@@ -31,7 +32,7 @@ function LastWorkout() {
         }
         else {
             console.log(DoneWorkoutId);
-            axios.get(`http://localhost:3001/getDoneWorkoutDetails/${DoneWorkoutId}`)
+            axios.get(`http://localhost:3001/getDoneWorkoutDetails/${idToUse}`)
                 .then(res => {
                     if (res.data.Success) {
                         setExercises(res.data.result);
@@ -63,7 +64,7 @@ function LastWorkout() {
                     </Button>
                     <Container id="nameDate">
                         <h3>{workoutName}</h3>
-                        <h5>{new Date(workoutDate).toLocaleString()}</h5>
+                        <h5>{workoutDate}</h5>
                     </Container>
                     {exercises.map((exercise, index) => (
                         <Container key={exercise.Exercise_id} id="lastWorkoutContainer2">

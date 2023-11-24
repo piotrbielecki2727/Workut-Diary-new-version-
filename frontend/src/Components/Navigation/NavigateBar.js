@@ -17,7 +17,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import { faDumbbell, faUser, faPhone, faCalculator, faBars, faCalendar, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { faDumbbell, faUser, faPhone, faCalculator, faBars, faCircleInfo, faSignOutAlt, faWeightHanging } from "@fortawesome/free-solid-svg-icons";
 import { useUserId } from '../UserIdContext';
 import { useAuth } from "../AuthContext";
 
@@ -31,7 +31,7 @@ function NavigateBar() {
   const [loading, setLoading] = useState(true);
 
   const { userId, setUserId } = useUserId();
-  const {auth, setAuth} = useAuth();
+  const { auth, setAuth } = useAuth();
 
 
   axios.defaults.withCredentials = true;
@@ -96,13 +96,13 @@ function NavigateBar() {
             <Nav className="justify-content-start flex-grow-1 pe-3">
               <hr className="my-1" />
               <div className="navDiv">
+                <Link to={"/introduction"} className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faCircleInfo} className="custom-icon" /></i>Introduction </Link></div>
+              <div className="navDiv">
                 <Link to="/exercises" className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faDumbbell} className="custom-icon" /></i>Exercises</Link></div>
               <div className="navDiv">
-                <Link to={"/coachSection"} className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faCalendar} className="custom-icon" /></i>Workout plans</Link></div>
+                <Link to={"/oneRepMax"} className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faWeightHanging} className="custom-icon" /></i>One rep max</Link></div>
               <div className="navDiv">
                 <Link to={"/bmiCalculator"} className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faCalculator} className="custom-icon" /></i>Calculate your BMI</Link></div>
-              <div className="navDiv">
-                <Link to={"/contact"} className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faPhone} className="custom-icon" /></i>Contact </Link></div>
               <hr className="my-1" />
             </Nav>
             <Nav className="ms-auto me-3">
@@ -121,7 +121,7 @@ function NavigateBar() {
                       <NavDropdown.Item as={Link} to="/WorkoutsHistory" onClick={handleCloseOffcanvas}>Workouts history</NavDropdown.Item>
                     </NavDropdown>
                   </div>
-                  <hr className="my-1" /> 
+                  <hr className="my-1" />
                   <div className="navDiv">
                     <NavDropdown title={
                       <>

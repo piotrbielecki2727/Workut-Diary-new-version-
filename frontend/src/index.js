@@ -20,6 +20,7 @@ import { UserIdProvider } from './Components/UserIdContext';
 import { AuthProvider } from "./Components/AuthContext";
 import LastWorkout from "./Components/Workouts/LastWorkout";
 import StartWorkout from "./Components/WorkoutPlanning/StartWorkout";
+import CheckDetails from "./Components/WorkoutsHistory/CheckDetails"
 
 
 
@@ -109,6 +110,13 @@ function AppWrapper() {
                 path="/StartedWorkout"
                 element={
                   checkToken(<StartWorkout />)
+                }
+              />
+
+              <Route
+                path="/checkDetails/:id_done_training"
+                element={
+                  checkToken(<CheckDetails />)
                 }
               />
 
