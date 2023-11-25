@@ -1,0 +1,120 @@
+.YourProfileContainer {
+    background-color: rgb(255, 255, 255);
+    max-width: 1000px;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: rgb(0 0 0 / 55%) 1px 1px 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.CardGroupUserDetails {}
+
+.CardUserDetails {
+    max-width: 400px;
+}
+
+.imageBody {
+    max-height: 600px;
+}
+
+.input {
+    background-color: blueviolet;
+}
+
+
+.customMarginNeck {
+    margin-top: 40px;
+
+
+}
+
+.customMarginChest {
+    margin-top: 40px;
+}
+
+.customMarginWaist {
+    margin-top: 15px;
+}
+
+.customMarginBiceps {
+    margin-top: 35px;
+}
+
+.customMarginHips {
+    margin-top: 5px;
+}
+
+.customMarginForearm {
+    margin-top: 15px;
+}
+
+.customMarginThigh {
+    margin-top: 55px;
+}
+
+.customMarginCalf {
+    margin-top: 35px;
+}
+
+.customMarginWeight {
+    margin-top: 70px;
+}
+
+.customMarginHeight {
+    margin-top: 216px;
+}
+
+.headerBodyDetailsHistory {
+    border-top: none;
+    border-radius: none;
+}
+
+.CardBodyDetailsHistory {
+    padding: 0;
+}
+
+.ButtonInfo {
+    margin-left: 85px;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    color: rgb(0, 0, 0);
+    font-size: 25px;
+    transition: all 0.3s ease;
+}
+
+.ButtonInfo:hover {
+    transform: scale(1.15);
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    color: rgb(0, 0, 0);
+
+}
+
+.card-header {
+    background-color: black;
+    color: white;
+}
+
+.SaveButton {
+    background-color: black;
+    color: white;
+    transition: all 0.3s ease;
+
+}
+
+.SaveButton:hover,
+.SaveButton:active {
+    background-color: black;
+    color: white;
+    transform: scale(1.05);
+
+}
+
+
+@media (max-width:768px) {
+ 
+
+  
+}

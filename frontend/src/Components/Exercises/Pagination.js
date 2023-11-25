@@ -13,7 +13,7 @@ import Table from 'react-bootstrap/Table';
 
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faX } from "@fortawesome/free-solid-svg-icons";
 
 import './Pagination.css'
 
@@ -25,6 +25,7 @@ function Pagination({ data, workoutName, workoutDate, workoutId, CurrentPaginati
     var itemsPerPage;
 
     if (CurrentPagination === "StartWorkout") { itemsPerPage = 1; }
+    else if (CurrentPagination === "UserDetails") { itemsPerPage = 5; }
     else {
         itemsPerPage = 12;
     }
@@ -98,7 +99,7 @@ function Pagination({ data, workoutName, workoutDate, workoutId, CurrentPaginati
                                 <td>{new Date(workout.date).toLocaleString()}</td>
                                 <td>
                                     <Button id='WorkoutHistoryButton' as={Link} to={`/checkDetails/${workout.id_done_training}`}>
-                                        <FontAwesomeIcon icon={faEye} /> 
+                                        <FontAwesomeIcon icon={faEye} />
                                     </Button>
                                 </td>
                             </tr>

@@ -7,7 +7,6 @@ import {
   Link,
   useNavigate,
 } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import Image from 'react-bootstrap/Image'
@@ -18,6 +17,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { faDumbbell, faUser, faPhone, faCalculator, faBars, faCircleInfo, faSignOutAlt, faWeightHanging } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { useUserId } from '../UserIdContext';
 import { useAuth } from "../AuthContext";
 
@@ -123,22 +124,11 @@ function NavigateBar() {
                   </div>
                   <hr className="my-1" />
                   <div className="navDiv">
-                    <NavDropdown title={
-                      <>
-                        <i className="iForNavigation"><FontAwesomeIcon icon={faUser} className="custom-icon" /></i>
-                        Your profile
-                      </>
-                    } id="offcanvasNavbarDropdown" >
-                      <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                      <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
-                      <NavDropdown.Divider />
-                    </NavDropdown>
-                  </div>
+                    <Link to={"/yourProfile"} className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faUser} className="custom-icon" /></i>Your profile</Link></div>
                   <hr className="my-1" />
                   <div id="navDivLogoutButton">
                     <Button id="logoutButton" onClick={handleDelete}> <i><FontAwesomeIcon icon={faSignOutAlt} className="custom-icon" /></i> Log out</Button>
                   </div>
-
                 </>) : (
                 <Link to="/login" className='get-started-link' onClick={handleCloseOffcanvas}>Sign in!</Link>
               )

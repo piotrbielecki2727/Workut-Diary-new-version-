@@ -5,7 +5,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import "./index.css";
 import Home from "./Components/Home";
-import User from "./Components/User";
 import Login from "./Components/Login_Registration/Login";
 import NavigateBar from "./Components/Navigation/NavigateBar";
 import WorkoutsHistory from "./Components/WorkoutsHistory/WorkoutsHistory";
@@ -21,7 +20,7 @@ import { AuthProvider } from "./Components/AuthContext";
 import LastWorkout from "./Components/Workouts/LastWorkout";
 import StartWorkout from "./Components/WorkoutPlanning/StartWorkout";
 import CheckDetails from "./Components/WorkoutsHistory/CheckDetails"
-
+import YourProfile from "./Components/YourProfile/YourProfile";
 
 
 
@@ -54,8 +53,6 @@ function AppWrapper() {
                 }
               />
 
-
-
               <Route
                 path="/getExercises/:muscle_group"
                 element={<AllExercises />}
@@ -67,17 +64,12 @@ function AppWrapper() {
               />
 
               <Route
-                path="/user"
+                path="/YourProfile"
                 element={
-                  <User />
+                  checkToken(<YourProfile />)
                 }
               />
-              <Route
-                path="/toasts"
-                element={
-                  <Toasts />
-                }
-              />
+             
               <Route
                 path="/workoutManager"
                 element={
