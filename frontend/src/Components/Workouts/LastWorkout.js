@@ -13,7 +13,7 @@ import {
 import { useUserId } from '../UserIdContext';
 
 
-function LastWorkout({workoutId}) {
+function LastWorkout({ workoutId }) {
 
     const [exercises, setExercises] = useState([]);
     const { DoneWorkoutId, workoutName, workoutDate } = useParams();
@@ -64,7 +64,8 @@ function LastWorkout({workoutId}) {
                     </Button>
                     <Container id="nameDate">
                         <h3>{workoutName}</h3>
-                        <h5>{workoutDate}</h5>
+                        <h5>{new Date(workoutDate).toLocaleString()}
+                        </h5>
                     </Container>
                     {exercises.map((exercise, index) => (
                         <Container key={exercise.Exercise_id} id="lastWorkoutContainer2">
@@ -98,7 +99,7 @@ function LastWorkout({workoutId}) {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                {exercise.sets.map((set, setIndex) => (
+                                                    {exercise.sets.map((set, setIndex) => (
                                                         <tr id="lastWorkoutBody" key={set.set_id}>
                                                             <td>{setIndex + 1}</td>
                                                             <td>{set.set_reps}</td>

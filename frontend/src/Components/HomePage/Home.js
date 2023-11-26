@@ -3,9 +3,9 @@ import React, { useState, useEffect } from "react";
 import Container from 'react-bootstrap/Container';
 import Image from 'react-bootstrap/Image';
 import './Home.css';
-import logo from "./imgs/LOGO.png";
-import desktop from "./imgs/DESKTOP.png";
-import mobile from "./imgs/MOBILE.png";
+import logo from "../imgs/LOGO.png";
+import desktop from "../imgs/DESKTOP.png";
+import mobile from "../imgs/MOBILE.png";
 
 
 function Home() {

@@ -58,20 +58,30 @@ function FilterWorkoutHistory() {
     return (
         <>
             <h3 id='WorkoutHistoryh2'>Workouts history</h3>
-            <div id='FilterWorkoutSearchdiv'>
-                <div id='FilterWorkoutSearch'>
-                    <Form.Control
-                        id='FilterWorkoutFormControl'
-                        type="text"
-                        value={searchValue}
-                        placeholder="Type to search..."
-                        onChange={filterBySearch}
-                    />
-                    <i onClick={clearSearchBar} id="FilterWorkoutX"><FontAwesomeIcon icon={faX} /></i>
-                </div>
-            </div>
-            <Pagination data={filteredList} CurrentPagination={WorkoutHistory} />
+
+            {workouts.length > 0 ? (
+                <>
+                    <div id='FilterWorkoutSearchdiv'>
+                        <div id='FilterWorkoutSearch'>
+                            <Form.Control
+                                id='FilterWorkoutFormControl'
+                                type="text"
+                                value={searchValue}
+                                placeholder="Type to search..."
+                                onChange={filterBySearch}
+                            />
+                            <i onClick={clearSearchBar} id="FilterWorkoutX"><FontAwesomeIcon icon={faX} /></i>
+                        </div>
+                    </div>
+                    <Pagination data={filteredList} CurrentPagination={WorkoutHistory} />
+                </>
+            ) : (
+                <>
+                    <h5>You haven't done any training yet.</h5>
+                </>
+            )}
         </>
+
     );
 }
 

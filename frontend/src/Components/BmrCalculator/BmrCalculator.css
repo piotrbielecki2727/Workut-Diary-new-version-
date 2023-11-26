@@ -1,0 +1,93 @@
+.BMRContainer {
+    background-color: rgb(255, 255, 255);
+    max-width: 1000px;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: rgb(0 0 0 / 55%) 1px 1px 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.h3 {
+    margin-bottom: 25px;
+
+}
+
+.genderRow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+}
+
+
+
+
+.genderButton {
+    background-color: #ffffff;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    font-size: 25px;
+
+}
+
+.genderButton:hover {
+    background-color: #ffffff;
+    color: #000;
+    border: 1px solid #000;
+    transform: scale(1.1);
+}
+
+.genderButton.active {
+    background-color: #000000;
+    color: #fff;
+}
+
+.MeasurementsRow {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+
+.MeasurementIcons {
+    font-size: 25px;
+}
+
+.MeasurementInput {
+    font-size: 20px;
+}
+
+.measurementIconActive {
+    font-size: 25px;
+    transition: all 0.3s ease;
+}
+
+.measurementIconActive.active {
+    transform: scale(1.10);
+}
+
+.activityRow {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aquamarine;
+}
+
+.DropDownActivity {
+    font-size: 25px;
+    background-color: brown;
+}
+
+.DropDownToggleActivity {
+    background-color: chartreuse;
+    width: 100%;
+    border-radius: 10px;
+    font-size: 25px;
+
+}

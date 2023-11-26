@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import "./index.css";
-import Home from "./Components/Home";
+import Home from "./Components/HomePage/Home";
 import Login from "./Components/Login_Registration/Login";
 import NavigateBar from "./Components/Navigation/NavigateBar";
 import WorkoutsHistory from "./Components/WorkoutsHistory/WorkoutsHistory";
@@ -21,7 +21,7 @@ import LastWorkout from "./Components/Workouts/LastWorkout";
 import StartWorkout from "./Components/WorkoutPlanning/StartWorkout";
 import CheckDetails from "./Components/WorkoutsHistory/CheckDetails"
 import YourProfile from "./Components/YourProfile/YourProfile";
-
+import BmrCalculator from "./Components/BmrCalculator/BmrCalculator";
 
 
 function AppWrapper() {
@@ -46,6 +46,15 @@ function AppWrapper() {
                   <Home />
                 }
               />
+
+              <Route
+                path="/BmrCalculator"
+                element={
+                  <BmrCalculator />
+                }
+              />
+
+
               <Route
                 path="/exercises"
                 element={
@@ -69,7 +78,7 @@ function AppWrapper() {
                   checkToken(<YourProfile />)
                 }
               />
-             
+
               <Route
                 path="/workoutManager"
                 element={

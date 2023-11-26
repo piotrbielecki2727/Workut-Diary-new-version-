@@ -9,11 +9,6 @@
     text-align: center;
 }
 
-.CardGroupUserDetails {}
-
-.CardUserDetails {
-    max-width: 400px;
-}
 
 .imageBody {
     max-height: 600px;
@@ -63,7 +58,7 @@
 }
 
 .customMarginHeight {
-    margin-top: 216px;
+    margin-top: 217px;
 }
 
 .headerBodyDetailsHistory {
@@ -112,9 +107,88 @@
 
 }
 
+.form-control {
+    text-align: center;
+}
 
-@media (max-width:768px) {
- 
+.card-header {
+    font-weight: bolder;
+}
 
-  
+
+@media (max-width:912px) {
+
+    .form-label {
+        text-wrap: nowrap;
+        font-size: 12px;
+    }
+
+    .form-control {
+        font-size: 12px;
+        margin-left: 10px;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        
+
+    }
+
+
+
+    .customMarginNeck {
+        margin-top: 10px;
+    }
+
+    .customMarginChest {
+        margin-top: 0px;
+    }
+
+    .customMarginWaist {
+        margin-top: 2px;
+    }
+
+    .customMarginBiceps {
+        margin-top: 5px;
+    }
+
+    .customMarginHips {
+        margin-top: 2px;
+    }
+
+    .customMarginForearm {
+        margin-top: 5px;
+
+    }
+
+    .customMarginThigh {
+        margin-top: 15px;
+    }
+
+    .customMarginCalf {
+        margin-top: 10px;
+    }
+
+    .customMarginWeight {
+        margin-top: 20px;
+    }
+
+    .customMarginHeight {
+        margin-top: 88px;
+    }
+
+    .ButtonInfo {
+        padding: 0;
+        margin-left: 50px;
+    }
+
+
+
+
+}
+
+
+@media (min-width: 1024px) {
+    .CardUserDetails {
+        max-width: 400px;
+    }
 }

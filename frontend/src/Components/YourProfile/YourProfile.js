@@ -71,7 +71,7 @@ function YourProfile() {
       .catch(err => {
         console.log(err);
       })
-      setNewMeasurement(false);
+    setNewMeasurement(false);
 
   };
 
@@ -100,7 +100,7 @@ function YourProfile() {
               date: measurements.date,
             }));
           } else {
-            
+
           }
         } else {
           console.log(res.data.Error);
@@ -122,7 +122,7 @@ function YourProfile() {
           <UserDetails userId={userId} setNewMeasurement={setNewMeasurement} newMeasurement={newMeasurement} />
           <Card className='BodyDetails'>
             <Card.Header>
-              Body measurements
+              Body measurements (Cm / Kg)
             </Card.Header>
             <Form onSubmit={saveMeasurements}>
               <Card.Body>
@@ -130,12 +130,13 @@ function YourProfile() {
                   <Col xs={4}>
 
                     <Form.Group as={Row} className='customMarginNeck'>
-                      <Form.Label column xs={6}>
+                      <Form.Label column xs={4} md={4} lg={6}>
                         Neck
                       </Form.Label>
-                      <Col xs={6}>
+                      <Col xs={8} md={8} lg={6}>
                         <Form.Control
                           type="number"
+                          required
                           name="neck"
                           value={formData.neck}
                           onChange={handleInputChange}
@@ -146,11 +147,12 @@ function YourProfile() {
 
 
                     <Form.Group as={Row} className='customMarginBiceps'>
-                      <Form.Label column xs={6}>
+                    <Form.Label column xs={4} md={4} lg={6}>
                         Biceps
                       </Form.Label>
-                      <Col xs={6}>
+                      <Col xs={8} md={8} lg={6}>
                         <Form.Control
+                          required
                           type="number"
                           name="biceps"
                           value={formData.biceps}
@@ -160,11 +162,12 @@ function YourProfile() {
                     </Form.Group>
 
                     <Form.Group as={Row} className='customMarginForearm'>
-                      <Form.Label column xs={6}>
+                    <Form.Label column xs={4} md={4} lg={6}>
                         Forearm
                       </Form.Label>
-                      <Col xs={6}>
+                      <Col xs={8} md={8} lg={6}>
                         <Form.Control
+                          required
                           type="number"
                           name="forearm"
                           value={formData.forearm}
@@ -174,11 +177,12 @@ function YourProfile() {
                     </Form.Group>
 
                     <Form.Group as={Row} className='customMarginThigh'>
-                      <Form.Label column xs={6}>
+                    <Form.Label column xs={4} md={4} lg={6}>
                         Thigh
                       </Form.Label>
-                      <Col xs={6}>
+                      <Col xs={8} md={8} lg={6}>
                         <Form.Control
+                          required
                           type="number"
                           name="thigh"
                           value={formData.thigh}
@@ -188,11 +192,12 @@ function YourProfile() {
                     </Form.Group>
 
                     <Form.Group as={Row} className='customMarginCalf'>
-                      <Form.Label column xs={6}>
+                    <Form.Label column xs={4} md={4} lg={6}>
                         Calf
                       </Form.Label>
-                      <Col xs={6}>
+                      <Col xs={8} md={8} lg={6}>
                         <Form.Control
+                          required
                           type="number"
                           name="calf"
                           value={formData.calf}
@@ -202,11 +207,12 @@ function YourProfile() {
                     </Form.Group>
 
                     <Form.Group as={Row} className='customMarginWeight'>
-                      <Form.Label column xs={6}>
+                    <Form.Label column xs={4} md={4} lg={6}>
                         Weight
                       </Form.Label>
-                      <Col xs={6}>
+                      <Col xs={8} md={8} lg={6}>
                         <Form.Control
+                          required
                           type="number"
                           name="weight"
                           value={formData.weight}
@@ -221,11 +227,12 @@ function YourProfile() {
                   <Col xs={4}>
                     <InformationModal />
                     <Form.Group as={Row} className='customMarginChest'>
-                      <Form.Label column xs={6}>
+                    <Form.Label column xs={4} md={4} lg={6}>
                         Chest
                       </Form.Label>
-                      <Col xs={6}>
+                      <Col xs={8} md={8} lg={6}>
                         <Form.Control
+                          required
                           type="number"
                           name="chest"
                           value={formData.chest}
@@ -235,11 +242,12 @@ function YourProfile() {
                     </Form.Group>
 
                     <Form.Group as={Row} className='customMarginWaist'>
-                      <Form.Label column xs={6}>
+                    <Form.Label column xs={4} md={4} lg={6}>
                         Waist
                       </Form.Label>
-                      <Col xs={6}>
+                      <Col xs={8} md={8} lg={6}>
                         <Form.Control
+                          required
                           type="number"
                           name="waist"
                           value={formData.waist}
@@ -249,11 +257,12 @@ function YourProfile() {
                     </Form.Group>
 
                     <Form.Group as={Row} className='customMarginHips'>
-                      <Form.Label column xs={6}>
+                    <Form.Label column xs={4} md={4} lg={6}>
                         Hips
                       </Form.Label>
-                      <Col xs={6}>
+                      <Col xs={8} md={8} lg={6}>
                         <Form.Control
+                          required
                           type="number"
                           name="hips"
                           value={formData.hips}
@@ -263,11 +272,12 @@ function YourProfile() {
                     </Form.Group>
 
                     <Form.Group as={Row} className='customMarginHeight'>
-                      <Form.Label column xs={6}>
+                    <Form.Label column xs={4} md={4} lg={6}>
                         Height
                       </Form.Label>
-                      <Col xs={6}>
+                      <Col xs={8} md={8} lg={6}>
                         <Form.Control
+                          required
                           type="number"
                           name="height"
                           value={formData.height}

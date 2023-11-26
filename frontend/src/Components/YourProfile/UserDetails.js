@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faX } from "@fortawesome/free-solid-svg-icons";
 import './UserDetails.css';
 import DeleteMeasurement from './DeleteMeasurement';
+import MeasurementDetails from "./MeasurementDetails";
 
 function UserDetails({ userId, newMeasurement }) {
 
@@ -84,7 +85,7 @@ function UserDetails({ userId, newMeasurement }) {
                     <thead>
                         <tr>
                             <th>Date</th>
-                            <th>Show</th>
+                            <th>Details</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -95,9 +96,7 @@ function UserDetails({ userId, newMeasurement }) {
                                     {new Date(allmeasurements.date).toLocaleString()}
                                 </td>
                                 <td>
-                                    <Button variant="none" className="button" >
-                                        <FontAwesomeIcon icon={faEye} />
-                                    </Button>
+                                    <MeasurementDetails measurement={allmeasurements}/>
                                 </td>
                                 <td>
                                     <DeleteMeasurement deleteId={allmeasurements.id_measurement} deleteMeasurement={deleteMeasurement} setDeleteMeasurement={setDeleteMeasurement} />
@@ -108,22 +107,22 @@ function UserDetails({ userId, newMeasurement }) {
                 </Table>
             </Card.Body>
             <Card.Footer style={{ display: 'flex', justifyContent: 'center' }}>
-               
-                    <ReactPaginate
-                        breakLabel="..."
-                        nextLabel=">"
-                        onPageChange={handlePageClick}
-                        pageRangeDisplayed={2}
-                        pageCount={pageCount}
-                        previousLabel="<"
-                        renderOnZeroPageCount={false}
-                        containerClassName='paginationUserDetails'
-                        pageLinkClassName='pageNumberUserDetails'
-                        previousLinkClassName='pageNumberUserDetails'
-                        nextLinkClassName='pageNumberUserDetails'
-                        activeLinkClassName='active'
-                    />
-                
+
+                <ReactPaginate
+                    breakLabel="..."
+                    nextLabel=">"
+                    onPageChange={handlePageClick}
+                    pageRangeDisplayed={2}
+                    pageCount={pageCount}
+                    previousLabel="<"
+                    renderOnZeroPageCount={false}
+                    containerClassName='paginationUserDetails'
+                    pageLinkClassName='pageNumberUserDetails'
+                    previousLinkClassName='pageNumberUserDetails'
+                    nextLinkClassName='pageNumberUserDetails'
+                    activeLinkClassName='active'
+                />
+
             </Card.Footer>
 
 

@@ -1,0 +1,9 @@
+.MeasurementDetailsTable {
+    text-align: center;
+
+}
+
+.MeasurementDetailsTable thead tr th {
+    background-color: black;
+    color: white;
+}
