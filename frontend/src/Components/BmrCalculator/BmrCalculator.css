@@ -29,7 +29,7 @@
     color: #000;
     border: 1px solid #000;
     border-radius: 10px;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease-in-out;
     font-size: 25px;
 
 }
@@ -76,18 +76,157 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: aquamarine;
+    background-color: rgb(255, 255, 255);
 }
 
-.DropDownActivity {
+.FormSelectActivity {
+    font-size: 18px;
+}
+
+
+.ActivityLevelDiv {
     font-size: 25px;
-    background-color: brown;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
 }
 
-.DropDownToggleActivity {
-    background-color: chartreuse;
-    width: 100%;
+.ActivityLevelDiv.active {
+    transform: scale(1.10);
+}
+
+.icon {
+    font-size: 30px;
+}
+
+
+.PurposeRow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    margin-top: 15px;
+}
+
+
+
+.PurposeDiv {
+    font-size: 25px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+
+
+.weightButton {
+    max-width: 110px;
+    background-color: #ffffff;
+    color: #000;
     border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    font-size: 20px;
+    border: none;
+
+}
+
+.weightButton:hover,
+.weightButton.active {
+    background-color: #ffffff;
+    color: #000;
+    transform: scale(1.1);
+    border: 0.2px solid #000;
+}
+
+.CalculateRow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 25px;
+    margin-top: 30px;
+}
+
+.CalculateButton {
+    font-size: 25px;
+    background-color: #000000;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+}
+
+.CalculateButton:hover,
+.CalculateButton:active {
+    background-color: #000000;
+    color: #fff;
+    transform: scale(1.1);
+
+}
+
+.ResultRow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    margin-top: 30px;
+}
+
+.BMRtext,
+.TMRtext,
+.Purposetext {
+    color: white;
+    background-color: #000;
+    border-radius: 10px;
+    padding: 8px;
+    margin-top: 15px;
+}
+
+.BMRrow {
+    margin-top: 10px;
+}
+
+.TMRrow {
+    margin-top: 30px;
+}
+
+.PurposeCaloriesRow {
+    margin-top: 30px;
+}
+
+.purposeImg {
+    max-width: 155px;
+    margin: auto;
+
+}
+
+.foodImg {
+    max-width: 295px;
+    margin: auto;
+
+}
+
+.sportImg {
+    max-width: 435px;
+    margin: auto;
+
+}
+
+.BMRrow,
+.TMRrow,
+.PurposeCaloriesRow {
+    transition: opacity 500ms;
+}
+
+
+.circleDiv {
+    
+    margin-bottom: 15px;
+}
+
+.underCircleText {
+    border-radius: 10px;
+    margin-top: 10px;
+    font-size: 25px;
+    font-weight: light;
+}
+
+.circleCol {
+    margin-top: 15px;
 
 }

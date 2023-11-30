@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { ChakraProvider } from '@chakra-ui/react'
+
 
 import "./index.css";
 import Home from "./Components/HomePage/Home";
@@ -33,103 +35,106 @@ function AppWrapper() {
   };
 
   return (
+
     <AuthProvider>
       <UserIdProvider>
+        <ChakraProvider>
 
-        <div >
-          <NavigateBar />
-          <div id="allBackgrounds">
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <Home />
-                }
-              />
+          <div >
+            <NavigateBar />
+            <div id="allBackgrounds">
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <Home />
+                  }
+                />
 
-              <Route
-                path="/BmrCalculator"
-                element={
-                  <BmrCalculator />
-                }
-              />
-
-
-              <Route
-                path="/exercises"
-                element={
-                  <Exercises />
-                }
-              />
-
-              <Route
-                path="/getExercises/:muscle_group"
-                element={<AllExercises />}
-              />
-
-              <Route
-                path="/getExercise/:main_muscle_group/:Name"
-                element={<ChoosedExercise />}
-              />
-
-              <Route
-                path="/YourProfile"
-                element={
-                  checkToken(<YourProfile />)
-                }
-              />
-
-              <Route
-                path="/workoutManager"
-                element={
-                  checkToken(<WorkoutManager />)
-                }
-              />
-
-              <Route
-                path="/workoutPlanner/:workoutId"
-                element={
-                  checkToken(<WorkoutPlanner />)
-                }
-              />
-
-              <Route
-                path="/lastWorkout/:DoneWorkoutId/:workoutName/:workoutDate"
-                element={
-                  checkToken(<LastWorkout />)
-                }
-              />
-
-              <Route
-                path="/WorkoutsHistory"
-                element={
-                  checkToken(<WorkoutsHistory />)
-                }
-              />
-
-              <Route
-                path="/StartedWorkout"
-                element={
-                  checkToken(<StartWorkout />)
-                }
-              />
-
-              <Route
-                path="/checkDetails/:id_done_training"
-                element={
-                  checkToken(<CheckDetails />)
-                }
-              />
+                <Route
+                  path="/BmrCalculator"
+                  element={
+                    <BmrCalculator />
+                  }
+                />
 
 
+                <Route
+                  path="/exercises"
+                  element={
+                    <Exercises />
+                  }
+                />
+
+                <Route
+                  path="/getExercises/:muscle_group"
+                  element={<AllExercises />}
+                />
+
+                <Route
+                  path="/getExercise/:main_muscle_group/:Name"
+                  element={<ChoosedExercise />}
+                />
+
+                <Route
+                  path="/YourProfile"
+                  element={
+                    checkToken(<YourProfile />)
+                  }
+                />
+
+                <Route
+                  path="/workoutManager"
+                  element={
+                    checkToken(<WorkoutManager />)
+                  }
+                />
+
+                <Route
+                  path="/workoutPlanner/:workoutId"
+                  element={
+                    checkToken(<WorkoutPlanner />)
+                  }
+                />
+
+                <Route
+                  path="/lastWorkout/:DoneWorkoutId/:workoutName/:workoutDate"
+                  element={
+                    checkToken(<LastWorkout />)
+                  }
+                />
+
+                <Route
+                  path="/WorkoutsHistory"
+                  element={
+                    checkToken(<WorkoutsHistory />)
+                  }
+                />
+
+                <Route
+                  path="/StartedWorkout"
+                  element={
+                    checkToken(<StartWorkout />)
+                  }
+                />
+
+                <Route
+                  path="/checkDetails/:id_done_training"
+                  element={
+                    checkToken(<CheckDetails />)
+                  }
+                />
 
 
 
-              <Route path="/login" element={<Login />} />
-              <Route path="*" element={<div>Page not found!</div>} />
-            </Routes>
+
+
+                <Route path="/login" element={<Login />} />
+                <Route path="*" element={<div>Page not found!</div>} />
+              </Routes>
+            </div>
           </div>
-        </div>
+        </ChakraProvider>
       </UserIdProvider>
     </AuthProvider>
   );
