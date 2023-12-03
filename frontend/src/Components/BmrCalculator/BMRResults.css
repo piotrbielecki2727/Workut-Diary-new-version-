@@ -1,0 +1,110 @@
+.ResultRow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    margin-top: 30px;
+}
+
+.BMRtext,
+.TMRtext,
+.Purposetext {
+    color: white;
+    background-color: #000;
+    border-radius: 10px;
+    padding: 8px;
+    margin-top: 15px;
+}
+
+.BMRrow {
+    margin-top: 10px;
+}
+
+.TMRrow {
+    margin-top: 30px;
+}
+
+.PurposeCaloriesRow {
+    margin-top: 30px;
+}
+
+.purposeImg {
+    max-width: 155px;
+    margin: auto;
+
+}
+
+.foodImg {
+    max-width: 295px;
+    margin: auto;
+
+}
+
+.sportImg {
+    max-width: 435px;
+    margin: auto;
+
+}
+
+.BMRrow,
+.TMRrow,
+.PurposeCaloriesRow {
+    transition: opacity 500ms;
+}
+
+
+.circleDiv {
+
+    margin-bottom: 15px;
+}
+
+.underCircleText {
+    border-radius: 10px;
+    margin-top: 10px;
+    font-size: 25px;
+    font-weight: light;
+}
+
+.circleCol {
+    margin-top: 15px;
+
+}
+
+
+@media (max-width: 767px) {
+
+    .BMRrow {
+    }
+
+    .BMRdiv {
+        
+    }
+
+    .foodImg {
+            width: 135px;
+    }
+
+    .sportImg {
+        width: 155px;
+    }
+    
+    .purposeImg {
+        width: 65px;
+    }
+
+    .ResultRow {
+        margin-top: 0px;
+    }
+
+    .TMRtext, .Purposetext, .BMRtext {
+        font-size: 18px;
+        padding: 5px;
+    }
+
+    .underCircleText {
+        font-size: 18px;
+    }
+    
+
+
+}

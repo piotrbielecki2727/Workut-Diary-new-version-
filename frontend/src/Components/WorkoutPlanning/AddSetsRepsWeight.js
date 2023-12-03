@@ -120,9 +120,7 @@ function AddSetsRepsWeight({ exercise, workoutId }) {
         );
 
 
-        console.log(allSets);
-        axios
-            .post(`http://localhost:3001/saveAllSets`, { sets: allSets, workoutId: workoutId })
+        axios.post(`http://localhost:3001/saveAllSets`, { sets: allSets, workoutId: workoutId })
             .then((response) => {
                 navigate("/workoutManager");
                 console.log('Workout saved successfully!', response.data);

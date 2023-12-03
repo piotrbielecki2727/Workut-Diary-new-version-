@@ -25,12 +25,15 @@
 
 #exerciseImg {
     max-width: 300px;
+    margin: auto;
 
 }
 
 #h4Exercises {
     font-size: 20px;
 }
+
+
 
 #theadExercises th {
     background-color: black;
@@ -59,8 +62,24 @@
     transform: scale(1.05);
 }
 
+.iFrame {
+    width: 550px;
+    height: 300px;
+    margin: auto;
+}
+
 @media (max-width:767px) {
     #exerciseImg {
         max-width: 200px;
+    }
+
+    .iFrame {
+        width: 300px;
+        height: 300px;
+    }
+
+    .Instructions {
+        margin-right: 35px;
+        list-style: none;
     }
 }

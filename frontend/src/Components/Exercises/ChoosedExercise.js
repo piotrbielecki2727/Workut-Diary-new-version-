@@ -84,7 +84,7 @@ function ChoosedExercise() {
                     <hr></hr>
                     <h3>Instructions</h3>
                     {exercise && exercise.description &&
-                        <ul >
+                        <ul className='Instructions' >
 
                             {
                                 exercise.description.split('\n').map((point, index) => (
@@ -96,8 +96,7 @@ function ChoosedExercise() {
                     <hr></hr>
                     <h3>Video tutorial</h3>
                     <iframe
-                        width="700"
-                        height="450"
+                        className='iFrame'
                         src={exercise.video}
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowFullScreen

@@ -77,8 +77,12 @@
         color: white;
         font-size: 15px;
     }
-    
+
     #plannertbody td {
+        font-size: 15px;
+    }
+
+    #chosenWorkoutRow {
         font-size: 15px;
     }
 }

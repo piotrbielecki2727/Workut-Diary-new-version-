@@ -68,7 +68,7 @@ function WorkoutPlanner() {
 
                             ) : (
                                 <>
-                                    <td></td>
+                                    <p></p>
                                 </>
                             )}
                             <Button id="addExerciseButtonWorkoutPlanner" as={Link} to={`/exercises`}>

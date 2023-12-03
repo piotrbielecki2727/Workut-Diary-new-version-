@@ -70,15 +70,15 @@ function LastWorkout({ workoutId }) {
                     {exercises.map((exercise, index) => (
                         <Container key={exercise.Exercise_id} id="lastWorkoutContainer2">
                             <Row id="lastWorkoutRow">
-                                <Col xs={4} lg={3} id="imageCol">
+                                <Col xs={5} lg={3} id="imageCol">
                                     <Image src={exercise.gif} fluid></Image>
                                 </Col>
-                                <Col xs={8} lg={9}>
+                                <Col xs={7} lg={9}>
                                     <Row id="exerciseNameLastWorkoutRow">
-                                        <Col xs={9} lg={11}>
+                                        <Col xs={12} lg={12}>
                                             {index + 1}. {exercise.name}
                                         </Col>
-                                        <Col xs={3} lg={1}></Col>
+                                  
                                     </Row>
                                     <Row>
                                         <Col>

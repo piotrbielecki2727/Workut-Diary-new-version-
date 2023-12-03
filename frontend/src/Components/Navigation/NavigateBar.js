@@ -101,8 +101,6 @@ function NavigateBar() {
               <div className="navDiv">
                 <Link to="/exercises" className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faDumbbell} className="custom-icon" /></i>Exercises</Link></div>
               <div className="navDiv">
-                <Link to={"/oneRepMax"} className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faWeightHanging} className="custom-icon" /></i>One rep max</Link></div>
-              <div className="navDiv">
                 <Link to={"/BmrCalculator"} className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faCalculator} className="custom-icon" /></i>Calculate your BMR</Link></div>
               <hr className="my-1" />
             </Nav>

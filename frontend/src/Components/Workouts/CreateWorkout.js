@@ -24,7 +24,8 @@ function CreateWorkout({ newWorkoutAdded, setNewWorkoutAdded, setIsCreating }) {
         Users_id_user: userId
     })
 
-    const handleSave = () => {
+    const handleSave = (event) => {
+        event.preventDefault();
         if (values.Name.length === 0) {
             setShow(true);
             setMessage("Workout name can't be empty.");
@@ -60,14 +61,14 @@ function CreateWorkout({ newWorkoutAdded, setNewWorkoutAdded, setIsCreating }) {
             })
             .catch(err => {
                 setShow(true);
-                    setMessage(err);
-                    setToastType("warning");
+                setMessage(err);
+                setToastType("warning");
             })
     }
 
 
     return (
-        <Form>
+        <Form onSubmit={handleSave}>
             <Toasts show={show} setShow={setShow} message={message} toastType={toastType} setToastType={setToastType} />
             <Form.Group id="createWorkoutForm">
                 <Form.Control
@@ -77,7 +78,7 @@ function CreateWorkout({ newWorkoutAdded, setNewWorkoutAdded, setIsCreating }) {
                     onChange={e => setValues({ ...values, Name: e.target.value })}
                     minLength={1}
                 ></Form.Control>
-                <Button id="ButtonWorkoutManager" onClick={handleSave}><FontAwesomeIcon icon={faPlus} /></Button>
+                <Button id="ButtonWorkoutManager" type='submit'><FontAwesomeIcon icon={faPlus} /></Button>
                 <Button id="ButtonWorkoutManager" onClick={handleClose}><FontAwesomeIcon icon={faXmark} /></Button>
             </Form.Group>
         </Form>

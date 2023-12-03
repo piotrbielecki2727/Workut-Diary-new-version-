@@ -2,6 +2,10 @@
 import React, { useState, useEffect } from "react";
 import Container from 'react-bootstrap/Container';
 import Image from 'react-bootstrap/Image';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
+
 import './Home.css';
 import logo from "../imgs/LOGO.png";
 import desktop from "../imgs/DESKTOP.png";
@@ -13,13 +17,16 @@ function Home() {
   return (
 
     <div id="background">
-      {/*
+
       <Container className="homeContainer">
-      <Image className="image1" src={desktop} fluid/>
-      <Image  className="image" src={mobile} fluid/>
-        Create, manage or track your workouts on your phone or computer. Create an account now and experience the possibilities of HYPE.
+        <Row>
+         
+          <Col className="laptopCol" lg={8}>        <Image className="image1" src={desktop}  />
+          </Col>
+          <Col className="mobileCol" lg={4}>        <Image className="image" src={mobile}  />
+          </Col>
+        </Row>
       </Container>
-  */}
     </div>
   )
 }

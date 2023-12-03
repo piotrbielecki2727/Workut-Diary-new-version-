@@ -24,6 +24,7 @@ import StartWorkout from "./Components/WorkoutPlanning/StartWorkout";
 import CheckDetails from "./Components/WorkoutsHistory/CheckDetails"
 import YourProfile from "./Components/YourProfile/YourProfile";
 import BmrCalculator from "./Components/BmrCalculator/BmrCalculator";
+import Introduction from "./Components/Introduction/Introduction";
 
 
 function AppWrapper() {
@@ -55,6 +56,13 @@ function AppWrapper() {
                   path="/BmrCalculator"
                   element={
                     <BmrCalculator />
+                  }
+                />
+
+                <Route
+                  path="/introduction"
+                  element={
+                    <Introduction />
                   }
                 />
 
@@ -119,7 +127,7 @@ function AppWrapper() {
                 />
 
                 <Route
-                  path="/checkDetails/:id_done_training"
+                  path="/checkDetails/:id_done_training/:workoutDate"
                   element={
                     checkToken(<CheckDetails />)
                   }

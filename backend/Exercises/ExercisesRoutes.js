@@ -5,7 +5,7 @@ const createRoutes = (db) => {
 
   //POBIERA WSZYSTKIE CWICZENIA W BAZIE
   router.get('/getAllExercises', (req, res) => {
-    const query = 'SELECT id_exercise,Name,gif from exercises';
+    const query = 'SELECT id_exercise,Name,gif, main_muscle_group from exercises';
     db.query(query, (error, results) => {
       if (error) {
         console.log(error);

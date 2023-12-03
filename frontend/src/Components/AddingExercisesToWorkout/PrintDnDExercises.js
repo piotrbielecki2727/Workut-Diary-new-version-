@@ -100,10 +100,10 @@ function PrintDnDExercises({ WorkoutPlanner, exercises, setExercises, workoutId,
                                             >
 
                                                 <Row id='chosenWorkoutRow'>
-                                                    <Col xs={1}>{index + 1}.</Col>
-                                                    <Col xs={4}><Image src={exercise.gif} fluid></Image></Col>
-                                                    <Col xs={4}>{exercise.Name}</Col>
-                                                    <Col xs={2}><DeleteExerciseFromWorkout
+                                                    <Col xs={2} lg={2}>{index + 1}.</Col>
+                                                    <Col xs={4} lg={4}><Image src={exercise.gif} fluid></Image></Col>
+                                                    <Col xs={4} lg={4}>{exercise.Name}</Col>
+                                                    <Col xs={2} lg={2}><DeleteExerciseFromWorkout
                                                         workoutId={workoutId}
                                                         exerciseId={exercise.Exercise_id}
                                                         setExerciseDeleted={setExerciseDeleted} />

@@ -16,11 +16,26 @@
     margin-top: 20px;
     margin-bottom: 20px;
     text-align: center;
-    color: white;
+    color: rgb(0, 0, 0);
+    background-color: white;
 }
 
+.laptopCol {
+    justify-content: center;
+    margin: auto;
+    display: flex;
+
+}
+
+.mobileCol {
+    justify-content: center;
+    display: flex;
+   
+}
+
+
 .image1 {
-    max-width: 1300px;
+    max-width: 630px;
 }
 
 .image {
