@@ -16,24 +16,22 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import { faDumbbell, faUser, faPhone, faCalculator, faBars, faCircleInfo, faSignOutAlt, faWeightHanging } from "@fortawesome/free-solid-svg-icons";
+import { faDumbbell, faUser, faUsers, faListCheck, faPhone, faCalculator, faBars, faCircleInfo, faSignOutAlt, faWeightHanging } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { useUserId } from '../UserIdContext';
 import { useAuth } from "../AuthContext";
-
+import { useRole } from "../RoleContext";
 
 
 function NavigateBar() {
-  const token = Cookies.get('token');
   const navigate = useNavigate();
   const [message, setMessage] = useState('');
   const [name, setName] = useState('');
-  const [loading, setLoading] = useState(true);
 
   const { userId, setUserId } = useUserId();
   const { auth, setAuth } = useAuth();
-
+  const { role, setRole } = useRole();
 
   axios.defaults.withCredentials = true;
 
@@ -45,17 +43,20 @@ function NavigateBar() {
     axios.get('http://localhost:3001/')
       .then(res => {
         if (res.data.Status === "Success") {
+          setRole(res.data.role);
           setAuth(true);
           setName(res.data.firstName);
           setUserId(res.data.idUser);
-        } else {
+        }
+
+        else {
           setAuth(false);
           setMessage(res.data.Error);
+          setRole("Guest");
         }
       })
       .catch(err => console.log(err))
-      .finally(() => setLoading(false));
-  }, [navigate, userId]);
+  }, [navigate, userId, role]);
 
 
 
@@ -92,20 +93,32 @@ function NavigateBar() {
               Menu      </Offcanvas.Title>))}
           </Offcanvas.Header>
 
-
           <Offcanvas.Body>
             <Nav className="justify-content-start flex-grow-1 pe-3">
               <hr className="my-1" />
-              <div className="navDiv">
-                <Link to={"/introduction"} className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faCircleInfo} className="custom-icon" /></i>Introduction </Link></div>
-              <div className="navDiv">
-                <Link to="/exercises" className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faDumbbell} className="custom-icon" /></i>Exercises</Link></div>
-              <div className="navDiv">
-                <Link to={"/BmrCalculator"} className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faCalculator} className="custom-icon" /></i>Calculate your BMR</Link></div>
+              {role === "Admin" ? (
+                <>
+                  <div className="navDiv">
+                    <Link to={"/manageUsers"} className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faUsers} className="custom-icon" /></i>Users managment </Link></div>
+                  <div className="navDiv">
+                    <Link to="/manageExercises" className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faListCheck} className="custom-icon" /></i>Exercises managment</Link></div>
+                </>
+              ) : (
+                <>
+                  <div className="navDiv">
+                    <Link to={"/introduction"} className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faCircleInfo} className="custom-icon" /></i>Introduction </Link></div>
+                  <div className="navDiv">
+                    <Link to="/exercises" className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faDumbbell} className="custom-icon" /></i>Exercises</Link></div>
+                  <div className="navDiv">
+                    <Link to={"/BmrCalculator"} className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faCalculator} className="custom-icon" /></i>Calculate your BMR</Link></div>
+                </>
+              )
+              }
+
               <hr className="my-1" />
             </Nav>
             <Nav className="ms-auto me-3">
-              {auth ? (
+              {auth && role === "User" ? (
                 <>
                   <div className="navDiv">
                     <NavDropdown title={
@@ -124,16 +137,27 @@ function NavigateBar() {
                   <div className="navDiv">
                     <Link to={"/yourProfile"} className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faUser} className="custom-icon" /></i>Your profile</Link></div>
                   <hr className="my-1" />
+                </>
+              ) : (
+                <>
+                </>
+              )}
+              {auth ? (
+                <>
                   <div id="navDivLogoutButton">
                     <Button id="logoutButton" onClick={handleDelete}> <i><FontAwesomeIcon icon={faSignOutAlt} className="custom-icon" /></i> Log out</Button>
                   </div>
-                </>) : (
-                <Link to="/login" className='get-started-link' onClick={handleCloseOffcanvas}>Sign in!</Link>
-              )
-              }
+                </>
+              ) : (
+                <>
+                  < Link to="/login" className='get-started-link' onClick={handleCloseOffcanvas}>Sign in!</Link>
+                </>)}
+
             </Nav>
           </Offcanvas.Body>
+
         </Navbar.Offcanvas>
+
       </Container >
     </Navbar >
   );

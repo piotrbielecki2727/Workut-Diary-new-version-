@@ -17,7 +17,8 @@ function Login() {
     email: '',
     password: '',
     role: 'User',
-    status: 'Active'
+    status: 'Active',
+    last_logged_in: getDefaultDateTime()
   })
 
   const [show, setShow] = useState(false);
@@ -25,6 +26,24 @@ function Login() {
   const [toastType, setToastType] = useState(null);
 
   const navigate = useNavigate();
+
+  function getDefaultDateTime() {
+    const date = new Date();
+    date.setHours(date.getHours() + 1);
+    return date.toISOString().slice(0, 19).replace('T', ' ');
+  }
+
+  const handleChangeLastLoggedIn = () => {
+    axios.post('http://localhost:3001/updateHour', values)
+      .then(res => {
+        if (res.data.Status === "Success") {
+          console.log(res.data.Success, "dzialam");
+        } else {
+          console.log(res.data.Error, "wyjebalo");
+        }
+      })
+      .catch(err => console.log(err));
+  }
 
 
   const handleRegister = (event) => {
@@ -72,6 +91,7 @@ function Login() {
       axios.post('http://localhost:3001/loginUser', values)
         .then(res => {
           if (res.data.Status === "Success") {
+            handleChangeLastLoggedIn();
             navigate('/')
             window.location.reload();
           } else {

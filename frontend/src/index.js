@@ -14,33 +14,48 @@ import WorkoutManager from "./Components/Workouts/WorkoutManager";
 import Exercises from "./Components/Exercises/Exercises";
 import AllExercises from "./Components/Exercises/AllExercises";
 import ChoosedExercise from "./Components/Exercises/ChoosedExercise";
-import Toasts from "./Components/Toasts";
 import Cookies from 'js-cookie';
 import WorkoutPlanner from "./Components/WorkoutPlanning/WorkoutPlanner";
-import { UserIdProvider } from './Components/UserIdContext';
+import { UserIdProvider, useUserId } from './Components/UserIdContext';
 import { AuthProvider } from "./Components/AuthContext";
+import { RoleProvider } from "./Components/RoleContext";
+
+import { useRole } from "./Components/RoleContext";
+
 import LastWorkout from "./Components/Workouts/LastWorkout";
 import StartWorkout from "./Components/WorkoutPlanning/StartWorkout";
 import CheckDetails from "./Components/WorkoutsHistory/CheckDetails"
 import YourProfile from "./Components/YourProfile/YourProfile";
 import BmrCalculator from "./Components/BmrCalculator/BmrCalculator";
 import Introduction from "./Components/Introduction/Introduction";
+import UsersManagment from "./Components/AdminPanel/UsersManagment";
+import ExercisesManagment from "./Components/AdminPanel/ExercisesManagment";
 
 
 function AppWrapper() {
 
 
-  const checkToken = (element) => {
+  const { role } = useRole();
+
+
+  const checkPermissions = (element, requiredRoles) => {
     const token = Cookies.get("token");
-    return token ? element : <Navigate to="/" />;
+    if (role && requiredRoles && requiredRoles.includes(role)) {
+      console.log("istnieje:", role);
+      return element;
+    } else {
+      return <Navigate to="/" />;
+    }
   };
+
+
 
   return (
 
     <AuthProvider>
+
       <UserIdProvider>
         <ChakraProvider>
-
           <div >
             <NavigateBar />
             <div id="allBackgrounds">
@@ -73,6 +88,16 @@ function AppWrapper() {
                     <Exercises />
                   }
                 />
+                <Route
+                  path="/manageUsers"
+                  element={checkPermissions(<UsersManagment />, ["Admin"])}
+                />
+
+                <Route
+                  path="/manageExercises"
+                  element={checkPermissions(<ExercisesManagment />, ["Admin"])}
+                />
+
 
                 <Route
                   path="/getExercises/:muscle_group"
@@ -86,71 +111,60 @@ function AppWrapper() {
 
                 <Route
                   path="/YourProfile"
-                  element={
-                    checkToken(<YourProfile />)
-                  }
+                  element={checkPermissions(<YourProfile />, ["User"])}
                 />
 
                 <Route
                   path="/workoutManager"
-                  element={
-                    checkToken(<WorkoutManager />)
-                  }
+                  element={checkPermissions(<WorkoutManager />, ["User"])}
                 />
 
                 <Route
                   path="/workoutPlanner/:workoutId"
-                  element={
-                    checkToken(<WorkoutPlanner />)
-                  }
+                  element={checkPermissions(<WorkoutPlanner />, ["User"])}
                 />
 
                 <Route
                   path="/lastWorkout/:DoneWorkoutId/:workoutName/:workoutDate"
-                  element={
-                    checkToken(<LastWorkout />)
-                  }
+                  element={checkPermissions(<LastWorkout />, ["User"])}
                 />
 
                 <Route
                   path="/WorkoutsHistory"
-                  element={
-                    checkToken(<WorkoutsHistory />)
-                  }
+                  element={checkPermissions(<WorkoutsHistory />, ["User"])}
                 />
 
                 <Route
                   path="/StartedWorkout"
-                  element={
-                    checkToken(<StartWorkout />)
-                  }
+                  element={checkPermissions(<StartWorkout />, ["User"])}
                 />
 
                 <Route
                   path="/checkDetails/:id_done_training/:workoutDate"
-                  element={
-                    checkToken(<CheckDetails />)
-                  }
+                  element={checkPermissions(<CheckDetails />, ["User"])}
                 />
-
-
-
-
 
                 <Route path="/login" element={<Login />} />
                 <Route path="*" element={<div>Page not found!</div>} />
               </Routes>
             </div>
           </div>
+
         </ChakraProvider>
       </UserIdProvider>
+
     </AuthProvider>
   );
 }
 
 ReactDOM.render(
   <Router>
-    <AppWrapper />
+    <RoleProvider>
+
+
+      <AppWrapper />
+
+    </RoleProvider>
   </Router>,
   document.getElementById("root")
 );

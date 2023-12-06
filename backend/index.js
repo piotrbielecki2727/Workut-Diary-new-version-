@@ -9,6 +9,7 @@ import CreatingWorkoutRoutes from "./Workouts/CreatingWorkoutRoutes.js";
 import Register_login_Routes from "./Register_login/Register_login_Routes.js";
 import WorkoutHistoryRoutes from "./Workouts/WorkoutHistoryRoutes.js";
 import YourProfileRoutes from  "./YourProfile/YourProfileRoutes.js";
+import AdminRoutes from  "./AdminPanel/AdminRoutes.js";
 
 
 
@@ -39,6 +40,7 @@ app.use('/', CreatingWorkoutRoutes(db));
 app.use('/', Register_login_Routes(db));
 app.use('/', WorkoutHistoryRoutes(db));
 app.use('/', YourProfileRoutes(db));
+app.use('/', AdminRoutes(db));
 
 
 

@@ -1,0 +1,15 @@
+.blockUserButton,
+.unBlockUserButton {
+    transition: 0.3s all ease-in-out;
+    background-color: rgba(255, 255, 255, 0);
+    color: black;
+    border: none;
+}
+
+.blockUserButton:hover,
+.unBlockUserButton:hover {
+    transform: scale(1.05);
+    background-color: rgba(255, 255, 255, 0);
+    color: black;
+
+}

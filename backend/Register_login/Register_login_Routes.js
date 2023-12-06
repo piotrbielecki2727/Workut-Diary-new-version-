@@ -23,7 +23,7 @@ const createRoutes = (db) => {
           return res.json({ Error: "Token is not right" });
         }
         else {
-          req.userId = decoded.userId; 
+          req.userId = decoded.userId;
           req.name = decoded.name;
           next();
         }
@@ -33,7 +33,7 @@ const createRoutes = (db) => {
 
   router.get('/', verifyUser, (req, res) => {
     const userId = req.userId;
-    const query = 'SELECT id_user,first_name FROM users WHERE id_user = ?';
+    const query = 'SELECT id_user,first_name, role FROM users WHERE id_user = ?';
     db.query(query, [userId], (error, results) => {
       if (error) {
         console.log(error);
@@ -46,8 +46,9 @@ const createRoutes = (db) => {
 
       const firstName = results[0].first_name;
       const idUser = results[0].id_user;
+      const role = results[0].role;
 
-      return res.json({ Status: "Success", name: req.name, firstName: firstName, idUser: idUser });
+      return res.json({ Status: "Success", firstName: firstName, idUser: idUser, role: role });
     });
   });
 
@@ -62,7 +63,7 @@ const createRoutes = (db) => {
     console.log(req.body);
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const query = "SELECT * FROM users WHERE email = (?)";
-    const sql = "INSERT INTO USERS (`first_name`, `email`, `password`, `role`, `level`, `Weight`, `Height`, `avatar`, `status`) VALUES (?)";
+    const sql = "INSERT INTO USERS (`first_name`, `email`, `password`, `role`, `status`, `last_logged_in`) VALUES (?)";
     bcrypt.hash(req.body.password.toString(), salt, (err, hash) => {
       if (err) return res.json({ Error: "Error hashing password" });
       const values = [
@@ -70,14 +71,11 @@ const createRoutes = (db) => {
         req.body.email,
         hash,
         req.body.role,
-        req.body.level,
-        req.body.weight,
-        req.body.height,
-        req.body.avatar,
         req.body.status,
+        req.body.last_logged_in
       ]
 
-      
+
 
       db.query(query, [req.body.email], (err, result) => {
         if (result.length > 0) {
@@ -91,7 +89,10 @@ const createRoutes = (db) => {
         }
         else {
           db.query(sql, [values], (err, result) => {
-            if (err) return res.json({ Error: "Error inserting data to database" });
+            if (err) {
+              console.log(err);
+              return res.json({ Error: "Error inserting data to database", err });
+            }
             else {
               return res.json({ Status: "Success" });
             }
@@ -110,10 +111,8 @@ const createRoutes = (db) => {
         bcrypt.compare(req.body.password.toString(), data[0].Password, (err, response) => {
           if (err) return res.json({ Error: "A password compare error occurred." });
           if (response) {
-            const userId = data[0].id_user; 
+            const userId = data[0].id_user;
             const name = data[0].name;
-            console.log(userId);
-            console.log(name);
             const token = jwt.sign({ userId, name }, "jwt-security-key", { expiresIn: '1d' });
             res.cookie('token', token);
             return res.json({ Status: "Success" });
@@ -129,6 +128,20 @@ const createRoutes = (db) => {
       }
     })
   })
+
+  router.post('/updateHour', (req, res) => {
+    console.log('updatuje');
+    const sql = 'UPDATE USERS SET last_logged_in = ? where email=?';
+    db.query(sql, [req.body.last_logged_in, req.body.email], (err, result) => {
+      if (err) {
+        console.log(err);
+        return res.json({ Error: "An error occurred while updating last logged hour." });
+      }
+      return res.json({ Success: "Updated" })
+
+    })
+  });
+
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //pobieranie konkretnego usera
