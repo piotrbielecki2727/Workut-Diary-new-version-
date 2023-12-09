@@ -4,7 +4,7 @@ import queries from './queries.js';
 const createRoutes = (db) => {
 
 
-    class AdminPanelController {
+    class AdminPanelUsersController {
 
         constructor(db) {
             this.db = db;
@@ -45,14 +45,14 @@ const createRoutes = (db) => {
 
     }
 
-    const adminPanelController = new AdminPanelController(db);
+    const usersController = new AdminPanelUsersController(db);
 
     router.get("/getUsersList", (req, res) => {
-        adminPanelController.getUsersList(req, res)
+        usersController.getUsersList(req, res)
     });
 
     router.post("/updateUserStatus", (req, res) => {
-        adminPanelController.updateUserStatus(req, res)
+        usersController.updateUserStatus(req, res)
     });
 
 

@@ -43,5 +43,13 @@
     background-color: rgb(255, 255, 255);
     border: 10px;
     border-color: aqua;
-   
+
+}
+
+@media (max-width: 768px) {
+
+    #FilterWorkoutSearch {
+        position: relative;
+        width: 70%;
+    }
 }

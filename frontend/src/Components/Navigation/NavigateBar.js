@@ -16,7 +16,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import { faDumbbell, faUser, faUsers, faListCheck, faPhone, faCalculator, faBars, faCircleInfo, faSignOutAlt, faWeightHanging } from "@fortawesome/free-solid-svg-icons";
+import { faDumbbell, faUser, faUsers, faListCheck, faPhone, faCalculator, faBars, faCircleInfo, faSignOutAlt, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { useUserId } from '../UserIdContext';
@@ -74,8 +74,8 @@ function NavigateBar() {
     <Navbar expand="xxl" className="bg-body-tertiary mb-0" sticky="top" id="navbar" >
       <Container fluid>
         <Navbar.Brand>
-          <Link to="/" className="logo">
-            <Image src={logo} alt="Logo" style={{ width: "175px" }} />
+          <Link to="/" >
+            <Image src={logo} alt="Logo" className="logo" />
           </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="offcanvasNavbar" onClick={() => { setShowOffcanvas(true) }} />
@@ -99,22 +99,27 @@ function NavigateBar() {
               {role === "Admin" ? (
                 <>
                   <div className="navDiv">
-                    <Link to={"/manageUsers"} className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faUsers} className="custom-icon" /></i>Users managment </Link></div>
+                    <Link to={"/manageUsers"} className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faUsers} className="custom-icon" /></i>User managment </Link></div>
                   <div className="navDiv">
-                    <Link to="/manageExercises" className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faListCheck} className="custom-icon" /></i>Exercises managment</Link></div>
+                    <Link to="/messages" className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faEnvelope} className="custom-icon" /></i>User messages</Link></div>
+                  <div className="navDiv">
+                    <Link to="/manageExercises" className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faListCheck} className="custom-icon" /></i>Exercise managment</Link></div>
                 </>
               ) : (
                 <>
                   <div className="navDiv">
                     <Link to={"/introduction"} className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faCircleInfo} className="custom-icon" /></i>Introduction </Link></div>
-                  <div className="navDiv">
-                    <Link to="/exercises" className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faDumbbell} className="custom-icon" /></i>Exercises</Link></div>
+
                   <div className="navDiv">
                     <Link to={"/BmrCalculator"} className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faCalculator} className="custom-icon" /></i>Calculate your BMR</Link></div>
                 </>
               )
               }
-
+              <div className="navDiv">
+                <Link to="/exercises" className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faDumbbell} className="custom-icon" /></i>Exercises</Link></div>
+                <div className="navDiv">
+                <Link to="/contact" className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faEnvelope} className="custom-icon" /></i>Contact us</Link></div>
+                
               <hr className="my-1" />
             </Nav>
             <Nav className="ms-auto me-3">

@@ -4,7 +4,7 @@ import { useUserId } from '../UserIdContext';
 import Form from 'react-bootstrap/Form';
 import './FilterWorkoutHistory.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faX } from "@fortawesome/free-solid-svg-icons";
+import {  faX } from "@fortawesome/free-solid-svg-icons";
 import Pagination from '../Exercises/Pagination';
 
 function FilterWorkoutHistory() {

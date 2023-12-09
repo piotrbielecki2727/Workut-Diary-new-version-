@@ -1,0 +1,29 @@
+.messageInterface {
+    background-image: linear-gradient(to bottom right, #4b4949, #9a9a9a, #dddbdb);
+
+}
+
+.messagePrint {
+    background-color: blue;
+}
+
+.MessagesContainer {
+    background-color: white;
+    max-width: 1000px;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.MessagesHeadingCol {
+    background-color: blueviolet;
+    padding: 15px;
+}
+
+.searchBar {
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+}

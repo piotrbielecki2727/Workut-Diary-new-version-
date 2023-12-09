@@ -28,8 +28,9 @@ import CheckDetails from "./Components/WorkoutsHistory/CheckDetails"
 import YourProfile from "./Components/YourProfile/YourProfile";
 import BmrCalculator from "./Components/BmrCalculator/BmrCalculator";
 import Introduction from "./Components/Introduction/Introduction";
-import UsersManagment from "./Components/AdminPanel/UsersManagment";
-import ExercisesManagment from "./Components/AdminPanel/ExercisesManagment";
+import UsersManagment from "./Components/AdminPanel/Users/UsersManagment";
+import ExercisesManagment from "./Components/AdminPanel/Exercises/ExercisesManagment";
+import ManageUserMessages from "./Components/AdminPanel/UserMessages/ManageUserMessages";
 
 
 function AppWrapper() {
@@ -39,7 +40,6 @@ function AppWrapper() {
 
 
   const checkPermissions = (element, requiredRoles) => {
-    const token = Cookies.get("token");
     if (role && requiredRoles && requiredRoles.includes(role)) {
       console.log("istnieje:", role);
       return element;
@@ -97,6 +97,13 @@ function AppWrapper() {
                   path="/manageExercises"
                   element={checkPermissions(<ExercisesManagment />, ["Admin"])}
                 />
+
+                <Route
+                  path="/messages"
+                  element={checkPermissions(<ManageUserMessages />, ["Admin"])}
+                />
+
+
 
 
                 <Route
