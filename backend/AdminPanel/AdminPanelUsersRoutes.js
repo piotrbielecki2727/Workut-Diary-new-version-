@@ -14,7 +14,8 @@ const createRoutes = (db) => {
             try {
                 this.db.query(queries.getUsersListQuery, (err, result) => {
                     if (err) {
-                        throw new Error("There is an error");
+                        console.error(err);
+                        return res.json({ Error: "There is an error." });
                     }
 
                     return res.json({ Success: "Data successfully fetched.", result })
@@ -32,7 +33,8 @@ const createRoutes = (db) => {
             try {
                 this.db.query(queries.updateUserStatus, [req.body.status, req.body.userId], (err, result) => {
                     if (err) {
-                        throw new Error("There is an error");
+                        console.error(err);
+                        return res.json({ Error: "There is an error." });
                     }
                     return res.json({ Success: "User successfully blocked." })
                 })

@@ -31,7 +31,7 @@ import Introduction from "./Components/Introduction/Introduction";
 import UsersManagment from "./Components/AdminPanel/Users/UsersManagment";
 import ExercisesManagment from "./Components/AdminPanel/Exercises/ExercisesManagment";
 import ManageUserMessages from "./Components/AdminPanel/UserMessages/ManageUserMessages";
-
+import Contact from "./Components/Contact/Contact";
 
 function AppWrapper() {
 
@@ -101,6 +101,11 @@ function AppWrapper() {
                 <Route
                   path="/messages"
                   element={checkPermissions(<ManageUserMessages />, ["Admin"])}
+                />
+
+                <Route
+                  path="/contact"
+                  element={checkPermissions(<Contact />, ["User"])}
                 />
 
 

@@ -13,7 +13,8 @@ const createRoutes = (db) => {
             try {
                 this.db.query(queries.getExercisesListQuery, (err, result) => {
                     if (err) {
-                        throw new Error("There is an error");
+                        console.error(err);
+                        return res.json({ Error: "There is an error." });
                     }
                     return res.json({ Success: "Data successfully fetched", result })
                 })

@@ -8,10 +8,10 @@ import AddingSetsRoutes from "./Workouts/AddingSetsRoutes.js";
 import CreatingWorkoutRoutes from "./Workouts/CreatingWorkoutRoutes.js";
 import Register_login_Routes from "./Register_login/Register_login_Routes.js";
 import WorkoutHistoryRoutes from "./Workouts/WorkoutHistoryRoutes.js";
-import YourProfileRoutes from  "./YourProfile/YourProfileRoutes.js";
-import AdminPanelUsersRoutes from  "./AdminPanel/AdminPanelUsersRoutes.js";
-import AdminPanelExercisesRoutes from  "./AdminPanel/AdminPanelExercisesRoutes.js";
-
+import YourProfileRoutes from "./YourProfile/YourProfileRoutes.js";
+import AdminPanelUsersRoutes from "./AdminPanel/AdminPanelUsersRoutes.js";
+import AdminPanelExercisesRoutes from "./AdminPanel/AdminPanelExercisesRoutes.js";
+import ContactRoutes from "./Contact/ContactRoutes.js";
 
 
 const app = express();
@@ -43,6 +43,7 @@ app.use('/', WorkoutHistoryRoutes(db));
 app.use('/', YourProfileRoutes(db));
 app.use('/', AdminPanelUsersRoutes(db));
 app.use('/', AdminPanelExercisesRoutes(db));
+app.use('/', ContactRoutes(db));
 
 
 

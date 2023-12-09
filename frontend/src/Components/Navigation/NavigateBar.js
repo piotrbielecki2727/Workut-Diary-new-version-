@@ -99,27 +99,35 @@ function NavigateBar() {
               {role === "Admin" ? (
                 <>
                   <div className="navDiv">
-                    <Link to={"/manageUsers"} className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faUsers} className="custom-icon" /></i>User managment </Link></div>
+                    <Link to={"/manageUsers"} className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faUsers} className="custom-icon" /></i>User management</Link>
+                  </div>
                   <div className="navDiv">
-                    <Link to="/messages" className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faEnvelope} className="custom-icon" /></i>User messages</Link></div>
+                    <Link to="/messages" className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faEnvelope} className="custom-icon" /></i>User messages</Link>
+                  </div>
                   <div className="navDiv">
-                    <Link to="/manageExercises" className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faListCheck} className="custom-icon" /></i>Exercise managment</Link></div>
+                    <Link to="/manageExercises" className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faListCheck} className="custom-icon" /></i>Exercise management</Link>
+                  </div>
                 </>
               ) : (
                 <>
                   <div className="navDiv">
-                    <Link to={"/introduction"} className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faCircleInfo} className="custom-icon" /></i>Introduction </Link></div>
-
+                    <Link to={"/introduction"} className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faCircleInfo} className="custom-icon" /></i>Introduction</Link>
+                  </div>
                   <div className="navDiv">
-                    <Link to={"/BmrCalculator"} className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faCalculator} className="custom-icon" /></i>Calculate your BMR</Link></div>
+                    <Link to={"/BmrCalculator"} className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faCalculator} className="custom-icon" /></i>Calculate your BMR</Link>
+                  </div>
+                  {role === "User" && (
+                    <div className="navDiv">
+                      <Link to="/contact" className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faEnvelope} className="custom-icon" /></i>Contact us</Link>
+                    </div>
+                  )}
                 </>
-              )
-              }
+              )}
               <div className="navDiv">
-                <Link to="/exercises" className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faDumbbell} className="custom-icon" /></i>Exercises</Link></div>
-                <div className="navDiv">
-                <Link to="/contact" className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faEnvelope} className="custom-icon" /></i>Contact us</Link></div>
-                
+                <Link to="/exercises" className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faDumbbell} className="custom-icon" /></i>Exercises</Link>
+              </div>
+
+
               <hr className="my-1" />
             </Nav>
             <Nav className="ms-auto me-3">

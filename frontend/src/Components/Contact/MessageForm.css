@@ -1,0 +1,39 @@
+.ContactFormGroup {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.SubjectFormControl {
+    text-align: left;
+    margin: auto;
+
+
+}
+
+.SendMessageButtonDiv {
+    justify-content: end;
+    display: flex;
+}
+
+.SendMessageButton {
+    color: #ffffff;
+    transition: 0.3s all ease-in-out;
+    border: none;
+    background-color: black;
+    padding: 8px;
+    font-size: 17px;
+
+
+}
+
+.SendMessageButton:hover,
+.SendMessageButton:active {
+    color: #ffffff;
+    transform: scale(1.10);
+    text-decoration: none;
+    border: none;
+    background-color: black;
+
+
+}
+
