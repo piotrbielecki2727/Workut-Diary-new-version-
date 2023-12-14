@@ -8,7 +8,7 @@ import { createNewMessage } from './NewMessage';
 import { useUserId } from '../UserIdContext';
 
 
-function MessageForm() {
+function MessageForm({ show, setShow }) {
 
     const [selectedOption, setSelectedOption] = useState(null);
     const [validated, setValidated] = useState(false);
@@ -39,6 +39,7 @@ function MessageForm() {
         }
         setValidated(true);
         createNewMessage(values);
+        setShow(false);
     };
 
     return (

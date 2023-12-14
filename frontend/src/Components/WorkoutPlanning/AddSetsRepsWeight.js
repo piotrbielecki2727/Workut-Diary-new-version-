@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+
 import Table from 'react-bootstrap/Table';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
@@ -47,41 +49,12 @@ function AddSetsRepsWeight({ exercise, workoutId }) {
 
     };
 
-    const saveSet = (index) => {
-        setSets((prevSets) => {
-            const updatedSets = {
-                ...prevSets,
-                [exercise.Exercise_id]: prevSets[exercise.Exercise_id].map((set, i) =>
-                    i === index
-                        ? { ...set, showMaxRep: true, maxrep: calculateMaxRep(parseFloat(set.weight), parseInt(set.reps)) }
-                        : set
-                ),
-            };
-
-
-            const allSets = Object.keys(updatedSets).flatMap((exerciseId) =>
-                updatedSets[exerciseId].map((set) => ({
-                    Exercise_id: exerciseId,
-                    Repetitions: parseInt(set.reps),
-                    Weight: parseFloat(set.weight),
-                    rest: parseInt(set.rest),
-                    maxrep: set.maxrep,
-
-                }))
-            );
-
-
-
-            return updatedSets;
-        });
-    };
-
     const calculateMaxRep = (weight, reps) => {
         const parsedWeight = parseFloat(weight);
         const parsedReps = parseInt(reps);
 
         if (isNaN(parsedWeight) || isNaN(parsedReps) || parsedWeight <= 0 || parsedReps <= 0) {
-            return '';
+            return 0;
         } else {
             return Math.round(parsedWeight * (1 + parsedReps / 30)).toString();
         }
@@ -100,22 +73,14 @@ function AddSetsRepsWeight({ exercise, workoutId }) {
             return;
         }
 
-        const hasEmptyFields = Object.keys(sets).some((exerciseId) =>
-            sets[exerciseId].some((set) => set.weight === '' || set.reps === '' || set.rest === '')
-        );
-
-        if (hasEmptyFields) {
-            console.error('Please fill in all fields before saving the workout.');
-            return;
-        }
-
+ 
         const allSets = Object.keys(sets).flatMap((exerciseId) =>
             sets[exerciseId].map((set) => ({
                 Exercise_id: exerciseId,
                 Repetitions: parseInt(set.reps),
                 Weight: parseFloat(set.weight),
                 maxrep: calculateMaxRep(parseFloat(set.weight), parseInt(set.reps)),
-                rest: parseInt(set.rest),
+                rest: parseFloat(set.rest),
             }))
         );
 
@@ -134,82 +99,91 @@ function AddSetsRepsWeight({ exercise, workoutId }) {
     return (
         <>
             <Container id='AddSetsRepsWeightContainer'>
-                <Table responsive striped bordered>
-                    <thead id='theadAddSetsRepsWeight'>
-                        <tr>
-                            <th>Sets</th>
-                            <th>Weight</th>
-                            <th>Reps</th>
-                            <th>Rest</th>
-                        </tr>
-                    </thead>
-                    <tbody id='tbodyAddSetsRepsWeight'>
-                        {sets[exercise.Exercise_id] &&
-                            sets[exercise.Exercise_id].map((set, index) => (
-                                <tr key={index}>
-                                    <td>
-                                        <input
-                                            disabled
-                                            value={index + 1}
-                                            id='inputAddSetsRepsWeight1'
-                                        /></td>
-                                    <td>
-                                        <input
-                                            type='number'
-                                            min='0'
-                                            max='1000'
-                                            value={set.weight}
-                                            onChange={(e) => setSets(handleInputChange(e, sets, exercise.Exercise_id, index, 'weight'))}
-                                            required
-                                            id='inputAddSetsRepsWeight2'
-                                        />
-                                    </td>
-                                    <td>
-                                        <input
-                                            type='number'
-                                            min='0'
-                                            max='100'
-                                            value={set.reps}
-                                            onChange={(e) => setSets(handleInputChange(e, sets, exercise.Exercise_id, index, 'reps'))}
-                                            required
-                                            id='inputAddSetsRepsWeight2'
-                                        />
-                                    </td>
-                                    <td>
-                                        <input
-                                            type='number'
-                                            min='0'
-                                            max='100'
-                                            value={set.rest}
-                                            onChange={(e) => setSets(handleInputChange(e, sets, exercise.Exercise_id, index, 'rest'))}
-                                            required
-                                            id='inputAddSetsRepsWeight2'
-                                        />
-                                    </td>
+                <Form onSubmit={saveWorkout}>
+                    <Table responsive striped bordered>
+                        <thead id='theadAddSetsRepsWeight'>
+                            <tr>
+                                <th>Sets</th>
+                                <th>Weight (kg)</th>
+                                <th>Reps</th>
+                                <th>Rest (minutes)</th>
+                            </tr>
+                        </thead>
+                        <tbody id='tbodyAddSetsRepsWeight'>
 
-                                </tr>
-                            ))}
-                    </tbody>
-                </Table>
+                            {sets[exercise.Exercise_id] &&
+                                sets[exercise.Exercise_id].map((set, index) => (
+                                    <tr key={index}>
 
-                <Container id='AddSetDeleteSet'>
-                    <Button
-                        id='addSetsRepsAddSetButton'
-                        onClick={addSet}>
-                        <FontAwesomeIcon icon={faPlus} />
-                    </Button>
-                    <Button
-                        id='addSetsRepsDeleteSetButton'
-                        onClick={() => setSets(deleteSet(sets, exercise.Exercise_id))}>
-                        <FontAwesomeIcon icon={faMinus} />
-                    </Button>
-                </Container>
+                                        <td>
+                                            <input
+                                                disabled
+                                                value={index + 1}
+                                                id='inputAddSetsRepsWeight1'
+                                            /></td>
+                                        <td>
+                                            <input
+                                                type='number'
+                                                min='0'
+                                                max='1000'
+                                                step="0.1"
+                                                value={set.weight}
+                                                onChange={(e) => setSets(handleInputChange(e, sets, exercise.Exercise_id, index, 'weight'))}
+                                                required
+                                                id='inputAddSetsRepsWeight2'
+                                            />
+                                        </td>
+                                        <td>
+                                            <input
+                                                type='number'
+                                                min='0'
+                                                max='100'
+                                                value={set.reps}
+                                                onChange={(e) => setSets(handleInputChange(e, sets, exercise.Exercise_id, index, 'reps'))}
+                                                required
+                                                id='inputAddSetsRepsWeight2'
+                                            />
+                                        </td>
+                                        <td>
+                                            <input
+                                                type='number'
+                                                min='0'
+                                                max='100'
+                                                step="0.1"
+                                                value={set.rest}
+                                                onChange={(e) => setSets(handleInputChange(e, sets, exercise.Exercise_id, index, 'rest'))}
+                                                required
+                                                id='inputAddSetsRepsWeight2'
+                                            />
+                                        </td>
+
+                                    </tr>
+                                ))}
+
+                        </tbody>
+                    </Table>
+
+
+                    <Container id='AddSetDeleteSet'>
+                        <Button
+                            id='addSetsRepsAddSetButton'
+                            onClick={addSet}>
+                            <FontAwesomeIcon icon={faPlus} />
+                        </Button>
+                        <Button
+                            id='addSetsRepsDeleteSetButton'
+                            onClick={() => setSets(deleteSet(sets, exercise.Exercise_id))}>
+                            <FontAwesomeIcon icon={faMinus} />
+                        </Button>
+                    </Container>
+
+                    {Object.keys(sets).length > 0 && (
+                        <Button id='addSetsRepsAddSaveButton' type='submit'>Save Workout</Button>
+                    )}
+                </Form>
             </Container >
-            <Container id='addSetsRepsAddSaveButtonContainer'>
-                {Object.keys(sets).length > 0 && (
-                    <Button id='addSetsRepsAddSaveButton' onClick={saveWorkout}>Save Workout</Button>
-                )}
-            </Container>
+
+
         </>
     );
 }

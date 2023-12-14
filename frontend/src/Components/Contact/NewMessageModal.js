@@ -3,7 +3,6 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import MessageForm from './MessageForm';
 import './NewMessageModal.css'
-import SubmitButton from './SubmitButton';
 
 function NewMessageModal() {
 
@@ -11,11 +10,6 @@ function NewMessageModal() {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
-    const handleSubmit = () => {
-        handleClose(); // Zamknij modal po zatwierdzeniu
-
-    };
 
 
     return (
@@ -34,7 +28,7 @@ function NewMessageModal() {
                     <Modal.Title>New message</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <MessageForm />
+                    <MessageForm setShow={setShow} show={show} />
                 </Modal.Body>
 
             </Modal>

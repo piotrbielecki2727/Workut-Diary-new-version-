@@ -222,9 +222,9 @@ const createRoutes = (db) => {
         processedResult[exerciseId].sets.push({
           set_id: row.id_set,
           set_reps: row.Repetitions,
-          set_weight: row.Weight,
-          set_max: row[`1RM`],
-          set_rest: row.Rest
+          set_weight: row.weight,
+          set_max: row[`1rm`],
+          set_rest: row.rest
         });
       });
       

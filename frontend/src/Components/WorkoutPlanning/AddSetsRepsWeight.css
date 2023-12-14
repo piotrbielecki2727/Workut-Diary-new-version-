@@ -69,15 +69,11 @@
 }
 
 
-#addSetsRepsAddSaveButtonContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
+
 
 #addSetsRepsAddSaveButton {
-    margin-bottom: 0px;
+    display: flex;
+    margin: auto;
 
 }
 
