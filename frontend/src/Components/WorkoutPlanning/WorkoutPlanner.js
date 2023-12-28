@@ -71,9 +71,18 @@ function WorkoutPlanner() {
                                     <p></p>
                                 </>
                             )}
+
                             <Button id="addExerciseButtonWorkoutPlanner" as={Link} to={`/exercises`}>
                                 Add exercises <FontAwesomeIcon icon={faPlus} />
                             </Button>
+                            {exercises.length > 0 ? (
+                                <StartWorkout exercises={exercises} workoutId={workoutId} workoutName={workoutName} workoutDate={workoutDate} />
+
+                            ) : (
+
+                                <></>)
+
+                            }
                         </div>
                     ))}
 
@@ -81,14 +90,7 @@ function WorkoutPlanner() {
                 <Container id='printDndPlannerContainer'>
                     <PrintDnDExercises WorkoutPlanner={WorkoutPlanner} exercises={exercises} setExercises={setExercises} workoutId={workoutId} newExerciseAdded={newExerciseAdded} setNewExerciseAdded={setNewExerciseAdded} />
                 </Container>
-                {exercises.length > 0 ? (
-                    <StartWorkout exercises={exercises} workoutId={workoutId} workoutName={workoutName} workoutDate={workoutDate} />
 
-                ) : (
-
-                    <></>)
-
-                }
             </Container>
         </div>
     );

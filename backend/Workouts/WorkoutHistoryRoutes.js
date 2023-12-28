@@ -9,7 +9,8 @@ const createRoutes = (db) => {
         const query = ` select id_done_training, date, training_groups.name as training_group_name from done_trainings, training_groups
         where
         done_trainings.Training_Groups_id_group=training_groups.id_group
-        and training_groups.Users_id_user=?;`
+        and training_groups.Users_id_user=?
+        ORDER BY DATE ASC;`
 
         db.query(query, [userId], (err, result) => {
             if (err) {

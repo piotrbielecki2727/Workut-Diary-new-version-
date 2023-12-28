@@ -98,7 +98,7 @@ function Pagination({ data, workoutName, workoutDate, workoutId, CurrentPaginati
                                 <td>{workout.training_group_name}</td>
                                 <td>{new Date(workout.date).toLocaleString()}</td>
                                 <td>
-                                    <Button id='WorkoutHistoryButton' as={Link} to={`/checkDetails/${workout.id_done_training}/${workout.date}`}>
+                                    <Button id='WorkoutHistoryButton' as={Link} to={`/checkDetails/${workout.id_done_training}/${workout.training_group_name}/${workout.date}`}>
                                         <FontAwesomeIcon icon={faEye} />
                                     </Button>
                                 </td>

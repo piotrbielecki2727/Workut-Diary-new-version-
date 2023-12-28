@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container';
 import AdminPanelSearchBar from '../AdminPanelSearchBar';
 import GetExercises from './GetExercises';
 import '../AdminPanelStyles.css';
+import NewExercise from './NewExercise/NewExercise';
 
 
 function ExercisesManagment() {
@@ -15,7 +16,9 @@ function ExercisesManagment() {
     <div id='background'>
       <Container className='AdminPanelContainer'>
         <h3>Exercises list</h3>
+        <NewExercise />
         <AdminPanelSearchBar data={exercises} CurrentPagination={CurrentPagination} />
+       
       </Container>
 
     </div>

@@ -90,7 +90,7 @@ function UserDetails({ userId, newMeasurement }) {
                         </tr>
                     </thead>
                     {currentItems.map(allmeasurements => (
-                        <tbody className="xd">
+                        <tbody >
                             <tr key={allmeasurements.id_measurement}>
                                 <td>
                                     {new Date(allmeasurements.date).toLocaleString()}

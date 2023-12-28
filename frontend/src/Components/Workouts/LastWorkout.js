@@ -31,7 +31,6 @@ function LastWorkout({ workoutId }) {
             navigate("/")
         }
         else {
-            console.log(DoneWorkoutId);
             axios.get(`http://localhost:3001/getDoneWorkoutDetails/${idToUse}`)
                 .then(res => {
                     if (res.data.Success) {

@@ -68,7 +68,7 @@ function WorkoutManager() {
     return (
         <div id='background'>
             <Container id="workoutManagerContainer">
-                <h3>Workout manager</h3>
+                <h3>Manage your workouts</h3>
                 <Button variant="primary" onClick={handleShowCreate} id='createNewWorkoutButton'>
                     Create new workout
                 </Button>
@@ -84,7 +84,7 @@ function WorkoutManager() {
                             <Table id="workoutManagerTable" bordered responsive >
                                 <thead>
                                     <tr>
-                                        <th>#</th>
+                                        <th>Start workout</th>
                                         <th>Name</th>
                                         <th>Last performed</th>
                                         <th>Check</th>

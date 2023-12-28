@@ -152,7 +152,7 @@ function AppWrapper() {
                 />
 
                 <Route
-                  path="/checkDetails/:id_done_training/:workoutDate"
+                  path="/checkDetails/:id_done_training/:workoutName/:workoutDate"
                   element={checkPermissions(<CheckDetails />, ["User"])}
                 />
 

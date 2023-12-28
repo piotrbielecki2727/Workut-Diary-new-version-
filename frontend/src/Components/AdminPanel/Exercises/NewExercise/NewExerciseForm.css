@@ -1,0 +1,42 @@
+.NewExerciseFormRow {
+    justify-content: center;
+    align-items: center;
+}
+
+.NewExerciseFormGroup {
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    text-align: center;
+}
+
+.NewExerciseFormControl {
+    margin: auto;
+    text-align: center;
+}
+
+.NewExerciseFormLabel {
+    font-size: 20px;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+
+.NewExerciseFormSubmitButtonDiv {
+    display: flex;
+    justify-content: end;
+    margin-top: 15px;
+}
+
+
+.NewExerciseFormSubmitButton {
+    background-color: black;
+    transition: 0.3s all ease-in-out;
+    font-size: 18px;
+}
+
+
+.NewExerciseFormSubmitButton:hover {
+    background-color: black;
+    transform: scale(1.05);
+}

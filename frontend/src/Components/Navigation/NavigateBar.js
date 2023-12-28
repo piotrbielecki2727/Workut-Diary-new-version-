@@ -101,26 +101,18 @@ function NavigateBar() {
                   <div className="navDiv">
                     <Link to={"/manageUsers"} className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faUsers} className="custom-icon" /></i>User management</Link>
                   </div>
-                  <div className="navDiv">
-                    <Link to="/messages" className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faEnvelope} className="custom-icon" /></i>User messages</Link>
-                  </div>
+                  
                   <div className="navDiv">
                     <Link to="/manageExercises" className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faListCheck} className="custom-icon" /></i>Exercise management</Link>
                   </div>
                 </>
               ) : (
                 <>
+                 
                   <div className="navDiv">
-                    <Link to={"/introduction"} className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faCircleInfo} className="custom-icon" /></i>Introduction</Link>
+                    <Link to={"/BmrCalculator"} className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faCalculator} className="custom-icon" /></i>Calorie Calculator</Link>
                   </div>
-                  <div className="navDiv">
-                    <Link to={"/BmrCalculator"} className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faCalculator} className="custom-icon" /></i>Calculate your BMR</Link>
-                  </div>
-                  {role === "User" && (
-                    <div className="navDiv">
-                      <Link to="/contact" className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faEnvelope} className="custom-icon" /></i>Contact us</Link>
-                    </div>
-                  )}
+                  
                 </>
               )}
               <div className="navDiv">

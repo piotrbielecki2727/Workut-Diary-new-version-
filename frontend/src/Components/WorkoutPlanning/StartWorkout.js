@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Container from 'react-bootstrap/Container';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import './StartWorkout.css';
 
 
@@ -29,7 +29,7 @@ function SetsRepsWeight({ exercises, workoutId, workoutName, workoutDate }) {
   return (
     <>
       <Button onClick={handleShow} id='startWorkoutButton'>
-        Start workout
+      <FontAwesomeIcon icon={faPlay} /> Start workout
       </Button>
 
       <Modal
