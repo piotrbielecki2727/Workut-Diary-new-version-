@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import NewExerciseForm from './NewExerciseForm';
 
-function NewExerciseModal() {
+function NewExerciseModal({ setExercisesListUpdate, exercisesListUpdate }) {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -25,7 +25,7 @@ function NewExerciseModal() {
                     Add new exercise
                 </Modal.Header>
                 <Modal.Body>
-                    <NewExerciseForm setShow={setShow} show={show} />
+                    <NewExerciseForm setShow={setShow} show={show} exercisesListUpdate={exercisesListUpdate} setExercisesListUpdate={setExercisesListUpdate} />
                 </Modal.Body>
             </Modal>
         </>

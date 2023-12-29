@@ -16,7 +16,12 @@ function UsersManagment() {
     <div id='background'>
       <Container className="AdminPanelContainer">
         <h3>Users list</h3>
-        <AdminPanelSearchBar data={users} userUpdated={userUpdated} setUserUpdated={setUserUpdated} CurrentPagination={CurrentPagination} />
+        <AdminPanelSearchBar
+          data={users}
+          userUpdated={userUpdated}
+          setUserUpdated={setUserUpdated}
+          CurrentPagination={CurrentPagination}
+        />
       </Container>
 
     </div>

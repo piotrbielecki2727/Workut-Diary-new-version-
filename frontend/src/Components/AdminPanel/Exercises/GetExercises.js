@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-function GetExercises() {
+function GetExercises({ exercisesListUpdate, onExerciseUpdated }) {
 
     const [exercises, setExercises] = useState([]);
 
@@ -20,7 +20,10 @@ function GetExercises() {
 
     useEffect(() => {
         getExercisesList();
-    }, [])
+        if (exercisesListUpdate) {
+            onExerciseUpdated(false);
+        }
+    }, [exercisesListUpdate, onExerciseUpdated])
 
     return exercises;
 

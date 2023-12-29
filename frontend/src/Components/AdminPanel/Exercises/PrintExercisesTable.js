@@ -10,8 +10,9 @@ import { Link } from 'react-router-dom';
 
 
 import '../AdminPanelStyles.css';
+import DeleteExercise from './DeleteExercise';
 
-function PrintExercisesTable({ currentItems }) {
+function PrintExercisesTable({ currentItems, exercisesListUpdate, setExercisesListUpdate }) {
 
     const renderTooltip = (props, tooltipMessage) => (
         <Tooltip id="button-tooltip" {...props}>
@@ -58,7 +59,7 @@ function PrintExercisesTable({ currentItems }) {
                                     delay={{ show: 250, hide: 400 }}
                                     overlay={(props) => renderTooltip(props, "Delete")}
                                 >
-                                    <Button className='ExercisesButtonGroupButton' variant='none'><FontAwesomeIcon icon={faTrash} size='xl' /></Button>
+                                    <DeleteExercise idToDelete={exercise.id_exercise} setExercisesListUpdate={setExercisesListUpdate} exercisesListUpdate={exercisesListUpdate} />
                                 </OverlayTrigger>
                             </ButtonGroup>
 

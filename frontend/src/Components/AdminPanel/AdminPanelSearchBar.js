@@ -4,7 +4,7 @@ import AdminPanelPagination from './AdminPanelPagination';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 
-function AdminPanelSearchBar({ data, CurrentPagination, userUpdated, setUserUpdated }) {
+function AdminPanelSearchBar({ data, CurrentPagination, userUpdated, setUserUpdated, setExercisesListUpdate, exercisesListUpdate }) {
 
     const [searchValue, setSearchValue] = useState();
     const [filteredList, setFilteredList] = useState([]);
@@ -51,7 +51,7 @@ function AdminPanelSearchBar({ data, CurrentPagination, userUpdated, setUserUpda
                             <i onClick={clearSearchBar} id="FilterWorkoutX"><FontAwesomeIcon icon={faX} /></i>
                         </div>
                     </div>
-                    <AdminPanelPagination data={filteredList} userUpdated={userUpdated} setUserUpdated={setUserUpdated} CurrentPagination={CurrentPagination} />
+                    <AdminPanelPagination data={filteredList} userUpdated={userUpdated} setUserUpdated={setUserUpdated} CurrentPagination={CurrentPagination} setExercisesListUpdate={setExercisesListUpdate} exercisesListUpdate={exercisesListUpdate} />
                 </>
             ) : (
                 <>

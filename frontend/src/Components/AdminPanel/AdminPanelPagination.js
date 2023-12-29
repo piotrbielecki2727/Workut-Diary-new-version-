@@ -6,7 +6,7 @@ import PrintExercisesTable from './Exercises/PrintExercisesTable';
 
 
 
-function AdminPanelPagination({ data, userUpdated, setUserUpdated, CurrentPagination }) {
+function AdminPanelPagination({ data, userUpdated, setUserUpdated, CurrentPagination, setExercisesListUpdate, exercisesListUpdate  }) {
 
 
     const [itemOffset, setItemOffset] = useState(0);
@@ -37,7 +37,7 @@ function AdminPanelPagination({ data, userUpdated, setUserUpdated, CurrentPagina
                 (
                     <PrintUsersTable currentItems={currentItems} userUpdated={userUpdated} setUserUpdated={setUserUpdated} />
                 ) : CurrentPagination === "Exercises" ? (
-                    <PrintExercisesTable currentItems={currentItems} />
+                    <PrintExercisesTable currentItems={currentItems} exercisesListUpdate={exercisesListUpdate} setExercisesListUpdate={setExercisesListUpdate} />
 
                 ) :
                     (

@@ -30,7 +30,9 @@ const createRoutes = (db) => {
             try {
                 this.db.query(
                     queries.createNewExercise,
-                    [req.body.ExerciseName, req.body.MainMuscleGroup, req.body.SecondaryMuscleGroup1, req.body.SecondaryMuscleGroup2, req.body.GifLink, req.body.Description, req.body.LinkToYTVideo, req.body.Difficulty, req.body.Equipment],
+                    [req.body.ExerciseName, req.body.MainMuscleGroup,
+                    req.body.SecondaryMuscleGroup1, req.body.SecondaryMuscleGroup2, req.body.GifLink,
+                    req.body.Description, req.body.LinkToYTVideo, req.body.Difficulty, req.body.Equipment],
                     (error, result) => {
                         if (error) {
                             console.log(error);
@@ -46,6 +48,29 @@ const createRoutes = (db) => {
             }
         }
 
+        deleteExerciseFromDB(req, res) {
+            const idToDelete = req.params.idToDelete;
+            try {
+                this.db.query(
+                    queries.deleteExerciseFromDB,
+                    [idToDelete],
+                    (error, result) => {
+                        if (error) {
+                            console.log(error);
+                            return res.json({ Error: "There is an error." });
+                        }
+
+                        return res.json({ Success: "Successfully deleted exercise from db." });
+                    }
+                );
+            } catch (error) {
+                console.log(error);
+                return res.json({ Error: "There is an error." });
+            }
+        }
+
+
+
     }
 
     const exercisesController = new AdminPanelExercisesController(db);
@@ -58,6 +83,11 @@ const createRoutes = (db) => {
     router.post("/createNewExercise", (req, res) => {
         exercisesController.createNewExercise(req, res);
     })
+
+    router.delete("/deleteExerciseFromDB/:idToDelete", (req, res) => {
+        exercisesController.deleteExerciseFromDB(req, res);
+    })
+
 
 
     return router;

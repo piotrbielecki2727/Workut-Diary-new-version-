@@ -9,7 +9,7 @@ import './NewExerciseForm.css';
 import { createNewExercise } from './AddNewExercise';
 
 
-function NewExerciseForm({ show, setShow }) {
+function NewExerciseForm({ show, setShow, setExercisesListUpdate, exercisesListUpdate  }) {
     const [validated, setValidated] = useState(false);
 
     const [values, setValues] = useState({
@@ -35,7 +35,8 @@ function NewExerciseForm({ show, setShow }) {
         }
         else {
             createNewExercise(values);
-            //setShow(false);
+            setExercisesListUpdate(true);
+            setShow(false);
 
         }
         setValidated(true);
