@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -7,13 +7,17 @@ import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import Row from 'react-bootstrap/Row';
 import './NewExerciseForm.css';
 import { createNewExercise } from './AddNewExercise';
+import { editChoosedExercise } from './EditChoosedExercise';
+
+import GetChoosedExercise from './GetChoosedExercise';
 
 
-function NewExerciseForm({ show, setShow, setExercisesListUpdate, exercisesListUpdate  }) {
+function NewExerciseForm({ show, setShow, setExercisesListUpdate, exercisesListUpdate, idToEdit, isEditing }) {
+
     const [validated, setValidated] = useState(false);
 
     const [values, setValues] = useState({
-        ExerciseName: '',
+        Name: '',
         MainMuscleGroup: '',
         SecondaryMuscleGroup1: '',
         SecondaryMuscleGroup2: '',
@@ -23,6 +27,25 @@ function NewExerciseForm({ show, setShow, setExercisesListUpdate, exercisesListU
         Difficulty: '',
         Equipment: '',
     })
+
+    useEffect(() => {
+        if (isEditing && values.length > 0) {
+            const fetchedExercise = values[0]; 
+            setValues({
+                id_exercise: fetchedExercise.id_exercise,
+                ExerciseName: fetchedExercise.Name,
+                MainMuscleGroup: fetchedExercise.main_muscle_group,
+                SecondaryMuscleGroup1: fetchedExercise.muscle_group_1,
+                SecondaryMuscleGroup2: fetchedExercise.muscle_group_2,
+                GifLink: fetchedExercise.gif,
+                Description: fetchedExercise.description,
+                LinkToYTVideo: fetchedExercise.video,
+                Difficulty: fetchedExercise.difficulty,
+                Equipment: fetchedExercise.equipment,
+                ...values,
+            });
+        }
+    }, [isEditing, values]);
 
 
 
@@ -34,18 +57,24 @@ function NewExerciseForm({ show, setShow, setExercisesListUpdate, exercisesListU
             event.stopPropagation();
         }
         else {
-            createNewExercise(values);
+            if(isEditing)
+            {
+                editChoosedExercise(values);
+            }
+            else {
+                createNewExercise(values);
+            }
             setExercisesListUpdate(true);
             setShow(false);
 
         }
         setValidated(true);
-        console.log(values);
     };
 
 
     const handleValueChange = (event, name) => {
         setValues({
+
             ...values,
             [name]: event.target.value,
         })
@@ -56,6 +85,8 @@ function NewExerciseForm({ show, setShow, setExercisesListUpdate, exercisesListU
     return (
 
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
+            {isEditing ? (<GetChoosedExercise idToEdit={idToEdit} values={values} setValues={setValues} />
+            ) : (<></>)}
             <Row className='NewExerciseFormRow'>
 
                 <Form.Group as={Col} lg="6" className='NewExerciseFormGroup'>

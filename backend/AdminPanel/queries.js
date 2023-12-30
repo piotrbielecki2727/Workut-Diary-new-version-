@@ -4,7 +4,9 @@ const queries = {
     updateUserStatus: "UPDATE USERS SET status = ?  WHERE id_user = ?",
     getExercisesListQuery: "SELECT * FROM EXERCISES",
     createNewExercise: "INSERT INTO EXERCISES (`Name`, `main_muscle_group`, `muscle_group_1`, `muscle_group_2`, `gif`, `description`, `video`, `difficulty`, `equipment`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
-    deleteExerciseFromDB: "DELETE FROM EXERCISES WHERE id_exercise=?"
+    deleteExerciseFromDB: "DELETE FROM EXERCISES WHERE id_exercise=?",
+    getChoosedExerciseInformationQuery: "SELECT * FROM EXERCISES where id_exercise=?",
+    editChoosedExerciseInDB:"UPDATE exercises SET Name=?, main_muscle_group=?, muscle_group_1=?, muscle_group_2=?, gif=?, description=?, video=?, difficulty=?, equipment=? WHERE id_exercise=?",
 };
 
 

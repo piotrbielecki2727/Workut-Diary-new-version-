@@ -2,8 +2,10 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import NewExerciseForm from './NewExerciseForm';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheck, faPenToSquare } from '@fortawesome/free-solid-svg-icons'
 
-function NewExerciseModal({ setExercisesListUpdate, exercisesListUpdate }) {
+function NewExerciseModal({ setExercisesListUpdate, exercisesListUpdate, isEditing, idToEdit }) {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -11,10 +13,16 @@ function NewExerciseModal({ setExercisesListUpdate, exercisesListUpdate }) {
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
-                Add new exercise
-            </Button>
+            {isEditing ? (
+                <Button variant='none' onClick={handleShow} className='ExercisesButtonGroupButton' type="submit"><FontAwesomeIcon icon={faPenToSquare} size='xl' />
 
+                </Button >
+            ) : (
+                <Button variant='dark' onClick={handleShow} className='NewExerciseFormSubmitButton' type="submit"> Add new exercise <FontAwesomeIcon icon={faCheck} size='lg' />
+
+                </Button >
+            )
+            }
             <Modal
                 show={show}
                 onHide={handleClose}
@@ -22,10 +30,16 @@ function NewExerciseModal({ setExercisesListUpdate, exercisesListUpdate }) {
                 keyboard={false}
             >
                 <Modal.Header closeButton closeVariant='white' style={{ backgroundColor: 'black', color: 'white', fontSize: '22px' }}>
-                    Add new exercise
+                    {isEditing ? (
+                        "Edit exercise"
+                    ) : (
+                        "Add new exercise"
+                    )
+                    }
+
                 </Modal.Header>
                 <Modal.Body>
-                    <NewExerciseForm setShow={setShow} show={show} exercisesListUpdate={exercisesListUpdate} setExercisesListUpdate={setExercisesListUpdate} />
+                    <NewExerciseForm isEditing={isEditing} idToEdit={idToEdit} setShow={setShow} show={show} exercisesListUpdate={exercisesListUpdate} setExercisesListUpdate={setExercisesListUpdate} />
                 </Modal.Body>
             </Modal>
         </>

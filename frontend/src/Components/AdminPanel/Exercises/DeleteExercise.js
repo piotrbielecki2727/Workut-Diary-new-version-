@@ -28,7 +28,7 @@ function DeleteExercise({ idToDelete, setExercisesListUpdate, exercisesListUpdat
     }
 
     return (
-        <Button onClick={deleteExercise} variant='none'><FontAwesomeIcon icon={faTrash} size='xl' /></Button>
+        <Button onClick={deleteExercise} className='ExercisesButtonGroupButton'  variant='none'><FontAwesomeIcon icon={faTrash} size='xl' /></Button>
     )
 
 }

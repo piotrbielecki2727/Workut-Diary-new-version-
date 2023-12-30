@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 
 import '../AdminPanelStyles.css';
 import DeleteExercise from './DeleteExercise';
+import NewExerciseModal from './NewExercise/NewExerciseModal';
 
 function PrintExercisesTable({ currentItems, exercisesListUpdate, setExercisesListUpdate }) {
 
@@ -52,7 +53,7 @@ function PrintExercisesTable({ currentItems, exercisesListUpdate, setExercisesLi
                                     delay={{ show: 250, hide: 400 }}
                                     overlay={(props) => renderTooltip(props, "Edit")}
                                 >
-                                    <Button className='ExercisesButtonGroupButton' variant='none'><FontAwesomeIcon icon={faPenToSquare} size='xl' /></Button>
+                                    <NewExerciseModal idToEdit={exercise.id_exercise} isEditing={true} setExercisesListUpdate={setExercisesListUpdate} exercisesListUpdate={exercisesListUpdate}  />
                                 </OverlayTrigger>
                                 <OverlayTrigger
                                     placement="bottom"
