@@ -17,8 +17,8 @@ function NewExerciseForm({ show, setShow, setExercisesListUpdate, exercisesListU
     const [validated, setValidated] = useState(false);
 
     const [values, setValues] = useState({
-        Name: '',
-        MainMuscleGroup: '',
+        ExerciseName: '',
+        IdMainMuscleGroup: null,
         SecondaryMuscleGroup1: '',
         SecondaryMuscleGroup2: '',
         GifLink: '',
@@ -34,7 +34,7 @@ function NewExerciseForm({ show, setShow, setExercisesListUpdate, exercisesListU
             setValues({
                 id_exercise: fetchedExercise.id_exercise,
                 ExerciseName: fetchedExercise.Name,
-                MainMuscleGroup: fetchedExercise.main_muscle_group,
+                IdMainMuscleGroup: fetchedExercise.id_main_muscle_group,
                 SecondaryMuscleGroup1: fetchedExercise.muscle_group_1,
                 SecondaryMuscleGroup2: fetchedExercise.muscle_group_2,
                 GifLink: fetchedExercise.gif,
@@ -90,7 +90,7 @@ function NewExerciseForm({ show, setShow, setExercisesListUpdate, exercisesListU
             <Row className='NewExerciseFormRow'>
 
                 <Form.Group as={Col} lg="6" className='NewExerciseFormGroup'>
-                    <Form.Label className='NewExerciseFormLabel'>Exercise name</Form.Label>
+                    <Form.Label className='NewExerciseFormLabel'>Exercise name*</Form.Label>
                     <Form.Control
                         className='NewExerciseFormControl'
                         required
@@ -108,26 +108,26 @@ function NewExerciseForm({ show, setShow, setExercisesListUpdate, exercisesListU
                 </Form.Group>
 
                 <Form.Group as={Col} lg="6" className='NewExerciseFormGroup'>
-                    <Form.Label className='NewExerciseFormLabel'>Main muscle group</Form.Label>
+                    <Form.Label className='NewExerciseFormLabel'>Main muscle group*</Form.Label>
                     <Form.Control
                         className="NewExerciseFormControl"
                         type="select"
                         as="select"
                         required
-                        value={values.MainMuscleGroup}
-                        onChange={(event) => handleValueChange(event, 'MainMuscleGroup')}
+                        value={values.IdMainMuscleGroup}
+                        onChange={(event) => handleValueChange(event, 'IdMainMuscleGroup')}
                     >
                         <option value="" disabled selected>Choose muscle group</option>
-                        <option value={"Waist"}>Waist</option>
-                        <option value={"Chest"}>Chest</option>
-                        <option value={"Shoulders"}>Shoulders</option>
-                        <option value={"Back"}>Back</option>
-                        <option value={"Glutes"}>Glutes</option>
-                        <option value={"Upper legs"}>Upper legs</option>
-                        <option value={"Lower legs"}>Lower legs</option>
-                        <option value={"Biceps"}>Biceps</option>
-                        <option value={"Triceps"}>Triceps</option>
-                        <option value={"Forearms"}>Forearms</option>
+                        <option value={2}>Waist</option>
+                        <option value={3}>Chest</option>
+                        <option value={4}>Shoulders</option>
+                        <option value={6}>Back</option>
+                        <option value={10}>Glutes</option>
+                        <option value={11}>Upper legs</option>
+                        <option value={12}>Lower legs</option>
+                        <option value={13}>Biceps</option>
+                        <option value={14}>Triceps</option>
+                        <option value={15}>Forearms</option>
                     </Form.Control>
                     <Form.Control.Feedback type="invalid" >
                         Please choose a valid muscle group.
@@ -201,7 +201,7 @@ function NewExerciseForm({ show, setShow, setExercisesListUpdate, exercisesListU
             </Row>
 
             <Form.Group as={Col} className='NewExerciseFormGroup'>
-                <Form.Label className='NewExerciseFormLabel'>Gif link</Form.Label>
+                <Form.Label className='NewExerciseFormLabel'>Gif link*</Form.Label>
                 <Form.Control
                     className='NewExerciseFormControl'
                     type="text"
@@ -219,7 +219,7 @@ function NewExerciseForm({ show, setShow, setExercisesListUpdate, exercisesListU
             </Form.Group>
 
             <Form.Group as={Col} className='NewExerciseFormGroup'>
-                <Form.Label className='NewExerciseFormLabel'>Description</Form.Label>
+                <Form.Label className='NewExerciseFormLabel'>Description*</Form.Label>
                 <Form.Control
                     className='NewExerciseFormControl'
                     as="textarea"
@@ -238,7 +238,7 @@ function NewExerciseForm({ show, setShow, setExercisesListUpdate, exercisesListU
             </Form.Group>
 
             <Form.Group as={Col} className='NewExerciseFormGroup'>
-                <Form.Label className='NewExerciseFormLabel'>Link to YouTube video</Form.Label>
+                <Form.Label className='NewExerciseFormLabel'>Link to YouTube video*</Form.Label>
                 <Form.Control
                     className='NewExerciseFormControl'
                     type='text'
@@ -258,7 +258,7 @@ function NewExerciseForm({ show, setShow, setExercisesListUpdate, exercisesListU
             <Row>
 
                 <Form.Group as={Col} lg="6" className='NewExerciseFormGroup'>
-                    <Form.Label className='NewExerciseFormLabel'>Difficulty</Form.Label>
+                    <Form.Label className='NewExerciseFormLabel'>Difficulty*</Form.Label>
                     <Form.Control
                         className="NewExerciseFormControl"
                         type="select"

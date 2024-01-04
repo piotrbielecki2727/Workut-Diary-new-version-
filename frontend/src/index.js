@@ -32,6 +32,8 @@ import UsersManagment from "./Components/AdminPanel/Users/UsersManagment";
 import ExercisesManagment from "./Components/AdminPanel/Exercises/ExercisesManagment";
 import ManageUserMessages from "./Components/AdminPanel/UserMessages/ManageUserMessages";
 import Contact from "./Components/Contact/Contact";
+import ProgressChart from "./Components/Charts/ProgressChart";
+import CheckYourProgress from "./Components/Charts/CheckYourProgress";
 
 function AppWrapper() {
 
@@ -109,15 +111,13 @@ function AppWrapper() {
                 />
 
 
-
-
                 <Route
                   path="/getExercises/:muscle_group"
                   element={<AllExercises />}
                 />
 
                 <Route
-                  path="/getExercise/:main_muscle_group/:Name"
+                  path="/getExercise/:muscle_group/:Name"
                   element={<ChoosedExercise />}
                 />
 
@@ -154,6 +154,11 @@ function AppWrapper() {
                 <Route
                   path="/checkDetails/:id_done_training/:workoutName/:workoutDate"
                   element={checkPermissions(<CheckDetails />, ["User"])}
+                />
+
+                <Route
+                  path="/progress"
+                  element={checkPermissions(<CheckYourProgress />, ["User"])}
                 />
 
                 <Route path="/login" element={<Login />} />

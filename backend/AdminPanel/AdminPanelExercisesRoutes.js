@@ -46,13 +46,14 @@ const createRoutes = (db) => {
 
 
         createNewExercise(req, res) {
-            console.log("xdd", req.body.values);
+            console.log("xdd", req.body.IdMainMuscleGroup);
             try {
                 this.db.query(
                     queries.createNewExercise,
-                    [req.body.ExerciseName, req.body.MainMuscleGroup,
-                    req.body.SecondaryMuscleGroup1, req.body.SecondaryMuscleGroup2, req.body.GifLink,
-                    req.body.Description, req.body.LinkToYTVideo, req.body.Difficulty, req.body.Equipment],
+                    [req.body.ExerciseName, req.body.SecondaryMuscleGroup1, 
+                    req.body.SecondaryMuscleGroup2, req.body.GifLink,
+                    req.body.Description, req.body.LinkToYTVideo, req.body.Difficulty, 
+                    req.body.Equipment, req.body.IdMainMuscleGroup],
                     (error, result) => {
                         if (error) {
                             console.log(error);
@@ -91,13 +92,14 @@ const createRoutes = (db) => {
 
 
         editChoosedExerciseInDB(req, res) {
-            console.log("xdd", req.body.id_exercise);
+            console.log("xdd", req.body.values);
             try {
                 this.db.query(
                     queries.editChoosedExerciseInDB,
-                    [req.body.ExerciseName, req.body.MainMuscleGroup,
-                    req.body.SecondaryMuscleGroup1, req.body.SecondaryMuscleGroup2, req.body.GifLink,
-                    req.body.Description, req.body.LinkToYTVideo, req.body.Difficulty, req.body.Equipment, req.body.id_exercise],
+                    [req.body.ExerciseName, req.body.SecondaryMuscleGroup1, 
+                    req.body.SecondaryMuscleGroup2, req.body.GifLink,
+                    req.body.Description, req.body.LinkToYTVideo, 
+                    req.body.Difficulty, req.body.Equipment, req.body.IdMainMuscleGroup, req.body.id_exercise],
                     (error, result) => {
                         if (error) {
                             console.log(error);

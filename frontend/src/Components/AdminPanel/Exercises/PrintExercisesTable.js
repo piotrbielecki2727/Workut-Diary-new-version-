@@ -37,7 +37,7 @@ function PrintExercisesTable({ currentItems, exercisesListUpdate, setExercisesLi
                 {currentItems.map(exercise => (
                     <tr key={exercise.id_exercise}>
                         <td>{exercise.Name}</td>
-                        <td>{exercise.main_muscle_group}</td>
+                        <td>{exercise.muscle_group}</td>
                         <td>
 
                             <ButtonGroup>
@@ -46,7 +46,7 @@ function PrintExercisesTable({ currentItems, exercisesListUpdate, setExercisesLi
                                     delay={{ show: 250, hide: 400 }}
                                     overlay={(props) => renderTooltip(props, "Details")}
                                 >
-                                    <Button as={Link} to={`/getExercise/${exercise.main_muscle_group}/${exercise.Name}`} className='ExercisesButtonGroupButton' variant='none'><FontAwesomeIcon icon={faCircleInfo} size='xl' /></Button>
+                                    <Button as={Link} to={`/getExercise/${exercise.muscle_group}/${exercise.Name}`} className='ExercisesButtonGroupButton' variant='none'><FontAwesomeIcon icon={faCircleInfo} size='xl' /></Button>
                                 </OverlayTrigger>
                                 <OverlayTrigger
                                     placement="bottom"

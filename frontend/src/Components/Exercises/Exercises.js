@@ -41,6 +41,7 @@ function Exercises() {
     return (
         <div id='background'>
             <Container id='exercisesContainer'>
+                <h3>Exercises base</h3>
                 <SearchBar />
                 <h3>or find your exercise by muscle group</h3>
                 <Row className='customRow'>
@@ -58,7 +59,7 @@ function Exercises() {
 
                 </Row>
             </Container >
-            </div>
+        </div>
     );
 }
 

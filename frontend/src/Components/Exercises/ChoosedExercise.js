@@ -24,7 +24,7 @@ function ChoosedExercise() {
     const navigate = useNavigate();
     const { Name } = useParams();
     const { auth } = useAuth();
-    const { main_muscle_group } = useParams();
+    const {muscle_group} = useParams();
 
     const handleGoBack = () => {
         navigate(-1);
@@ -102,8 +102,8 @@ function ChoosedExercise() {
                         allowFullScreen
                     ></iframe>
                     <hr></hr>
-                    <h3>Other exercises for {main_muscle_group}</h3>
-                    <OtherExercisesCarousel main_muscle_group={main_muscle_group} />
+                    <h3>Other exercises for {muscle_group}</h3>
+                    <OtherExercisesCarousel muscle_group={muscle_group} />
 
 
                 </Container >

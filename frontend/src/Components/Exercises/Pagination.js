@@ -72,7 +72,7 @@ function Pagination({ data, workoutName, workoutDate, workoutId, CurrentPaginati
                 <Row className='customRow'>
                     {currentItems.map(exercise => (
                         <Col key={exercise.id_exercise} xs={5} sm={6} md={4} lg={3}>
-                            <Link to={`/getExercise/${exercise.main_muscle_group}/${exercise.Name}`} id='muscle-group-link'>
+                            <Link to={`/getExercise/${exercise.muscle_group}/${exercise.Name}`} id='muscle-group-link'>
                                 <Card className='customCard'>
                                     <Card.Img src={exercise.gif} alt="exercise_gif" />
                                     <Card.Footer className='customCardFooter'>

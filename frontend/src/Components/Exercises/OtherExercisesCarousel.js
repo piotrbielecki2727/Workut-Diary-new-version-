@@ -11,12 +11,12 @@ import {
 
 
 
-function OtherExercisesCarousel({ main_muscle_group }) {
+function OtherExercisesCarousel({ muscle_group }) {
 
     const [exercises, setExercises] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/otherExercisesCarousel/${main_muscle_group}`)
+        axios.get(`http://localhost:3001/otherExercisesCarousel/${muscle_group}`)
             .then(res => {
                 if (res.data.Status === "Success") {
                     console.log("xdd", res.data.results);
@@ -29,7 +29,7 @@ function OtherExercisesCarousel({ main_muscle_group }) {
                 console.log(err);
             })
 
-    }, [main_muscle_group])
+    }, [muscle_group])
 
 
 
@@ -39,7 +39,7 @@ function OtherExercisesCarousel({ main_muscle_group }) {
             <Carousel data-bs-theme="dark">
                 {exercises.map(exercise => (
                     <Carousel.Item key={exercise.id_exercise}>
-                        <Link to={`/getExercise/${main_muscle_group}/${exercise.Name}`}>
+                        <Link to={`/getExercise/${muscle_group}/${exercise.Name}`}>
                             <Image src={exercise.gif} fluid />
                             <Carousel.Caption>
                                 <h3 id="carouselCaption">{exercise.Name}</h3>

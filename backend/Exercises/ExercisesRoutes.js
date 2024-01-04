@@ -5,7 +5,9 @@ const createRoutes = (db) => {
 
   //POBIERA WSZYSTKIE CWICZENIA W BAZIE
   router.get('/getAllExercises', (req, res) => {
-    const query = 'SELECT id_exercise,Name,gif, main_muscle_group from exercises';
+    const query = `SELECT id_exercise,Name,gif, muscle_group from exercises, muscle_groups 
+    where exercises.id_main_muscle_group=muscle_groups.id_muscle_groups`;
+    
     db.query(query, (error, results) => {
       if (error) {
         console.log(error);
@@ -26,7 +28,10 @@ const createRoutes = (db) => {
   router.get('/getExerciseByMuscleGroup/:muscle_group', (req, res) => {
     const muscle_group = req.params.muscle_group;
 
-    const query = 'SELECT id_exercise,Name,gif,main_muscle_group from exercises where main_muscle_group = ? ';
+    const query = `
+    SELECT id_exercise,Name,gif, muscle_groups.muscle_group from exercises, muscle_groups 
+    where exercises.id_main_muscle_group=muscle_groups.id_muscle_groups
+    and muscle_groups.muscle_group  = ?`;
     db.query(query, [muscle_group], (error, results) => {
       if (error) {
         console.log(error);
@@ -47,7 +52,8 @@ const createRoutes = (db) => {
 
   router.get('/getChoosedExercise/:Name', (req, res) => {
     const Name = req.params.Name;
-    const query = 'SELECT id_exercise,Name,gif,main_muscle_group,muscle_group_1,muscle_group_2,equipment,difficulty,video,description from exercises where Name = ? ';
+    const query = `SELECT id_exercise,Name,gif, muscle_group,muscle_group_1,muscle_group_2,equipment,difficulty,video,description
+    from exercises, muscle_groups where Name = ?`;
     db.query(query, [Name], (error, results) => {
       if (error) {
         console.log(error);
@@ -101,10 +107,12 @@ const createRoutes = (db) => {
 
 
 
-  router.get('/otherExercisesCarousel/:main_muscle_group', (req, res) => {
-    const main_muscle_group = req.params.main_muscle_group;
-    console.log(main_muscle_group);
-    const query = 'SELECT exercises.* FROM exercises WHERE main_muscle_group = ?';
+  router.get('/otherExercisesCarousel/:muscle_group', (req, res) => {
+    const main_muscle_group = req.params.muscle_group;
+    console.log("xddd", main_muscle_group);
+    const query = `SELECT exercises.* FROM exercises, muscle_groups 
+    WHERE exercises.id_main_muscle_group=muscle_groups.id_muscle_groups
+    and muscle_groups.muscle_group = ?`;
 
     db.query(query, [main_muscle_group], (error, results) => {
       if (error) {

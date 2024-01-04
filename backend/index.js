@@ -12,6 +12,7 @@ import YourProfileRoutes from "./YourProfile/YourProfileRoutes.js";
 import AdminPanelUsersRoutes from "./AdminPanel/AdminPanelUsersRoutes.js";
 import AdminPanelExercisesRoutes from "./AdminPanel/AdminPanelExercisesRoutes.js";
 import ContactRoutes from "./Contact/ContactRoutes.js";
+import ChartsRoutes from "./Charts/ChartsRoutes.js";
 
 
 const app = express();
@@ -44,6 +45,7 @@ app.use('/', YourProfileRoutes(db));
 app.use('/', AdminPanelUsersRoutes(db));
 app.use('/', AdminPanelExercisesRoutes(db));
 app.use('/', ContactRoutes(db));
+app.use('/', ChartsRoutes(db));
 
 
 

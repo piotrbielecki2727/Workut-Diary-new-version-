@@ -101,23 +101,24 @@ function NavigateBar() {
                   <div className="navDiv">
                     <Link to={"/manageUsers"} className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faUsers} className="custom-icon" /></i>User management</Link>
                   </div>
-                  
+
                   <div className="navDiv">
                     <Link to="/manageExercises" className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faListCheck} className="custom-icon" /></i>Exercise management</Link>
                   </div>
                 </>
               ) : (
                 <>
-                 
+
                   <div className="navDiv">
                     <Link to={"/BmrCalculator"} className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faCalculator} className="custom-icon" /></i>Calorie Calculator</Link>
                   </div>
-                  
+                  <div className="navDiv">
+                    <Link to="/exercises" className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faDumbbell} className="custom-icon" /></i>Exercises</Link>
+                  </div>
+
                 </>
               )}
-              <div className="navDiv">
-                <Link to="/exercises" className='nav-link' onClick={handleCloseOffcanvas}><i className="iForNavigation"><FontAwesomeIcon icon={faDumbbell} className="custom-icon" /></i>Exercises</Link>
-              </div>
+
 
 
               <hr className="my-1" />

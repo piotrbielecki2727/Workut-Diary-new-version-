@@ -1,0 +1,50 @@
+.WholeChartContainer {
+    background-color: rgb(255, 255, 255);
+    max-width: 1000px;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: rgb(0 0 0 / 55%) 1px 1px 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.ChartContainer {
+    margin-top: 15px;
+    max-width: 900px;
+    
+}
+
+.ChooseExerciseFormLabel,
+.pChartLabel {
+    font-size: 25px;
+    font-weight: bolder;
+}
+
+.ChooseExerciseFormControl {
+    font-size: 18px;
+    max-width: 350px;
+    margin: auto;
+}
+
+.ChartForm {
+    margin-bottom: 15px;
+}
+
+.pInformationForChart {
+    max-width: 700px;
+    margin: auto;
+    font-size: 18px;
+    color: #434343;
+}
+
+@media (max-width:768px) {
+
+    .ChooseExerciseFormLabel,
+    .pChartLabel {
+        font-size: 25px;
+        font-weight: bolder;
+        text-wrap: wrap;
+    }
+
+}
