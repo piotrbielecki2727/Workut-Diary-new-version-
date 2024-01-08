@@ -41,10 +41,6 @@ const createRoutes = (db) => {
         }
 
 
-
-
-
-
         createNewExercise(req, res) {
             console.log("xdd", req.body.IdMainMuscleGroup);
             try {

@@ -27,12 +27,8 @@ import StartWorkout from "./Components/WorkoutPlanning/StartWorkout";
 import CheckDetails from "./Components/WorkoutsHistory/CheckDetails"
 import YourProfile from "./Components/YourProfile/YourProfile";
 import BmrCalculator from "./Components/BmrCalculator/BmrCalculator";
-import Introduction from "./Components/Introduction/Introduction";
 import UsersManagment from "./Components/AdminPanel/Users/UsersManagment";
 import ExercisesManagment from "./Components/AdminPanel/Exercises/ExercisesManagment";
-import ManageUserMessages from "./Components/AdminPanel/UserMessages/ManageUserMessages";
-import Contact from "./Components/Contact/Contact";
-import ProgressChart from "./Components/Charts/ProgressChart";
 import CheckYourProgress from "./Components/Charts/CheckYourProgress";
 
 function AppWrapper() {
@@ -76,12 +72,7 @@ function AppWrapper() {
                   }
                 />
 
-                <Route
-                  path="/introduction"
-                  element={
-                    <Introduction />
-                  }
-                />
+                
 
 
                 <Route
@@ -100,15 +91,9 @@ function AppWrapper() {
                   element={checkPermissions(<ExercisesManagment />, ["Admin"])}
                 />
 
-                <Route
-                  path="/messages"
-                  element={checkPermissions(<ManageUserMessages />, ["Admin"])}
-                />
+               
 
-                <Route
-                  path="/contact"
-                  element={checkPermissions(<Contact />, ["User"])}
-                />
+              
 
 
                 <Route

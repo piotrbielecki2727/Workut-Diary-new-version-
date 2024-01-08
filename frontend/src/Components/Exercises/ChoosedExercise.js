@@ -24,7 +24,7 @@ function ChoosedExercise() {
     const navigate = useNavigate();
     const { Name } = useParams();
     const { auth } = useAuth();
-    const {muscle_group} = useParams();
+    const { muscle_group } = useParams();
 
     const handleGoBack = () => {
         navigate(-1);
@@ -69,7 +69,7 @@ function ChoosedExercise() {
                         </thead>
                         <tbody>
                             <tr>
-                                <td>{exercise.main_muscle_group}</td>
+                                <td>{exercise.muscle_group}</td>
                                 <td>{exercise.muscle_group_1}<br></br> {exercise.muscle_group_2}</td>
                                 <td>{exercise.difficulty}</td>
                                 <td>{exercise.equipment ? exercise.equipment : "---"}</td>

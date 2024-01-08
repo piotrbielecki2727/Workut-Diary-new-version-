@@ -33,23 +33,18 @@ function WorkoutManager() {
 
     const handleClick = (workoutId) => {
         setSelectedWorkoutId(workoutId);
-        console.log(workoutId)
         setIsEditing(true);
-
     }
 
     const handleShowCreate = () => {
         setIsCreating(true);
     }
 
-
-
     useEffect(() => {
         axios.get(`http://localhost:3001/getWorkouts/${userId}`)
             .then(res => {
                 if (res.data.Success) {
                     setWorkouts(res.data.result);
-                    console.log(res.data.result);
                 }
                 else {
                     console.log("err")
@@ -69,14 +64,10 @@ function WorkoutManager() {
         <div id='background'>
             <Container id="workoutManagerContainer">
                 <h3>Manage your workouts</h3>
-                <Button variant="primary" onClick={handleShowCreate} id='createNewWorkoutButton'>
-                    Create new workout
-                </Button>
+                <Button variant="primary" onClick={handleShowCreate} id='createNewWorkoutButton'>Create new workout</Button>
                 {isCreating ?
                     (<CreateWorkout newWorkoutAdded={newWorkoutAdded} setNewWorkoutAdded={setNewWorkoutAdded} setIsCreating={setIsCreating} />
-                    )
-                    :
-                    (<></>)
+                    ) : (<></>)
                 }
                 <Container id="workoutManagerContainer2">
                     {workouts.length > 0 ? (
@@ -101,13 +92,9 @@ function WorkoutManager() {
                                             </td>
                                             <td onClick={() => handleClick(workout.id_group)}>
                                                 {isEditing && selectedWorkoutId === workout.id_group ? (
-                                                    <EditWorkout
-                                                        isEditing={isEditing}
-                                                        setIsEditing={setIsEditing}
-                                                        workoutId={workout.id_group}
-                                                        workoutName={workout.Name}
-                                                        workoutEdited={workoutEdited}
-                                                        setWorkoutEdited={setWorkoutEdited}
+                                                    <EditWorkout isEditing={isEditing}  setIsEditing={setIsEditing}  
+                                                    workoutId={workout.id_group} workoutName={workout.Name} workoutEdited={workoutEdited} 
+                                                    setWorkoutEdited={setWorkoutEdited}
                                                     />
                                                 ) : (
                                                     workout.name
@@ -116,7 +103,8 @@ function WorkoutManager() {
 
                                             {workout.latest_date ? (
                                                 <><td>{new Date(workout.latest_date).toLocaleString()} </td>
-                                                    <td> <Button id="ButtonWorkoutManager" as={Link} to={`/lastWorkout/${workout.latest_done_training_id}/${workout.name}/${workout.latest_date}`}>
+                                                    <td> <Button id="ButtonWorkoutManager" as={Link} 
+                                                    to={`/lastWorkout/${workout.latest_done_training_id}/${workout.name}/${workout.latest_date}`}>
                                                         <FontAwesomeIcon icon={faCalendarWeek} style={{ color: "#000000" }} />
                                                     </Button></td>
                                                 </>
@@ -128,10 +116,7 @@ function WorkoutManager() {
                                             )}
 
                                             <td id="tdButtons">
-                                                <DeleteWorkout
-                                                    workoutId={workout.id_group}
-                                                    workoutDeleted={workoutDeleted}
-                                                    setWorkoutDeleted={setWorkoutDeleted}
+                                                <DeleteWorkout workoutId={workout.id_group}  workoutDeleted={workoutDeleted} setWorkoutDeleted={setWorkoutDeleted}
                                                 />
                                             </td>
                                         </tr>

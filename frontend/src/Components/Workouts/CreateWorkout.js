@@ -24,28 +24,9 @@ function CreateWorkout({ newWorkoutAdded, setNewWorkoutAdded, setIsCreating }) {
         Users_id_user: userId
     })
 
-    const handleSave = (event) => {
+
+    const createWorkout = (event) => {
         event.preventDefault();
-        if (values.Name.length === 0) {
-            setShow(true);
-            setMessage("Workout name can't be empty.");
-            setToastType("warning");
-            return;
-        }
-
-        else if (values.Name.length > 45) {
-            setShow(true);
-            setMessage("The length of the training name can't be longer than 45 characters.");
-            setToastType("warning");
-            return;
-        }
-        else {
-            createWorkout();
-        }
-    }
-
-    const createWorkout = () => {
-
         axios.post("http://localhost:3001/createWorkout", values)
             .then(res => {
                 if (res.data.Success) {
@@ -68,7 +49,7 @@ function CreateWorkout({ newWorkoutAdded, setNewWorkoutAdded, setIsCreating }) {
 
 
     return (
-        <Form onSubmit={handleSave}>
+        <Form onSubmit={createWorkout}>
             <Toasts show={show} setShow={setShow} message={message} toastType={toastType} setToastType={setToastType} />
             <Form.Group id="createWorkoutForm">
                 <Form.Control

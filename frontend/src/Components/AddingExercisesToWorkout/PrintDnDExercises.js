@@ -48,32 +48,25 @@ function PrintDnDExercises({ WorkoutPlanner, exercises, setExercises, workoutId,
     }
 
     useEffect(() => {
-        console.log(userId)
-        if (userId === null) {
-            navigate("/")
-        }
-        else {
-            axios.get(`http://localhost:3001/getWorkoutExercises/${workoutId}`)
-                .then(res => {
-                    if (res.data.Success) {
-                        setExercises(res.data.result);
-                        console.log(res.data.result);
+        axios.get(`http://localhost:3001/getWorkoutExercises/${workoutId}`)
+            .then(res => {
+                if (res.data.Success) {
+                    setExercises(res.data.result);
+                    console.log(res.data.result);
 
-                    }
-                    else {
-                        console.log("Blad");
-                        setExercises([]);
+                }
+                else {
+                    console.log("Blad");
+                    setExercises([]);
 
 
-                    }
-                })
-                .catch(err => {
-                    console.log(err);
-                })
-            setNewExerciseAdded(false);
-            setExerciseDeleted(false);
-        }
-
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        setNewExerciseAdded(false);
+        setExerciseDeleted(false);
     }, [workoutId, newExerciseAdded, exerciseDeleted, userId]);
 
 

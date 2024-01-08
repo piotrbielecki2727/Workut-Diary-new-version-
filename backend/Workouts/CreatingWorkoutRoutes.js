@@ -8,7 +8,6 @@ const createRoutes = (db) => {
             req.body.Name,
             req.body.Users_id_user
         ]
-
         const query = "INSERT INTO Training_Groups (Name ,Users_id_user) VALUES (?)"
         const query_select = "SELECT Name from Training_Groups where Users_id_user=?"
         db.query(query_select, [req.body.Users_id_user], (err, result) => {
@@ -69,7 +68,8 @@ const createRoutes = (db) => {
         const workoutId = req.params.workoutId;
         console.log("probuje", workoutId);
 
-        const deleteSetsQuery = `DELETE FROM sets WHERE Done_Trainings_id_done_training IN (SELECT id_done_training FROM done_trainings WHERE Training_Groups_id_group = ?)`;
+        const deleteSetsQuery = `DELETE FROM sets WHERE Done_Trainings_id_done_training IN (SELECT id_done_training FROM done_trainings 
+            WHERE Training_Groups_id_group = ?)`;
         const deleteDoneTrainingsQuery = `DELETE FROM done_trainings WHERE Training_Groups_id_group = ?`;
         const deleteTrainingExerciseQuery = `DELETE FROM training_exercise WHERE workout_id = ?`;
 
@@ -113,9 +113,6 @@ const createRoutes = (db) => {
 
 
     router.put("/editWorkout", (req, res) => {
-        console.log(req.body.Name);
-        console.log(req.body.Users_id_user);
-        console.log(req.body.workoutId);
         const query = "UPDATE Training_Groups SET Name=? WHERE id_group=?";
         const query_select = "SELECT Name from Training_Groups where Users_id_user=?"
         db.query(query_select, [req.body.Users_id_user], (err, result) => {

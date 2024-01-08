@@ -1,43 +1,77 @@
 #background {
-    background-image: linear-gradient(rgba(175, 175, 175, 0.8), rgba(165, 165, 165, 0.4), rgba(88, 88, 88, 0.6), rgba(58, 58, 58, 0.8)), url(../imgs/background3.png);
-    background-position: center;
-    background-size: cover;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+  background-image: linear-gradient(rgba(175, 175, 175, 0.8), rgba(165, 165, 165, 0.4), rgba(88, 88, 88, 0.6), rgba(58, 58, 58, 0.8)), url(../imgs/background3.png);
+  background-position: center;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 
 
 }
 
 .homeContainer {
-    max-width: 1000px;
-    border-radius: 10px;
-    padding: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    text-align: center;
-    color: rgb(0, 0, 0);
-    background-color: white;
+  max-width: 1000px;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: rgb(0, 0, 0);
+  background-color: white;
 }
 
 .laptopCol {
-    justify-content: center;
-    margin: auto;
-    display: flex;
+  justify-content: center;
+  margin: auto;
+  display: flex;
 
 }
 
 .mobileCol {
-    justify-content: center;
-    display: flex;
+  justify-content: center;
+  display: flex;
 
 }
 
 
 .image1 {
-    max-width: 630px;
+  max-width: 630px;
 }
 
 .image {
-    max-height: 500px;
+  max-height: 500px;
+}
+
+.homeContainer {
+  text-align: center;
+  color: #333;
+}
+
+h1,
+h2 {
+  color: #000000;
+}
+
+.image1,
+.image {
+  max-width: 100%;
+  height: auto;
+  margin-top: 20px;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+p {
+  font-size: 18px;
+  margin-bottom: 20px;
 }

@@ -52,8 +52,10 @@ const createRoutes = (db) => {
 
   router.get('/getChoosedExercise/:Name', (req, res) => {
     const Name = req.params.Name;
-    const query = `SELECT id_exercise,Name,gif, muscle_group,muscle_group_1,muscle_group_2,equipment,difficulty,video,description
-    from exercises, muscle_groups where Name = ?`;
+    const query = `SELECT DISTINCT id_exercise,Name,gif, muscle_group,muscle_group_1,muscle_group_2,equipment,difficulty,video,description, muscle_group, id_main_muscle_group
+    from exercises, muscle_groups 
+    where Name = ?
+    and muscle_groups.id_muscle_groups=exercises.id_main_muscle_group`;
     db.query(query, [Name], (error, results) => {
       if (error) {
         console.log(error);

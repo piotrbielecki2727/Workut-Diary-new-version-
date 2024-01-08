@@ -23,35 +23,6 @@ function EditWorkout({ setWorkoutEdited, workoutName, workoutId, setIsEditing })
 
     const handleClose = () => setIsEditing(false);
 
-
-    const handleError = () => alert("false");
-
-    const handleClick = (id_group) => {
-        setIsEditing(true);
-    }
-
-    const handleSave = (e) => {
-        e.preventDefault();
-        if (values.Name.length === 0) {
-            setShow(true);
-            setMessage("Workout name can't be empty.");
-            setToastType("warning");
-            return;
-        }
-
-        else if (values.Name.length > 45) {
-            setShow(true);
-            setMessage("The length of the training name can't be longer than 45 characters.");
-            setToastType("warning");
-            return;
-        }
-        else {
-            editWorkout();
-        }
-    }
-
-
-
     const editWorkout = () => {
         axios.put(`http://localhost:3001/editWorkout`, values)
             .then(res => {
@@ -75,7 +46,7 @@ function EditWorkout({ setWorkoutEdited, workoutName, workoutId, setIsEditing })
     }
 
     return (
-        <Form onSubmit={handleSave}>
+        <Form onSubmit={editWorkout}>
             <Toasts show={show} setShow={setShow} message={message} toastType={toastType} setToastType={setToastType} />
             <Form.Group id="editWorkoutForm">
                 <Form.Control

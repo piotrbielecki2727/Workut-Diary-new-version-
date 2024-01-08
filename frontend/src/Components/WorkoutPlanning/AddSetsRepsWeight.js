@@ -37,7 +37,6 @@ function AddSetsRepsWeight({ exercise, workoutId }) {
         };
     };
 
-
     const addSet = () => {
         setSets((prevSets) => ({
             ...prevSets,
