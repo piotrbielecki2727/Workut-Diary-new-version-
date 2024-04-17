@@ -88,7 +88,6 @@ const createRoutes = (db) => {
 
 
         editChoosedExerciseInDB(req, res) {
-            console.log("xdd", req.body.values);
             try {
                 this.db.query(
                     queries.editChoosedExerciseInDB,
